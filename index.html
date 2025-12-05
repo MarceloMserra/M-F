@@ -28,16 +28,19 @@
             padding-bottom: 90px;
             color: var(--text-color);
             min-height: 100vh;
-            /* SEU FUNDO AQUI: A imagem deve estar na pasta 'images' */
+            
+            /* FUNDO FIXO (A Mágica acontece aqui) */
             background: url('images/fundo.jpg') no-repeat center center fixed;
             background-size: cover;
+            /* Garante que o fundo não role no mobile */
+            background-attachment: fixed; 
         }
 
-        /* Overlay escuro suave para ler o texto */
+        /* Overlay escuro suave */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(15, 23, 42, 0.65); /* Azul escuro transparente */
-            backdrop-filter: blur(3px); /* Desfoque leve no fundo */
+            background: rgba(15, 23, 42, 0.65); 
+            backdrop-filter: blur(3px); 
             z-index: -1;
         }
 
@@ -47,9 +50,26 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         .header h1 { font-size: 1.8rem; margin: 0; letter-spacing: 1px; }
-        .header p { font-size: 0.85rem; opacity: 0.8; font-weight: 300; }
+        .header p { font-size: 0.85rem; opacity: 0.8; font-weight: 300; margin-top: 5px; }
 
-        /* Card Glassmorphism (Vidro) */
+        /* Botão do Agente (NOVO) */
+        .btn-agent {
+            background: linear-gradient(45deg, #FF9500, #FF5E3A);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(255, 94, 58, 0.4);
+            text-decoration: none;
+        }
+
+        /* Card Glassmorphism */
         .card {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -98,7 +118,6 @@
             display: flex; flex-direction: column; align-items: center; gap: 8px;
             color: white; font-size: 0.9rem;
         }
-        /* Cores específicas dos botões */
         .act-love { border-color: var(--accent-pink); color: var(--accent-pink); }
         .act-peace { border-color: var(--success); color: var(--success); }
         .act-bad { border-color: var(--danger); color: var(--danger); }
@@ -115,7 +134,6 @@
 
         /* Lista Histórico */
         .history-list { max-height: 250px; overflow-y: auto; padding-right: 5px; }
-        /* Scrollbar fina */
         .history-list::-webkit-scrollbar { width: 4px; }
         .history-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
         
@@ -154,8 +172,13 @@
 
     <div class="header">
         <h1>Marcelo & Fernanda</h1>
-        <p style="margin-top: 5px;">Construindo nosso 2026 💍</p>
-        <div id="status-conn" style="font-size: 0.7rem; color: var(--accent-blue); margin-top: 5px;">
+        <p>Construindo nosso 2026 💍</p>
+        
+        <a href="https://aistudio.google.com/app/prompts/new_chat" target="_blank" class="btn-agent">
+            <i class="fas fa-robot"></i> Conselheiro Virtual
+        </a>
+
+        <div id="status-conn" style="font-size: 0.7rem; color: var(--accent-blue); margin-top: 10px;">
             <i class="fas fa-circle-notch fa-spin"></i> Conectando...
         </div>
     </div>
@@ -238,7 +261,7 @@
         <div class="finance-group">
             <select id="user-select" class="input-glass" style="max-width: 100px;">
                 <option value="Marcelo">Marcelo</option>
-                <option value="Fernanda">Nanda</option>
+                <option value="Fernanda">Fernanda</option>
             </select>
             <input type="number" id="money-input" class="input-glass" placeholder="R$ 0,00" inputmode="decimal">
         </div>
@@ -275,7 +298,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-        // --- SUAS CHAVES DO FIREBASE ---
+        // SUAS CHAVES DO FIREBASE
         const firebaseConfig = {
             apiKey: "AIzaSyC8YA9o9KVlKW1j9Ps2gqwYYWJDnFt6Go4",
             authDomain: "casal2026-888ce.firebaseapp.com",
@@ -311,7 +334,7 @@
         ];
 
         const missoes = [
-            "Orem de mãos dadas.", "Beijo de 10s.", "Elogie a roupa.", "Massagem nos pés.", "Lavem a louça juntos.",
+            "Orem juntos de mãos dadas.", "Deem um beijo de 10 seg.", "Elogie a aparência do outro.", "Massagem nos pés.", "Lavem a louça juntos.",
             "Sem celular por 1h.", "Caminhada de 20min.", "Ver fotos antigas.", "Dancem na sala.", "Café na cama.",
             "Escreva um bilhete.", "Peça perdão.", "Diga Eu Te Amo.", "Façam um lanche.", "Leiam a Bíblia."
         ];
