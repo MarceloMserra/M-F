@@ -291,6 +291,31 @@
     </div>
   </div>
 
+  <!-- NOVO CARD: PRESENÇA NA IGREJA -->
+  <div class="card">
+    <h3><i class="fas fa-church text-gold"></i> Presença na Igreja</h3>
+    <p style="font-size:0.85rem; opacity:0.8;">
+      Registre cada culto de domingo que vocês forem juntos.
+    </p>
+
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-top:10px;">
+      <div>
+        <div id="igreja-total" style="font-size:2rem; font-weight:bold;">0</div>
+        <div style="font-size:0.8rem; opacity:0.8;">Domingos registrados</div>
+      </div>
+
+      <button class="btn-main"
+              style="width:auto; padding:10px 16px; background:linear-gradient(135deg,#22c55e,#16a34a);"
+              onclick="marcarIgrejaHoje()">
+        <i class="fas fa-check-circle"></i> Marcar hoje
+      </button>
+    </div>
+
+    <div id="igreja-last" style="margin-top:10px; font-size:0.8rem; opacity:0.8;">
+      Último registro: —
+    </div>
+  </div>
+
   <div class="card">
     <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
       <h3><i class="fas fa-history"></i> Diário</h3>
@@ -328,7 +353,14 @@
     const fmtBRL = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 
     // Estado
-    let estado = { xp: 0, pe: 0, ch: 0, list: [] };
+    let estado = {
+      xp: 0,
+      pe: 0,
+      ch: 0,
+      list: [],
+      igrejaCount: 0,
+      igrejaLast: null
+    };
 
     // DADOS DO JOGO
     const niveis = [
@@ -347,14 +379,82 @@
     ];
 
     const missoes = [
-      "Orem juntos de mãos dadas.", "Deem um beijo de 10 seg.", "Elogie a aparência do outro.", "Massagem nos pés.", "Lavem a louça juntos.",
-      "Sem celular por 1h.", "Caminhada de 20min.", "Ver fotos antigas.", "Dancem na sala.", "Café na cama.",
-      "Escreva um bilhete.", "Peça perdão.", "Diga Eu Te Amo.", "Façam um lanche.", "Leiam a Bíblia."
+      // Espirituais
+      "Orem juntos agradecendo por três coisas específicas que aconteceram hoje.",
+      "Leiam um trecho de Provérbios e conversem 5 minutos sobre o que mais chamou atenção.",
+      "Façam uma oração um pelo outro, cada um pedindo algo especial para a vida do outro.",
+      "Escolham um versículo para ser o ‘versículo do dia’ e deixem anotado em algum lugar visível.",
+      "Ouçam um hino ou louvor juntos e depois conversem sobre o que essa música já significou para vocês.",
+      "Façam uma oração só de gratidão, sem pedir nada, por pelo menos dois minutos.",
+      "Cada um escreva uma breve oração pelo outro em um papel e depois leiam em voz alta.",
+      "Conversem sobre uma situação difícil em que sentiram que Deus cuidou de vocês como casal.",
+      "Leiam juntos um salmo de proteção e façam uma oração pela família.",
+      "Escolham um casal amigo ou parente e orem rapidamente por eles juntos.",
+
+      // Carinho e romance
+      "Dêem um beijo longo e sem pressa, olhando nos olhos antes de encostar os lábios.",
+      "Façam um abraço demorado de pelo menos 30 segundos em silêncio.",
+      "Cada um diga em voz alta três qualidades que mais admira no outro.",
+      "Preparem juntos um lanche simples à noite e comam abraçados no sofá.",
+      "Escolham uma música romântica e dancem um trecho dela na sala de casa.",
+      "Tirem uma selfie abraçados para registrar o dia de hoje e guardem em um álbum de vocês.",
+      "Surpreenda o outro com um toque de carinho inesperado (um cafuné, um abraço por trás, etc.).",
+      "Escrevam uma frase romântica em um bilhetinho e escondam para o outro encontrar depois.",
+      "Façam uma ‘competição de elogios’: cada um faz três elogios diferentes para o outro.",
+      "Segurem as mãos por alguns minutos enquanto conversam sobre algo do dia.",
+
+      // Comunicação & reconciliação
+      "Pergunte ao outro: ‘Como você está de verdade hoje?’ e ouça sem interromper.",
+      "Cada um compartilhe uma preocupação atual e o outro apenas ouve, sem tentar resolver.",
+      "Conversem sobre uma pequena mágoa recente e tentem limpar isso com carinho.",
+      "Façam o exercício de dizer: ‘Eu me sinto… quando…’ para algo que incomoda, sem acusar.",
+      "Pense em algo que você poderia ter feito melhor esta semana e peça perdão se for necessário.",
+      "Cada um conte um sonho pessoal que ainda não explicou com detalhes para o outro.",
+      "Conversem sobre um conflito antigo que já foi superado e celebrem juntos a vitória.",
+      "Escolham uma frase para ser o ‘mantra de paz’ de vocês quando começarem a discutir.",
+      "Façam um combinado de como querem resolver brigas daqui pra frente (tom, horário, lugar).",
+      "Cada um diga uma coisa que gostaria de melhorar em si mesmo para ser um parceiro melhor.",
+
+      // Rotina & casa
+      "Escolham uma tarefa da casa para fazerem juntos hoje, em vez de fazer separados.",
+      "Organizem uma pequena gaveta ou canto bagunçado da casa trabalhando em dupla.",
+      "Preparem o café da manhã ou um café da tarde simples juntos, dividindo as funções.",
+      "Façam uma pequena faxina de 15 minutos ouvindo música e trabalhando como time.",
+      "Planejem a rotina de amanhã para diminuir o estresse do dia seguinte.",
+      "Montem juntos uma lista de compras rápida com coisas que estão faltando em casa.",
+      "Tirem 10 minutos para arrumar a cama e o quarto de forma mais caprichada que o normal.",
+      "Definam uma pequena meta doméstica da semana (por exemplo: organizar um armário).",
+      "Revejam juntos uma conta ou gasto da casa para entender melhor o orçamento.",
+      "Combinem uma tarefa que um vai aliviar do outro esta semana (ex: louça, lixo, etc.).",
+
+      // Diversão & criatividade
+      "Relembrem uma história engraçada que já viveram juntos e tentem contar em detalhes.",
+      "Escolham um vídeo engraçado para assistir juntos e deem risada sem pressa.",
+      "Joguem um joguinho rápido (baralho, jogo de perguntas, adivinhação, etc.).",
+      "Façam um desenho bobo um do outro e mostrem ao final, sem julgamento.",
+      "Invente um apelido carinhoso novo para o outro só para este dia.",
+      "Escolham um filme ou série para ver pelo menos 20 minutos juntinhos.",
+      "Criem uma ‘piada interna’ nova hoje, algo que só vocês dois entendam.",
+      "Montem uma mini lista de coisas diferentes que gostariam de fazer no próximo mês.",
+      "Cada um conte uma lembrança da infância que o outro ainda não conhece.",
+      "Finjam que estão em um ‘primeiro encontro’ e conversem como se estivessem se conhecendo hoje.",
+
+      // Metas, futuro e cuidado financeiro
+      "Conversem por 10 minutos sobre um objetivo financeiro que querem alcançar juntos.",
+      "Atualizem mentalmente ou no papel quanto já avançaram nas metas de viagem.",
+      "Cada um diga uma meta pessoal para os próximos 7 dias e peça ao outro para cobrar com carinho.",
+      "Listem três coisas que querem muito viver juntos nos próximos dois anos.",
+      "Falem sobre como imaginam a rotina de vocês daqui a cinco anos.",
+      "Conversem sobre um hábito ruim financeiro que gostariam de melhorar.",
+      "Escrevam uma pequena meta de casal para este mês e deixem anotada.",
+      "Escolham um ‘presente de futuro’ (algo que querem comprar/juntar dinheiro) e combinem um plano.",
+      "Planejem rapidamente um ‘encontro simples’ para a próxima semana (em casa ou fora).",
+      "Terminem o dia agradecendo em voz alta por algo que o outro fez hoje, mesmo que pequeno."
     ];
 
     // Firebase (carregamento robusto)
     let firebaseReady = false;
-    let db = null, dbRef = null;
+    let db = null, dbRef = null, igrejaRef = null;
     let fbRef = null, fbPush = null, fbOnValue = null, fbRemove = null;
 
     function requireFirebase() {
@@ -442,6 +542,22 @@
       if (!estado.list.length) {
         lista.innerHTML = `<div style="text-align:center; padding:20px; color:#aaa;">Sem registros ainda.</div>`;
       }
+
+      // Presença na Igreja
+      const igrejaTotalEl = document.getElementById("igreja-total");
+      const igrejaLastEl = document.getElementById("igreja-last");
+
+      if (igrejaTotalEl) {
+        igrejaTotalEl.innerText = estado.igrejaCount || 0;
+      }
+
+      if (igrejaLastEl) {
+        if (estado.igrejaLast) {
+          igrejaLastEl.innerText = `Último registro: ${estado.igrejaLast.date || "—"}`;
+        } else {
+          igrejaLastEl.innerText = "Último registro: —";
+        }
+      }
     }
 
     // Funções globais (UI)
@@ -516,6 +632,40 @@
       }
     };
 
+    // NOVA FUNÇÃO: marcar presença na igreja
+    window.marcarIgrejaHoje = () => {
+      requireFirebase();
+
+      const hoje = new Date();
+      const date = hoje.toLocaleDateString();
+      const iso = hoje.toISOString();
+
+      if (estado.igrejaLast && estado.igrejaLast.date === date) {
+        const confirma = confirm("Já tem presença registrada para hoje. Deseja marcar de novo mesmo assim?");
+        if (!confirma) return;
+      }
+
+      // 1) Registra na coleção específica de igreja
+      fbPush(igrejaRef, {
+        date,
+        dateISO: iso,
+        obs: "Culto de domingo",
+        xp: 20
+      });
+
+      // 2) Também registra no histórico geral (ganha XP)
+      fbPush(dbRef, {
+        date,
+        user: "Nós",
+        desc: "Fomos à igreja hoje 🙏",
+        xp: 20,
+        val: 0,
+        tipo: "igreja"
+      });
+
+      alert("Presença na igreja registrada! Deus abençoe vocês 🙏");
+    };
+
     // Inicialização (Firebase via import dinâmico)
     (async () => {
       try {
@@ -537,6 +687,7 @@
         const app = initializeApp(firebaseConfig);
         db = getDatabase(app);
         dbRef = ref(db, "historico");
+        igrejaRef = ref(db, "igreja");
 
         // binds
         fbRef = ref;
@@ -554,6 +705,30 @@
             Object.keys(data).forEach(k => estado.list.push({ id: k, ...data[k] }));
           }
           recalcular();
+          renderizar();
+        });
+
+        fbOnValue(igrejaRef, (snap) => {
+          const data = snap.val();
+          let count = 0;
+          let last = null;
+
+          if (data) {
+            Object.keys(data).forEach((k) => {
+              const item = data[k];
+              count++;
+              if (
+                !last ||
+                new Date(item.dateISO || item.date) >
+                  new Date(last?.dateISO || last?.date || 0)
+              ) {
+                last = item;
+              }
+            });
+          }
+
+          estado.igrejaCount = count;
+          estado.igrejaLast = last;
           renderizar();
         });
 
