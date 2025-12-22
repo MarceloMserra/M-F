@@ -606,7 +606,8 @@
 
       if (!texto) return alert("Escreva alguma coisa!");
 
-      fbPush(ref(db, `metas/${dono}`), {
+      // USA fbRef (GLOBAL)
+      fbPush(fbRef(db, `metas/${dono}`), {
         texto: texto,
         criadoEm: new Date().toLocaleDateString()
       });
@@ -617,7 +618,8 @@
     window.apagarMeta = (dono, id) => {
       requireFirebase();
       if(confirm("Já completou ou quer desistir dessa meta?")) {
-        fbRemove(ref(db, `metas/${dono}/${id}`));
+        // USA fbRef (GLOBAL)
+        fbRemove(fbRef(db, `metas/${dono}/${id}`));
       }
     };
 
@@ -752,7 +754,7 @@
         igrejaRef = ref(db, "igreja");
         const metasRef = ref(db, "metas");
 
-        // binds
+        // binds globais
         fbRef = ref;
         fbPush = push;
         fbOnValue = onValue;
