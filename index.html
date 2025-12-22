@@ -463,7 +463,7 @@
     // Firebase (carregamento robusto)
     let firebaseReady = false;
     let db = null, dbRef = null, igrejaRef = null;
-    let fbRef = null, fbPush = null, fbOnValue = null, fbRemove = null;
+    let fbRef = null, fbPush = null, fbOnValue = null, fbRemove = null, fbUpdate = null;
 
     function requireFirebase() {
       if (!firebaseReady) {
@@ -592,7 +592,10 @@
               <i class="fas fa-star" style="color:#ffd700; font-size:0.7rem; margin-right:5px;"></i>
               ${item.texto}
             </div>
-            <i class="fas fa-trash" style="color:var(--danger); opacity:0.6; cursor:pointer;" onclick="apagarMeta('${dono}', '${key}')"></i>
+            <div style="display:flex; gap:10px;">
+               <i class="fas fa-pen" style="color:var(--accent-blue); opacity:0.6; cursor:pointer;" onclick="editarMeta('${dono}', '${key}')"></i>
+               <i class="fas fa-trash" style="color:var(--danger); opacity:0.6; cursor:pointer;" onclick="apagarMeta('${dono}', '${key}')"></i>
+            </div>
           </div>
         `;
       });
@@ -606,7 +609,6 @@
 
       if (!texto) return alert("Escreva alguma coisa!");
 
-      // USA fbRef (GLOBAL)
       fbPush(fbRef(db, `metas/${dono}`), {
         texto: texto,
         criadoEm: new Date().toLocaleDateString()
@@ -615,10 +617,23 @@
       input.value = ""; 
     };
 
+    window.editarMeta = (dono, id) => {
+      requireFirebase();
+      // Pega o texto atual do estado para preencher o prompt
+      const metaAtual = estado.metas[dono][id].texto;
+      const novoTexto = prompt("Editar meta:", metaAtual);
+
+      if (novoTexto && novoTexto !== metaAtual) {
+         // Atualiza apenas o campo 'texto' no Firebase
+         fbUpdate(fbRef(db, `metas/${dono}/${id}`), {
+           texto: novoTexto
+         });
+      }
+    };
+
     window.apagarMeta = (dono, id) => {
       requireFirebase();
       if(confirm("Já completou ou quer desistir dessa meta?")) {
-        // USA fbRef (GLOBAL)
         fbRemove(fbRef(db, `metas/${dono}/${id}`));
       }
     };
@@ -733,7 +748,7 @@
     (async () => {
       try {
         const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");
-        const { getDatabase, ref, push, onValue, remove } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js");
+        const { getDatabase, ref, push, onValue, remove, update } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js");
 
         // SUAS CHAVES DO FIREBASE
         const firebaseConfig = {
@@ -759,6 +774,7 @@
         fbPush = push;
         fbOnValue = onValue;
         fbRemove = remove;
+        fbUpdate = update;
 
         firebaseReady = true;
         setStatus('<i class="fas fa-wifi"></i> Online', "var(--success)");
