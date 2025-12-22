@@ -29,6 +29,7 @@
       --accent-blue: #4facfe;
       --success: #00b09b;
       --danger: #ff5f6d;
+      --gold: #ffd700;
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -88,10 +89,12 @@
       margin-bottom: 20px;
       border: var(--glass-border);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      transition: transform 0.2s;
     }
-
+    
     h3 { margin-top: 0; font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
 
+    /* XP BAR */
     .level-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; cursor: pointer; }
     .xp-track { width: 100%; height: 14px; background: rgba(0,0,0,0.3); border-radius: 10px; overflow: hidden; position: relative; }
     .xp-fill {
@@ -102,11 +105,39 @@
       box-shadow: 0 0 10px rgba(255, 154, 158, 0.7);
     }
 
-    button, .btn-link {
-      border: none; outline: none; cursor: pointer;
-      font-family: inherit; font-weight: 600;
-      transition: transform 0.2s, filter 0.2s;
+    /* TRAVEL TRACKER STYLES */
+    .travel-track-container {
+      margin-top: 15px;
+      position: relative;
+      padding-top: 20px; /* Space for the floating icon */
     }
+    .travel-track {
+      width: 100%; height: 10px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 10px;
+      position: relative;
+    }
+    .travel-fill {
+      height: 100%;
+      border-radius: 10px;
+      width: 0%;
+      transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+    }
+    /* O ícone flutuante (Avião/Carro) */
+    .travel-icon {
+      position: absolute;
+      right: -12px;
+      top: -24px;
+      font-size: 1.2rem;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+      transition: right 1.5s;
+    }
+    .travel-stats {
+      display: flex; justify-content: space-between; font-size: 0.75rem; color: #ccc; margin-top: 6px;
+    }
+
+    button { border: none; outline: none; cursor: pointer; font-family: inherit; font-weight: 600; transition: transform 0.2s; }
     button:active { transform: scale(0.96); }
 
     .btn-main {
@@ -133,7 +164,9 @@
       flex: 1; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2);
       background: rgba(0,0,0,0.3); color: white; font-family: inherit;
     }
-    .btn-deposit { flex: 1; padding: 12px; border-radius: 10px; font-size: 0.9rem; color: #fff; }
+    .input-glass option { background: #333; color: white; }
+
+    .btn-deposit { flex: 1; padding: 12px; border-radius: 10px; font-size: 0.9rem; color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
     .history-list { max-height: 250px; overflow-y: auto; padding-right: 5px; }
     .history-list::-webkit-scrollbar { width: 4px; }
@@ -166,6 +199,11 @@
     .hidden { display: none; }
     .text-gold { color: #ffd700; }
     .text-success { color: var(--success); }
+    
+    .status-pill {
+      background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 20px; 
+      font-size: 0.7rem; display: inline-flex; align-items: center; gap: 5px;
+    }
   </style>
 </head>
 
@@ -257,7 +295,8 @@
   </div>
 
   <div class="card">
-    <h3><i class="fas fa-plane-departure text-gold"></i> Banco 2026</h3>
+    <h3><i class="fas fa-plane-departure text-gold"></i> Banco de Viagens</h3>
+    <p style="font-size:0.8rem; opacity:0.7; margin-bottom:15px;">Foco em Novembro/2026 🚀</p>
 
     <div class="finance-group">
       <select id="user-select" class="input-glass" style="max-width: 110px;">
@@ -269,23 +308,47 @@
     </div>
 
     <div class="finance-group">
-      <button class="btn-deposit" style="background:var(--accent-pink)" onclick="depositar('pe')">Pernambuco</button>
+      <button class="btn-deposit" style="background:var(--accent-pink)" onclick="depositar('pe')">Recife/PE</button>
       <button class="btn-deposit" style="background:var(--accent-blue)" onclick="depositar('ch')">Chapada</button>
     </div>
 
-    <div style="margin-top:15px; font-size:0.85rem;">
-      <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-        <span>Pernambuco (R$ 2k)</span> <span id="total-pe" class="text-gold">R$ 0,00</span>
+    <div style="margin-top:25px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-weight:600; color:var(--accent-pink)">Pernambuco ☀️</span>
+        <span id="status-pe" class="status-pill">🎒 Iniciando</span>
       </div>
-      <div class="xp-track" style="height:6px;">
-        <div class="xp-fill" id="bar-pe" style="background:var(--accent-pink); width:0%"></div>
+      
+      <div class="travel-track-container">
+        <div class="travel-track">
+          <div class="travel-fill" id="bar-pe" style="background:var(--accent-pink);">
+             <i class="fas fa-plane travel-icon" style="color:var(--accent-pink)"></i>
+          </div>
+        </div>
       </div>
+      
+      <div class="travel-stats">
+        <span id="total-pe">R$ 0,00</span>
+        <span>Meta: R$ 7.200</span>
+      </div>
+    </div>
 
-      <div style="display:flex; justify-content:space-between; margin-bottom:5px; margin-top:10px;">
-        <span>Chapada (R$ 800)</span> <span id="total-ch" class="text-success">R$ 0,00</span>
+    <div style="margin-top:25px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.1);">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-weight:600; color:var(--accent-blue)">Chapada 🏞️</span>
+        <span id="status-ch" class="status-pill">🎒 Iniciando</span>
       </div>
-      <div class="xp-track" style="height:6px;">
-        <div class="xp-fill" id="bar-ch" style="background:var(--accent-blue); width:0%"></div>
+      
+      <div class="travel-track-container">
+        <div class="travel-track">
+          <div class="travel-fill" id="bar-ch" style="background:var(--accent-blue);">
+             <i class="fas fa-car-side travel-icon" style="color:var(--accent-blue)"></i>
+          </div>
+        </div>
+      </div>
+      
+      <div class="travel-stats">
+        <span id="total-ch">R$ 0,00</span>
+        <span>Meta: R$ 2.500</span>
       </div>
     </div>
   </div>
@@ -295,7 +358,8 @@
     <p style="font-size:0.8rem; opacity:0.8; margin-bottom:15px;">O que vamos conquistar individualmente?</p>
 
     <div class="finance-group">
-      <select id="meta-dono" class="input-glass" onchange="renderizarMetas()" style="max-width: 110px;">
+      <select id="meta-dono" class="input-glass" onchange="renderizarMetas()" style="max-width: 130px;">
+        <option value="" disabled selected>Quem é você?</option>
         <option value="Marcelo">Marcelo</option>
         <option value="Fernanda">Fernanda</option>
       </select>
@@ -306,7 +370,7 @@
     </div>
 
     <div id="lista-metas" class="history-list" style="margin-top:10px; max-height: 200px;">
-      <div style="text-align:center; padding:15px; color:#aaa;">Carregando...</div>
+      <div style="text-align:center; padding:15px; color:#aaa; font-size:0.8rem;">Selecione seu nome acima para ver as metas.</div>
     </div>
   </div>
 
@@ -359,14 +423,8 @@
       statusEl.style.color = cssColor;
     }
 
-    window.addEventListener("offline", () => {
-      setStatus('<i class="fas fa-wifi"></i> Offline', "var(--danger)");
-    });
-
-    window.addEventListener("online", () => {
-      // não assume firebase pronto — só atualiza o texto
-      setStatus('<i class="fas fa-circle-notch fa-spin"></i> Reconectando...', "var(--accent-blue)");
-    });
+    window.addEventListener("offline", () => { setStatus('<i class="fas fa-wifi"></i> Offline', "var(--danger)"); });
+    window.addEventListener("online", () => { setStatus('<i class="fas fa-circle-notch fa-spin"></i> Reconectando...', "var(--accent-blue)"); });
 
     const fmtBRL = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 
@@ -380,6 +438,10 @@
       igrejaLast: null,
       metas: {}
     };
+
+    // TETOS FINANCEIROS ATUALIZADOS 2026
+    const ALVO_PE = 7200; // Recife
+    const ALVO_CH = 2500; // Chapada
 
     // DADOS DO JOGO
     const niveis = [
@@ -404,60 +466,21 @@
       "Escolham um versículo para ser o ‘versículo do dia’ e deixem anotado em algum lugar visível.",
       "Ouçam um hino ou louvor juntos e depois conversem sobre o que essa música já significou para vocês.",
       "Façam uma oração só de gratidão, sem pedir nada, por pelo menos dois minutos.",
-      "Cada um escreva uma breve oração pelo outro em um papel e depois leiam em voz alta.",
-      "Conversem sobre uma situação difícil em que sentiram que Deus cuidou de vocês como casal.",
-      "Leiam juntos um salmo de proteção e façam uma oração pela família.",
-      "Escolham um casal amigo ou parente e orem rapidamente por eles juntos.",
       "Dêem um beijo longo e sem pressa, olhando nos olhos antes de encostar os lábios.",
       "Façam um abraço demorado de pelo menos 30 segundos em silêncio.",
       "Cada um diga em voz alta três qualidades que mais admira no outro.",
       "Preparem juntos um lanche simples à noite e comam abraçados no sofá.",
-      "Escolham uma música romântica e dancem um trecho dela na sala de casa.",
-      "Tirem uma selfie abraçados para registrar o dia de hoje e guardem em um álbum de vocês.",
-      "Surpreenda o outro com um toque de carinho inesperado (um cafuné, um abraço por trás, etc.).",
-      "Escrevam uma frase romântica em um bilhetinho e escondam para o outro encontrar depois.",
-      "Façam uma ‘competição de elogios’: cada um faz três elogios diferentes para o outro.",
-      "Segurem as mãos por alguns minutos enquanto conversam sobre algo do dia.",
       "Pergunte ao outro: ‘Como você está de verdade hoje?’ e ouça sem interromper.",
       "Cada um compartilhe uma preocupação atual e o outro apenas ouve, sem tentar resolver.",
       "Conversem sobre uma pequena mágoa recente e tentem limpar isso com carinho.",
-      "Façam o exercício de dizer: ‘Eu me sinto… quando…’ para algo que incomoda, sem acusar.",
-      "Pense em algo que você poderia ter feito melhor esta semana e peça perdão se for necessário.",
-      "Cada um conte um sonho pessoal que ainda não explicou com detalhes para o outro.",
-      "Conversem sobre um conflito antigo que já foi superado e celebrem juntos a vitória.",
-      "Escolham uma frase para ser o ‘mantra de paz’ de vocês quando começarem a discutir.",
-      "Façam um combinado de como querem resolver brigas daqui pra frente (tom, horário, lugar).",
-      "Cada um diga uma coisa que gostaria de melhorar em si mesmo para ser um parceiro melhor.",
       "Escolham uma tarefa da casa para fazerem juntos hoje, em vez de fazer separados.",
       "Organizem uma pequena gaveta ou canto bagunçado da casa trabalhando em dupla.",
       "Preparem o café da manhã ou um café da tarde simples juntos, dividindo as funções.",
-      "Façam uma pequena faxina de 15 minutos ouvindo música e trabalhando como time.",
-      "Planejem a rotina de amanhã para diminuir o estresse do dia seguinte.",
-      "Montem juntos uma lista de compras rápida com coisas que estão faltando em casa.",
-      "Tirem 10 minutos para arrumar a cama e o quarto de forma mais caprichada que o normal.",
-      "Definam uma pequena meta doméstica da semana (por exemplo: organizar um armário).",
-      "Revejam juntos uma conta ou gasto da casa para entender melhor o orçamento.",
-      "Combinem uma tarefa que um vai aliviar do outro esta semana (ex: louça, lixo, etc.).",
       "Relembrem uma história engraçada que já viveram juntos e tentem contar em detalhes.",
       "Escolham um vídeo engraçado para assistir juntos e deem risada sem pressa.",
-      "Joguem um joguinho rápido (baralho, jogo de perguntas, adivinhação, etc.).",
-      "Façam um desenho bobo um do outro e mostrem ao final, sem julgamento.",
-      "Invente um apelido carinhoso novo para o outro só para este dia.",
-      "Escolham um filme ou série para ver pelo menos 20 minutos juntinhos.",
-      "Criem uma ‘piada interna’ nova hoje, algo que só vocês dois entendam.",
-      "Montem uma mini lista de coisas diferentes que gostariam de fazer no próximo mês.",
-      "Cada um conte uma lembrança da infância que o outro ainda não conhece.",
       "Finjam que estão em um ‘primeiro encontro’ e conversem como se estivessem se conhecendo hoje.",
       "Conversem por 10 minutos sobre um objetivo financeiro que querem alcançar juntos.",
-      "Atualizem mentalmente ou no papel quanto já avançaram nas metas de viagem.",
-      "Cada um diga uma meta pessoal para os próximos 7 dias e peça ao outro para cobrar com carinho.",
-      "Listem três coisas que querem muito viver juntos nos próximos dois anos.",
-      "Falem sobre como imaginam a rotina de vocês daqui a cinco anos.",
-      "Conversem sobre um hábito ruim financeiro que gostariam de melhorar.",
-      "Escrevam uma pequena meta de casal para este mês e deixem anotada.",
-      "Escolham um ‘presente de futuro’ (algo que querem comprar/juntar dinheiro) e combinem um plano.",
-      "Planejem rapidamente um ‘encontro simples’ para a próxima semana (em casa ou fora).",
-      "Terminem o dia agradecendo em voz alta por algo que o outro fez hoje, mesmo que pequeno."
+      "Atualizem mentalmente ou no papel quanto já avançaram nas metas de viagem."
     ];
 
     // Firebase (carregamento robusto)
@@ -480,6 +503,16 @@
         .replace(",", ".");
       const val = Number.parseFloat(cleaned);
       return Number.isFinite(val) ? val : 0;
+    }
+
+    function getTravelStatus(val, max) {
+      const perc = (val / max) * 100;
+      if (perc <= 0) return "🎒 Iniciando";
+      if (perc < 20) return "🧳 Arrumando Malas";
+      if (perc < 50) return "🚗 A Caminho";
+      if (perc < 80) return "✈️ Quase lá!";
+      if (perc < 100) return "🏖️ Vendo o Mar";
+      return "🥂 CONQUISTADO!";
     }
 
     function recalcular() {
@@ -507,15 +540,23 @@
       document.getElementById("xp-total").innerText = `${estado.xp} XP`;
       document.getElementById("xp-next").innerText = n.max;
 
-      const perc = Math.min((estado.xp / n.max) * 100, 100);
-      document.getElementById("xp-bar").style.width = `${perc}%`;
+      const percXP = Math.min((estado.xp / n.max) * 100, 100);
+      document.getElementById("xp-bar").style.width = `${percXP}%`;
 
-      // Financeiro
+      // --- FINANCEIRO DIVERTIDO ---
+      
+      // Pernambuco
       document.getElementById("total-pe").innerText = fmtBRL.format(estado.pe);
-      document.getElementById("bar-pe").style.width = `${Math.min((estado.pe / 2000) * 100, 100)}%`;
+      const percPE = Math.min((estado.pe / ALVO_PE) * 100, 100);
+      document.getElementById("bar-pe").style.width = `${percPE}%`;
+      document.getElementById("status-pe").innerText = getTravelStatus(estado.pe, ALVO_PE);
 
+      // Chapada
       document.getElementById("total-ch").innerText = fmtBRL.format(estado.ch);
-      document.getElementById("bar-ch").style.width = `${Math.min((estado.ch / 800) * 100, 100)}%`;
+      const percCH = Math.min((estado.ch / ALVO_CH) * 100, 100);
+      document.getElementById("bar-ch").style.width = `${percCH}%`;
+      document.getElementById("status-ch").innerText = getTravelStatus(estado.ch, ALVO_CH);
+
 
       // Histórico
       const lista = document.getElementById("history-list");
@@ -558,13 +599,8 @@
       if (igrejaTotalEl) {
         igrejaTotalEl.innerText = estado.igrejaCount || 0;
       }
-
       if (igrejaLastEl) {
-        if (estado.igrejaLast) {
-          igrejaLastEl.innerText = `Último registro: ${estado.igrejaLast.date || "—"}`;
-        } else {
-          igrejaLastEl.innerText = "Último registro: —";
-        }
+         igrejaLastEl.innerText = estado.igrejaLast ? `Último registro: ${estado.igrejaLast.date}` : "Último registro: —";
       }
     }
 
@@ -574,8 +610,13 @@
       const dono = document.getElementById("meta-dono").value;
       const listaEl = document.getElementById("lista-metas");
       if (!listaEl) return;
-      listaEl.innerHTML = "";
+      
+      if (!dono) {
+         listaEl.innerHTML = `<div style="text-align:center; padding:15px; color:#aaa; font-size:0.8rem;">Selecione seu nome acima para ver as metas.</div>`;
+         return;
+      }
 
+      listaEl.innerHTML = "";
       const dados = estado.metas && estado.metas[dono] ? estado.metas[dono] : {};
       const chaves = Object.keys(dados);
 
@@ -604,6 +645,9 @@
     window.adicionarMeta = () => {
       requireFirebase();
       const dono = document.getElementById("meta-dono").value;
+      
+      if (!dono) return alert("Selecione quem é você na lista antes de adicionar!");
+
       const input = document.getElementById("meta-texto");
       const texto = input.value.trim();
 
@@ -619,12 +663,10 @@
 
     window.editarMeta = (dono, id) => {
       requireFirebase();
-      // Pega o texto atual do estado para preencher o prompt
       const metaAtual = estado.metas[dono][id].texto;
       const novoTexto = prompt("Editar meta:", metaAtual);
 
       if (novoTexto && novoTexto !== metaAtual) {
-         // Atualiza apenas o campo 'texto' no Firebase
          fbUpdate(fbRef(db, `metas/${dono}/${id}`), {
            texto: novoTexto
          });
@@ -663,7 +705,6 @@
       alert("Foto tirada! Agora abra o Álbum (link abaixo) e adicione ela lá.");
     };
 
-    // Firebase actions (com segurança)
     window.registrarAcao = (xp, desc) => {
       requireFirebase();
       const user = document.getElementById("user-select").value || "Nós";
@@ -684,7 +725,9 @@
       const val = parseMoneyBR(raw);
       if (!val) return alert("Digite um valor!");
 
-      const desc = tipo === "pe" ? "Poupança PE" : "Poupança Chapada";
+      const dest = tipo === "pe" ? "Recife" : "Chapada";
+      const desc = `Poupança ${dest}`;
+      
       fbPush(dbRef, {
         date: new Date().toLocaleDateString(),
         user,
@@ -695,7 +738,7 @@
       });
 
       document.getElementById("money-input").value = "";
-      alert("Dinheiro guardado! 💸");
+      alert(`R$ ${val} guardado para ${dest}! 💸`);
     };
 
     window.remover = (id) => {
@@ -710,47 +753,28 @@
       }
     };
 
-    // NOVA FUNÇÃO: marcar presença na igreja
     window.marcarIgrejaHoje = () => {
       requireFirebase();
-
       const hoje = new Date();
       const date = hoje.toLocaleDateString();
       const iso = hoje.toISOString();
 
       if (estado.igrejaLast && estado.igrejaLast.date === date) {
-        const confirma = confirm("Já tem presença registrada para hoje. Deseja marcar de novo mesmo assim?");
-        if (!confirma) return;
+        if (!confirm("Já tem presença registrada para hoje. Marcar de novo?")) return;
       }
 
-      // 1) Registra na coleção específica de igreja
-      fbPush(igrejaRef, {
-        date,
-        dateISO: iso,
-        obs: "Culto de domingo",
-        xp: 20
-      });
-
-      // 2) Também registra no histórico geral (ganha XP)
-      fbPush(dbRef, {
-        date,
-        user: "Nós",
-        desc: "Fomos à igreja hoje 🙏",
-        xp: 20,
-        val: 0,
-        tipo: "igreja"
-      });
+      fbPush(igrejaRef, { date, dateISO: iso, obs: "Culto de domingo", xp: 20 });
+      fbPush(dbRef, { date, user: "Nós", desc: "Fomos à igreja hoje 🙏", xp: 20, val: 0, tipo: "igreja" });
 
       alert("Presença na igreja registrada! Deus abençoe vocês 🙏");
     };
 
-    // Inicialização (Firebase via import dinâmico)
+    // Inicialização
     (async () => {
       try {
         const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");
         const { getDatabase, ref, push, onValue, remove, update } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js");
 
-        // SUAS CHAVES DO FIREBASE
         const firebaseConfig = {
           apiKey: "AIzaSyC8YA9o9KVlKW1j9Ps2gqwYYWJDnFt6Go4",
           authDomain: "casal2026-888ce.firebaseapp.com",
@@ -769,12 +793,7 @@
         igrejaRef = ref(db, "igreja");
         const metasRef = ref(db, "metas");
 
-        // binds globais
-        fbRef = ref;
-        fbPush = push;
-        fbOnValue = onValue;
-        fbRemove = remove;
-        fbUpdate = update;
+        fbRef = ref; fbPush = push; fbOnValue = onValue; fbRemove = remove; fbUpdate = update;
 
         firebaseReady = true;
         setStatus('<i class="fas fa-wifi"></i> Online', "var(--success)");
@@ -782,50 +801,34 @@
         fbOnValue(dbRef, (snap) => {
           const data = snap.val();
           estado.list = [];
-          if (data) {
-            Object.keys(data).forEach(k => estado.list.push({ id: k, ...data[k] }));
-          }
+          if (data) { Object.keys(data).forEach(k => estado.list.push({ id: k, ...data[k] })); }
           recalcular();
           renderizar();
         });
 
         fbOnValue(igrejaRef, (snap) => {
           const data = snap.val();
-          let count = 0;
-          let last = null;
-
+          let count = 0; let last = null;
           if (data) {
             Object.keys(data).forEach((k) => {
-              const item = data[k];
-              count++;
-              if (
-                !last ||
-                new Date(item.dateISO || item.date) >
-                  new Date(last?.dateISO || last?.date || 0)
-              ) {
-                last = item;
-              }
+              const item = data[k]; count++;
+              if (!last || new Date(item.dateISO || item.date) > new Date(last?.dateISO || last?.date || 0)) last = item;
             });
           }
-
-          estado.igrejaCount = count;
-          estado.igrejaLast = last;
+          estado.igrejaCount = count; estado.igrejaLast = last;
           renderizar();
         });
 
-        // LISTENER DAS METAS
         fbOnValue(metasRef, (snap) => {
           estado.metas = snap.val() || {};
           renderizarMetas();
         });
 
-        // render inicial caso esteja vazio
         renderizar();
 
       } catch (err) {
         console.error(err);
         setStatus('<i class="fas fa-wifi"></i> Offline', "var(--danger)");
-        // ainda renderiza a UI sem quebrar
         renderizar();
       }
     })();
