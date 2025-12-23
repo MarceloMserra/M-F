@@ -17,19 +17,20 @@
   <link rel="icon" type="image/png" href="/images/icon-192.png" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 
   <style>
     :root {
       --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --glass-bg: rgba(255, 255, 255, 0.1);
-      --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.15);
       --text-color: #ffffff;
       --accent-pink: #ff758c;
       --accent-blue: #4facfe;
       --success: #00b09b;
       --danger: #ff5f6d;
       --gold: #ffd700;
+      --bible-bg: linear-gradient(145deg, #1a1a1a, #222);
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -41,7 +42,6 @@
       padding-bottom: 90px;
       color: var(--text-color);
       min-height: 100vh;
-
       background: url('images/fundo.jpg') no-repeat center center fixed;
       background-size: cover;
       background-attachment: fixed;
@@ -51,28 +51,28 @@
       content: "";
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(3px);
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(4px);
       z-index: -1;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
-    .header h1 { font-size: 1.8rem; margin: 0; letter-spacing: 1px; }
+    .header h1 { font-size: 1.6rem; margin: 0; letter-spacing: 1px; }
     .header p { font-size: 0.85rem; opacity: 0.8; font-weight: 300; margin-top: 5px; }
 
     .btn-agent {
       background: linear-gradient(45deg, #FF9500, #FF5E3A);
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 8px 16px;
       border-radius: 20px;
       font-weight: bold;
-      font-size: 0.9rem;
-      margin-top: 15px;
+      font-size: 0.8rem;
+      margin-top: 10px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -82,113 +82,136 @@
 
     .card {
       background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       border-radius: 20px;
       padding: 20px;
       margin-bottom: 20px;
       border: var(--glass-border);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      transition: transform 0.2s;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
     }
     
     h3 { margin-top: 0; font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
 
+    /* ESTILO EXCLUSIVO DO DEVOCIONAL */
+    .devocional-card {
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        background: rgba(0,0,0,0.4);
+    }
+    .dev-header {
+        display: flex; justify-content: space-between; align-items: center;
+        margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding-bottom: 10px;
+    }
+    .dev-date {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        color: var(--gold);
+        font-size: 0.9rem;
+    }
+    .dev-title {
+        font-size: 1.3rem;
+        margin: 0 0 10px 0;
+        font-family: 'Playfair Display', serif;
+        color: white;
+        line-height: 1.2;
+    }
+    .dev-verse-box {
+        background: rgba(255, 215, 0, 0.05);
+        border-left: 3px solid var(--gold);
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 0 10px 10px 0;
+        position: relative;
+    }
+    .quote-icon {
+        position: absolute;
+        top: 10px; left: 10px;
+        font-size: 2rem;
+        color: var(--gold);
+        opacity: 0.1;
+    }
+    .dev-verse {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        font-size: 1rem;
+        color: #f0f0f0;
+        margin: 0;
+        line-height: 1.5;
+        position: relative;
+        z-index: 2;
+    }
+    .dev-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: rgba(255,255,255,0.9);
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+    .btn-amem {
+        background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+        color: #000;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        border: none;
+        box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+    }
+    .btn-amem:disabled {
+        background: #444;
+        color: #aaa;
+        box-shadow: none;
+        cursor: not-allowed;
+    }
+
     /* XP BAR */
     .level-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; cursor: pointer; }
-    .xp-track { width: 100%; height: 14px; background: rgba(0,0,0,0.3); border-radius: 10px; overflow: hidden; position: relative; }
+    .xp-track { width: 100%; height: 12px; background: rgba(0,0,0,0.3); border-radius: 10px; overflow: hidden; }
     .xp-fill {
       height: 100%;
       background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-      width: 0%;
-      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 0 10px rgba(255, 154, 158, 0.7);
+      width: 0%; transition: width 1s ease;
     }
 
-    /* TRAVEL TRACKER STYLES */
-    .travel-track-container {
-      margin-top: 15px;
-      position: relative;
-      padding-top: 20px; /* Space for the floating icon */
-    }
-    .travel-track {
-      width: 100%; height: 10px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 10px;
-      position: relative;
-    }
-    .travel-fill {
-      height: 100%;
-      border-radius: 10px;
-      width: 0%;
-      transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-      position: relative;
-    }
-    /* O ícone flutuante (Avião/Carro) */
-    .travel-icon {
-      position: absolute;
-      right: -12px;
-      top: -24px;
-      font-size: 1.2rem;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-      transition: right 1.5s;
-    }
-    .travel-stats {
-      display: flex; justify-content: space-between; font-size: 0.75rem; color: #ccc; margin-top: 6px;
-    }
+    /* TRAVEL TRACKER */
+    .travel-track-container { margin-top: 15px; position: relative; padding-top: 20px; }
+    .travel-track { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; }
+    .travel-fill { height: 100%; border-radius: 10px; width: 0%; position: relative; transition: width 1.5s ease; }
+    .travel-icon { position: absolute; right: -10px; top: -22px; font-size: 1.1rem; transition: right 1.5s; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5)); }
+    .travel-stats { display: flex; justify-content: space-between; font-size: 0.7rem; color: #ccc; margin-top: 5px; }
 
-    button { border: none; outline: none; cursor: pointer; font-family: inherit; font-weight: 600; transition: transform 0.2s; }
+    /* FORM & BUTTONS */
+    button { border: none; outline: none; cursor: pointer; font-family: inherit; font-weight: 600; transition: 0.2s; }
     button:active { transform: scale(0.96); }
-
-    .btn-main {
-      width: 100%; padding: 14px; border-radius: 12px;
-      background: var(--primary-gradient);
-      color: white; font-size: 1rem;
-      box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
-    }
-
-    .grid-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn-main { width: 100%; padding: 14px; border-radius: 12px; background: var(--primary-gradient); color: white; font-size: 1rem; }
+    
+    .grid-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .action-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 15px; padding: 15px;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      color: white; font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 8px; color: white; font-size: 0.85rem;
     }
     .act-love { border-color: var(--accent-pink); color: var(--accent-pink); }
     .act-peace { border-color: var(--success); color: var(--success); }
     .act-bad { border-color: var(--danger); color: var(--danger); }
 
-    .finance-group { display: flex; gap: 10px; margin-bottom: 10px; }
+    .finance-group { display: flex; gap: 8px; margin-bottom: 10px; }
     .input-glass {
       flex: 1; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(0,0,0,0.3); color: white; font-family: inherit;
+      background: rgba(0,0,0,0.3); color: white; font-family: inherit; font-size: 0.9rem;
     }
-    .input-glass option { background: #333; color: white; }
+    .input-glass option { background: #333; }
+    .btn-deposit { flex: 1; padding: 12px; border-radius: 10px; font-size: 0.9rem; color: #fff; }
 
-    .btn-deposit { flex: 1; padding: 12px; border-radius: 10px; font-size: 0.9rem; color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    .history-list { max-height: 250px; overflow-y: auto; }
+    .history-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; }
+    .badge { padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; font-weight: bold; text-transform: uppercase; margin-right: 5px; }
+    .bg-marcelo { background: var(--accent-blue); } .bg-fernanda { background: var(--accent-pink); } .bg-nos { background: var(--gold); color: #000; }
 
-    .history-list { max-height: 250px; overflow-y: auto; padding-right: 5px; }
-    .history-list::-webkit-scrollbar { width: 4px; }
-    .history-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
-
-    .history-item {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem;
-    }
-    .badge {
-      padding: 3px 8px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;
-      margin-right: 6px;
-    }
-    .bg-marcelo { background: var(--accent-blue); color: #fff; }
-    .bg-fernanda { background: var(--accent-pink); color: #fff; }
-    .bg-nos { background: #ffd700; color: #000; }
-
+    /* MODAL */
     .modal {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);
-      display: none; justify-content: center; align-items: center; z-index: 100;
-      padding: 20px;
+      display: none; justify-content: center; align-items: center; z-index: 100; padding: 20px;
     }
     .modal-box {
       background: #2d3436; border-radius: 20px; padding: 30px; text-align: center;
@@ -197,13 +220,9 @@
     @keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
     .hidden { display: none; }
-    .text-gold { color: #ffd700; }
+    .text-gold { color: var(--gold); }
     .text-success { color: var(--success); }
-    
-    .status-pill {
-      background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 20px; 
-      font-size: 0.7rem; display: inline-flex; align-items: center; gap: 5px;
-    }
+    .status-pill { background: rgba(255,255,255,0.1); padding: 3px 8px; border-radius: 12px; font-size: 0.65rem; }
   </style>
 </head>
 
@@ -230,14 +249,38 @@
     </div>
   </div>
 
+  <div class="card devocional-card">
+    <div class="dev-header">
+        <h3><i class="fas fa-bible text-gold"></i> Alimento Diário</h3>
+        <span id="data-hoje" class="dev-date">--/--</span>
+    </div>
+    
+    <div id="dev-loading" style="text-align:center; padding:20px; color:#aaa;">
+        <i class="fas fa-circle-notch fa-spin text-gold"></i> Buscando a Palavra...
+    </div>
+
+    <div id="dev-content" class="hidden">
+        <h2 id="dev-titulo" class="dev-title">...</h2>
+        
+        <div class="dev-verse-box">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <p id="dev-verso" class="dev-verse">...</p>
+        </div>
+        
+        <p id="dev-texto" class="dev-text">...</p>
+
+        <button id="btn-amem" class="btn-main btn-amem" onclick="lerDevocional()">
+           <i class="fas fa-praying-hands"></i> Recebemos esta Palavra (+20 XP)
+        </button>
+    </div>
+  </div>
+
   <div class="card" onclick="verProximoPremio()">
     <div class="level-header">
       <h2 id="level-name">Carregando...</h2>
       <span id="xp-total" style="font-weight:bold; color:var(--accent-pink)">0 XP</span>
     </div>
-    <div class="xp-track">
-      <div class="xp-fill" id="xp-bar"></div>
-    </div>
+    <div class="xp-track"><div class="xp-fill" id="xp-bar"></div></div>
     <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:0.75rem; color:#aaa;">
       <span>Toque para ver o prêmio</span>
       <span>Próx: <span id="xp-next">100</span></span>
@@ -259,7 +302,6 @@
         <strong style="color:var(--accent-pink)">FERNANDA:</strong>
         <div id="txt-fernanda" style="font-style:italic; margin-top:3px;">...</div>
       </div>
-
       <div style="display:flex; gap:10px;">
         <button class="btn-main" style="background:var(--success)" onclick="completarMissao(true)">Feito! (+20)</button>
         <button class="btn-main" style="background:rgba(255,255,255,0.1); border:1px solid #666" onclick="completarMissao(false)">Falhamos</button>
@@ -268,45 +310,21 @@
   </div>
 
   <div class="grid-actions" style="margin-bottom: 20px;">
-    <button class="action-card act-peace" onclick="registrarAcao(10, '🕊️ Dia de Paz')">
-      <i class="fas fa-hand-holding-heart fa-2x"></i>
-      <span>Dia de Paz</span>
-    </button>
-    <button class="action-card act-love" onclick="registrarAcao(5, '❤️ Carinho')">
-      <i class="fas fa-kiss-wink-heart fa-2x"></i>
-      <span>Carinho</span>
-    </button>
-    <button class="action-card act-bad" onclick="registrarAcao(-15, '😠 Briga')">
-      <i class="fas fa-angry fa-2x"></i>
-      <span>Briga</span>
-    </button>
-    <button class="action-card" onclick="document.getElementById('camera-input').click()">
-      <i class="fas fa-camera fa-2x"></i>
-      <span>Foto</span>
-    </button>
+    <button class="action-card act-peace" onclick="registrarAcao(10, '🕊️ Dia de Paz')"><i class="fas fa-hand-holding-heart fa-2x"></i><span>Dia de Paz</span></button>
+    <button class="action-card act-love" onclick="registrarAcao(5, '❤️ Carinho')"><i class="fas fa-kiss-wink-heart fa-2x"></i><span>Carinho</span></button>
+    <button class="action-card act-bad" onclick="registrarAcao(-15, '😠 Briga')"><i class="fas fa-angry fa-2x"></i><span>Briga</span></button>
+    <button class="action-card" onclick="document.getElementById('camera-input').click()"><i class="fas fa-camera fa-2x"></i><span>Foto</span></button>
     <input type="file" id="camera-input" accept="image/*" capture="environment" style="display:none" onchange="fotoTirada()" />
-  </div>
-
-  <div style="text-align:center; margin-bottom:20px;">
-    <a href="https://www.icloud.com/sharedalbum/pt-br/#B1eJtdOXmK81yfe" target="_blank" rel="noopener"
-      style="color:#aaa; text-decoration:none; font-size:0.9rem;">
-      <i class="fas fa-images"></i> Ver Álbum de Fotos
-    </a>
   </div>
 
   <div class="card">
     <h3><i class="fas fa-plane-departure text-gold"></i> Banco de Viagens</h3>
-    <p style="font-size:0.8rem; opacity:0.7; margin-bottom:15px;">Foco em Novembro/2026 🚀</p>
-
     <div class="finance-group">
       <select id="user-select" class="input-glass" style="max-width: 110px;">
-        <option value="Marcelo">Marcelo</option>
-        <option value="Fernanda">Fernanda</option>
-        <option value="Nós">Nós</option>
+        <option value="Marcelo">Marcelo</option><option value="Fernanda">Fernanda</option><option value="Nós">Nós</option>
       </select>
       <input type="text" id="money-input" class="input-glass" placeholder="R$ 0,00" inputmode="decimal" />
     </div>
-
     <div class="finance-group">
       <button class="btn-deposit" style="background:var(--accent-pink)" onclick="depositar('pe')">Recife/PE</button>
       <button class="btn-deposit" style="background:var(--accent-blue)" onclick="depositar('ch')">Chapada</button>
@@ -317,19 +335,10 @@
         <span style="font-weight:600; color:var(--accent-pink)">Pernambuco ☀️</span>
         <span id="status-pe" class="status-pill">🎒 Iniciando</span>
       </div>
-      
       <div class="travel-track-container">
-        <div class="travel-track">
-          <div class="travel-fill" id="bar-pe" style="background:var(--accent-pink);">
-             <i class="fas fa-plane travel-icon" style="color:var(--accent-pink)"></i>
-          </div>
-        </div>
+        <div class="travel-track"><div class="travel-fill" id="bar-pe" style="background:var(--accent-pink);"><i class="fas fa-plane travel-icon" style="color:var(--accent-pink)"></i></div></div>
       </div>
-      
-      <div class="travel-stats">
-        <span id="total-pe">R$ 0,00</span>
-        <span>Meta: R$ 7.200</span>
-      </div>
+      <div class="travel-stats"><span id="total-pe">R$ 0,00</span><span>Meta: R$ 7.200</span></div>
     </div>
 
     <div style="margin-top:25px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.1);">
@@ -337,65 +346,36 @@
         <span style="font-weight:600; color:var(--accent-blue)">Chapada 🏞️</span>
         <span id="status-ch" class="status-pill">🎒 Iniciando</span>
       </div>
-      
       <div class="travel-track-container">
-        <div class="travel-track">
-          <div class="travel-fill" id="bar-ch" style="background:var(--accent-blue);">
-             <i class="fas fa-car-side travel-icon" style="color:var(--accent-blue)"></i>
-          </div>
-        </div>
+        <div class="travel-track"><div class="travel-fill" id="bar-ch" style="background:var(--accent-blue);"><i class="fas fa-car-side travel-icon" style="color:var(--accent-blue)"></i></div></div>
       </div>
-      
-      <div class="travel-stats">
-        <span id="total-ch">R$ 0,00</span>
-        <span>Meta: R$ 2.500</span>
-      </div>
+      <div class="travel-stats"><span id="total-ch">R$ 0,00</span><span>Meta: R$ 2.500</span></div>
     </div>
   </div>
 
   <div class="card">
     <h3><i class="fas fa-bullseye text-gold"></i> Metas 2026</h3>
-    <p style="font-size:0.8rem; opacity:0.8; margin-bottom:15px;">O que vamos conquistar individualmente?</p>
-
     <div class="finance-group">
       <select id="meta-dono" class="input-glass" onchange="renderizarMetas()" style="max-width: 130px;">
         <option value="" disabled selected>Quem é você?</option>
         <option value="Marcelo">Marcelo</option>
         <option value="Fernanda">Fernanda</option>
       </select>
-      <input type="text" id="meta-texto" class="input-glass" placeholder="Escreva uma meta..." />
-      <button class="btn-deposit" style="background:var(--success); flex:0 0 50px;" onclick="adicionarMeta()">
-        <i class="fas fa-plus"></i>
-      </button>
+      <input type="text" id="meta-texto" class="input-glass" placeholder="Nova meta..." />
+      <button class="btn-deposit" style="background:var(--success); flex:0 0 50px;" onclick="adicionarMeta()"><i class="fas fa-plus"></i></button>
     </div>
-
     <div id="lista-metas" class="history-list" style="margin-top:10px; max-height: 200px;">
-      <div style="text-align:center; padding:15px; color:#aaa; font-size:0.8rem;">Selecione seu nome acima para ver as metas.</div>
+      <div style="text-align:center; padding:15px; color:#aaa; font-size:0.8rem;">Selecione seu nome.</div>
     </div>
   </div>
 
   <div class="card">
     <h3><i class="fas fa-church text-gold"></i> Presença na Igreja</h3>
-    <p style="font-size:0.85rem; opacity:0.8;">
-      Registre cada culto de domingo que vocês forem juntos.
-    </p>
-
     <div style="display:flex; align-items:center; justify-content:space-between; margin-top:10px;">
-      <div>
-        <div id="igreja-total" style="font-size:2rem; font-weight:bold;">0</div>
-        <div style="font-size:0.8rem; opacity:0.8;">Domingos registrados</div>
-      </div>
-
-      <button class="btn-main"
-              style="width:auto; padding:10px 16px; background:linear-gradient(135deg,#22c55e,#16a34a);"
-              onclick="marcarIgrejaHoje()">
-        <i class="fas fa-check-circle"></i> Marcar hoje
-      </button>
+      <div><div id="igreja-total" style="font-size:2rem; font-weight:bold;">0</div><div style="font-size:0.8rem; opacity:0.8;">Domingos</div></div>
+      <button class="btn-main" style="width:auto; padding:10px 16px; background:linear-gradient(135deg,#22c55e,#16a34a);" onclick="marcarIgrejaHoje()"><i class="fas fa-check-circle"></i> Marcar hoje</button>
     </div>
-
-    <div id="igreja-last" style="margin-top:10px; font-size:0.8rem; opacity:0.8;">
-      Último registro: —
-    </div>
+    <div id="igreja-last" style="margin-top:10px; font-size:0.8rem; opacity:0.8;">Último registro: —</div>
   </div>
 
   <div class="card">
@@ -403,47 +383,24 @@
       <h3><i class="fas fa-history"></i> Diário</h3>
       <i class="fas fa-trash" style="color:#666; cursor:pointer;" onclick="limparTudo()" title="Resetar Tudo"></i>
     </div>
-    <div id="history-list" class="history-list">
-      <div style="text-align:center; padding:20px; color:#aaa;">Carregando história...</div>
-    </div>
+    <div id="history-list" class="history-list"><div style="text-align:center; padding:20px; color:#aaa;">Carregando...</div></div>
   </div>
 
   <script type="module">
-    // Service Worker (PWA)
     if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/sw.js").catch(() => {});
-      });
+      window.addEventListener("load", () => { navigator.serviceWorker.register("/sw.js").catch(() => {}); });
     }
 
     const statusEl = document.getElementById("status-conn");
-
-    function setStatus(html, cssColor) {
-      statusEl.innerHTML = html;
-      statusEl.style.color = cssColor;
-    }
-
+    function setStatus(html, cssColor) { statusEl.innerHTML = html; statusEl.style.color = cssColor; }
     window.addEventListener("offline", () => { setStatus('<i class="fas fa-wifi"></i> Offline', "var(--danger)"); });
     window.addEventListener("online", () => { setStatus('<i class="fas fa-circle-notch fa-spin"></i> Reconectando...', "var(--accent-blue)"); });
 
     const fmtBRL = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 
-    // Estado
-    let estado = {
-      xp: 0,
-      pe: 0,
-      ch: 0,
-      list: [],
-      igrejaCount: 0,
-      igrejaLast: null,
-      metas: {}
-    };
+    let estado = { xp: 0, pe: 0, ch: 0, list: [], igrejaCount: 0, igrejaLast: null, metas: {} };
+    const ALVO_PE = 7200; const ALVO_CH = 2500;
 
-    // TETOS FINANCEIROS ATUALIZADOS 2026
-    const ALVO_PE = 7200; // Recife
-    const ALVO_CH = 2500; // Chapada
-
-    // DADOS DO JOGO
     const niveis = [
       {id:1, max:100, nome:"Início", premio:"Piquenique na Ermida Dom Bosco"},
       {id:2, max:300, nome:"Aprendizes", premio:"Caminhada no Pontão + Água de Coco"},
@@ -460,111 +417,97 @@
     ];
 
     const missoes = [
-      // --- ESPIRITUALIDADE & FÉ ---
-      "Orem juntos agradecendo por três coisas específicas que aconteceram hoje.",
-      "Leiam Provérbios 31 ou Salmos 23 juntos e comentem um versículo.",
-      "Façam uma oração de mãos dadas intercedendo pela família um do outro.",
-      "Escolham um louvor que marque a história de vocês e ouçam abraçados.",
-      "Compartilhem: 'O que Deus falou comigo essa semana?'",
-      "Orem especificamente pelos planos de 2026 (Viagem e Casamento).",
-      "Cada um deve abençoar a vida do outro com palavras de afirmação profética.",
-      "Leiam um capítulo curto da Bíblia e destaquem uma palavra-chave.",
-      "Façam um jejum de algo simples (ex: doce ou rede social) por 1 dia em prol do casal.",
-      "Agradeçam a Deus por uma dificuldade que vocês já superaram juntos.",
-
-      // --- ROMANCE & TOQUE ---
-      "Dêem um beijo de cinema (pelo menos 10 segundos) antes de sair ou ao chegar.",
-      "Façam uma massagem de 5 minutos nos pés ou ombros do outro.",
-      "Andem de mãos dadas sempre que estiverem caminhando juntos hoje.",
-      "Façam um 'cafuné' até um dos dois quase dormir.",
-      "Dancem uma música lenta na sala (mesmo que sem música, só no ritmo).",
-      "Deem um abraço apertado em silêncio por 1 minuto, sentindo a respiração do outro.",
-      "Preparem um banho ou um momento de relaxamento para o outro.",
-      "Troquem olhares intensos por 30 segundos sem rir (vale tentar!).",
-      "Dê um beijo na testa do outro e diga 'Eu te admiro muito'.",
-      "Durmam (ou tirem um cochilo) de conchinha.",
-
-      // --- COMUNICAÇÃO & ELOGIOS ---
-      "Elogie uma característica física e uma de caráter do seu par hoje.",
-      "Pergunte: 'Como posso orar por você hoje?' e faça isso na hora.",
-      "Escreva um bilhetinho escondido (bolsa, carteira ou travesseiro) pro outro achar.",
-      "Conte uma coisa que você nunca contou pra ninguém (segredo ou memória).",
-      "Pergunte: 'O que eu faço que faz você se sentir mais amado(a)?'",
-      "Relembrem em detalhes o dia em que se conheceram ou o primeiro beijo.",
-      "Definam uma palavra que resuma o relacionamento de vocês hoje.",
-      "Peça perdão por algo pequeno que possa ter passado batido.",
-      "Mande uma mensagem picante ou muito romântica no meio da tarde.",
-      "Diga 'Eu Te Amo' em três momentos inesperados do dia.",
-
-      // --- DIVERSÃO & QUEBRA DE ROTINA ---
-      "Tirem uma selfie fazendo careta e guardem na pasta 'Só a gente vê'.",
-      "Joguem um jogo rápido (Stop, Baralho, ou até Pedra-Papel-Tesoura valendo massagem).",
-      "Dublem uma música famosa juntos como se estivessem num show.",
-      "Façam uma 'noite sem telas': 30 minutos conversando sem celular por perto.",
-      "Cozinhem algo juntos (nem que seja um miojo gourmet ou pipoca).",
-      "Saiam para ver o pôr do sol ou a lua, nem que seja da janela.",
-      "Façam um vídeo curto dizendo 'Eu do futuro, estamos lutando por você!'.",
-      "Comam a sobremesa antes do jantar (só hoje pode!).",
-      "Inventem um toque de mão ou cumprimento secreto do casal.",
-      "Façam uma caminhada no quarteirão apenas para conversar.",
-
-      // --- SERVIÇO & GENTILEZA ---
-      "Faça uma tarefa doméstica que seria do outro (lave a louça dele(a), arrume a bagunça).",
-      "Sirva o prato do outro na hora da refeição com carinho.",
-      "Traga um copo d'água ou café para o outro sem ele pedir.",
+      "Orem juntos agradecendo por três coisas específicas de hoje.",
+      "Leiam Provérbios 31 juntos e comentem um versículo.",
+      "Façam uma oração de mãos dadas pela família.",
+      "Escolham um louvor que marque a história de vocês e ouçam.",
+      "Dêem um beijo de cinema (10 seg) antes de sair.",
+      "Façam massagem nos pés ou ombros do outro.",
+      "Elogie uma característica de caráter do seu par hoje.",
+      "Pergunte: 'Como posso orar por você hoje?' e ore.",
+      "Escreva um bilhetinho escondido pro outro achar.",
+      "Diga 'Eu Te Amo' em três momentos inesperados.",
+      "Façam uma 'noite sem telas': 30 min conversando.",
+      "Cozinhem algo juntos (nem que seja pipoca).",
+      "Faça uma tarefa doméstica que seria do outro.",
+      "Sirva o prato do outro na hora da refeição.",
       "Arrume a cama caprichada para quando forem dormir.",
-      "Pergunte: 'Posso te ajudar em algo que está te estressando hoje?'",
-      "Deixe a toalha do outro pronta ou a escova de dentes preparada.",
-      "Resolva um pequeno problema burocrático para o outro.",
-      "Compre ou prepare o doce/lanche favorito do outro de surpresa.",
-      "Ofereça-se para carregar a bolsa ou mochila do outro.",
-      "Seja o primeiro a pedir desculpas se houver qualquer desentendimento.",
-
-      // --- FUTURO & SONHOS (2026) ---
-      "Imaginem em detalhes como será o primeiro dia da viagem para Recife.",
-      "Pesquisem juntos uma foto da Chapada ou de Pernambuco e mandem um pro outro.",
-      "Guardem R$ 5,00 (ou qualquer valor extra) hoje no cofrinho/banco do app.",
-      "Conversem sobre como imaginam a casa de vocês daqui a 5 anos.",
-      "Listem 3 coisas que não podem faltar no casamento de vocês.",
-      "Façam uma oração abençoando a vida financeira do casal.",
-      "Conversem sobre nomes de filhos (mesmo que seja só brincadeira por enquanto).",
-      "Definam uma meta de economia doméstica para esta semana.",
-      "Sonhem alto: Se dinheiro não fosse problema, para onde iriam amanhã?",
-      "Reafirmem o compromisso: Olhem nos olhos e digam 'Estou com você até o fim'."
+      "Guardem R$ 5,00 extras no cofrinho do app hoje."
     ];
 
-    // Firebase (carregamento robusto)
     let firebaseReady = false;
     let db = null, dbRef = null, igrejaRef = null;
     let fbRef = null, fbPush = null, fbOnValue = null, fbRemove = null, fbUpdate = null;
 
-    function requireFirebase() {
-      if (!firebaseReady) {
-        alert("Sem conexão/serviço no momento. Tente novamente quando estiver online.");
-        throw new Error("Firebase not ready");
-      }
-    }
+    function requireFirebase() { if (!firebaseReady) { alert("Conectando... Tente em instantes."); throw new Error("Firebase not ready"); } }
+    function parseMoneyBR(raw) { const v = Number.parseFloat(String(raw||"").replace(/\s/g,"").replace("R$","").replace(/\./g,"").replace(",",".")); return Number.isFinite(v)?v:0; }
+    function getTravelStatus(val, max) { const p = (val/max)*100; if(p<=0)return "🎒 Iniciando"; if(p<20)return "🧳 Arrumando"; if(p<50)return "🚗 A Caminho"; if(p<80)return "✈️ Quase lá"; if(p<100)return "🏖️ Vendo o Mar"; return "🥂 CONQUISTADO!"; }
 
-    function parseMoneyBR(raw) {
-      const cleaned = String(raw || "")
-        .replace(/\s/g, "")
-        .replace("R$", "")
-        .replace(/\./g, "")
-        .replace(",", ".");
-      const val = Number.parseFloat(cleaned);
-      return Number.isFinite(val) ? val : 0;
-    }
+    // --- DEVOCIONAL ---
+    window.carregarDevocional = () => {
+        if(!db) return;
+        const hoje = new Date();
+        const dia = String(hoje.getDate()).padStart(2, '0');
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+        const chaveData = `${mes}-${dia}`;
+        
+        // Data formatada
+        const mesesExt = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+        document.getElementById("data-hoje").innerText = `${dia} de ${mesesExt[hoje.getMonth()]}`;
 
-    function getTravelStatus(val, max) {
-      const perc = (val / max) * 100;
-      if (perc <= 0) return "🎒 Iniciando";
-      if (perc < 20) return "🧳 Arrumando Malas";
-      if (perc < 50) return "🚗 A Caminho";
-      if (perc < 80) return "✈️ Quase lá!";
-      if (perc < 100) return "🏖️ Vendo o Mar";
-      return "🥂 CONQUISTADO!";
-    }
+        const path = `devocionais/${chaveData}`;
+        
+        fbOnValue(fbRef(db, path), (snap) => {
+            document.getElementById("dev-loading").classList.add("hidden");
+            document.getElementById("dev-content").classList.remove("hidden");
+            const data = snap.val();
+            
+            if (data) {
+               document.getElementById("dev-titulo").innerText = data.titulo;
+               document.getElementById("dev-verso").innerText = data.verso;
+               document.getElementById("dev-texto").innerText = data.texto;
+            } else {
+               document.getElementById("dev-titulo").innerText = "Aguardando Palavra...";
+               document.getElementById("dev-verso").innerText = "Salmos 119:105";
+               document.getElementById("dev-texto").innerText = "Hoje não há devocional cadastrado para esta data ("+chaveData+"). Verifique o banco de dados.";
+            }
 
+            const lidoKey = `lido-${chaveData}-${hoje.getFullYear()}`;
+            const btn = document.getElementById("btn-amem");
+            if(localStorage.getItem(lidoKey)) {
+                 btn.innerHTML = '<i class="fas fa-check"></i> Palavra Recebida';
+                 btn.disabled = true;
+                 btn.style.opacity = "0.5";
+                 btn.style.background = "#333";
+            } else {
+                 btn.innerHTML = '<i class="fas fa-praying-hands"></i> Recebemos esta Palavra (+20 XP)';
+                 btn.disabled = false;
+                 btn.style.opacity = "1";
+                 btn.style.background = "linear-gradient(135deg, #b8860b 0%, #daa520 100%)";
+            }
+        });
+    };
+
+    window.lerDevocional = () => {
+        requireFirebase();
+        const hoje = new Date();
+        const dia = String(hoje.getDate()).padStart(2, '0');
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+        const chave = `lido-${mes}-${dia}-${hoje.getFullYear()}`;
+        
+        const btn = document.getElementById("btn-amem");
+        if(btn.disabled) return;
+
+        fbPush(dbRef, { date: new Date().toLocaleDateString(), user: "Nós", desc: "Devocional lido 📖", xp: 20, val: 0, tipo: "devocional" });
+        localStorage.setItem(chave, "true");
+        
+        btn.innerHTML = '<i class="fas fa-check"></i> Palavra Recebida';
+        btn.disabled = true;
+        btn.style.background = "#333";
+        alert("Amém! Palavra guardada no coração.");
+    };
+
+    // --- Core Logic ---
     function recalcular() {
       estado.xp = 0; estado.pe = 0; estado.ch = 0;
       estado.list.forEach(i => {
@@ -576,138 +519,82 @@
 
     function getNivel() {
       let atual = niveis[0];
-      for (let n of niveis) {
-        if (estado.xp < n.max) { atual = n; break; }
-        if (n.id === 12) atual = n;
-      }
+      for (let n of niveis) { if (estado.xp < n.max) { atual = n; break; } if (n.id === 12) atual = n; }
       return atual;
     }
 
     function renderizar() {
-      // Nível
       const n = getNivel();
       document.getElementById("level-name").innerText = n.nome;
       document.getElementById("xp-total").innerText = `${estado.xp} XP`;
       document.getElementById("xp-next").innerText = n.max;
+      document.getElementById("xp-bar").style.width = `${Math.min((estado.xp/n.max)*100,100)}%`;
 
-      const percXP = Math.min((estado.xp / n.max) * 100, 100);
-      document.getElementById("xp-bar").style.width = `${percXP}%`;
-
-      // --- FINANCEIRO DIVERTIDO ---
-      
-      // Pernambuco
       document.getElementById("total-pe").innerText = fmtBRL.format(estado.pe);
-      const percPE = Math.min((estado.pe / ALVO_PE) * 100, 100);
-      document.getElementById("bar-pe").style.width = `${percPE}%`;
+      document.getElementById("bar-pe").style.width = `${Math.min((estado.pe/ALVO_PE)*100,100)}%`;
       document.getElementById("status-pe").innerText = getTravelStatus(estado.pe, ALVO_PE);
 
-      // Chapada
       document.getElementById("total-ch").innerText = fmtBRL.format(estado.ch);
-      const percCH = Math.min((estado.ch / ALVO_CH) * 100, 100);
-      document.getElementById("bar-ch").style.width = `${percCH}%`;
+      document.getElementById("bar-ch").style.width = `${Math.min((estado.ch/ALVO_CH)*100,100)}%`;
       document.getElementById("status-ch").innerText = getTravelStatus(estado.ch, ALVO_CH);
 
-
-      // Histórico
       const lista = document.getElementById("history-list");
       lista.innerHTML = "";
-
       [...estado.list].reverse().forEach(i => {
         const who = i.user || "Nós";
-        const cls = who === "Marcelo" ? "bg-marcelo" : (who === "Fernanda" ? "bg-fernanda" : "bg-nos");
-        const xpNum = Number(i.xp || 0);
-        const xpColor = xpNum > 0 ? "var(--success)" : (xpNum < 0 ? "var(--danger)" : "#aaa");
-        const valNum = Number(i.val || 0);
-        const valTxt = valNum > 0 ? `(${fmtBRL.format(valNum)})` : "";
-        const dateTxt = i.date || "";
-
+        const cls = who === "Marcelo"?"bg-marcelo":(who==="Fernanda"?"bg-fernanda":"bg-nos");
+        const xpNum = Number(i.xp||0);
+        const xpColor = xpNum>0?"var(--success)":(xpNum<0?"var(--danger)":"#aaa");
+        const valTxt = i.val>0 ? `(${fmtBRL.format(i.val)})` : "";
         lista.innerHTML += `
           <div class="history-item">
             <div>
-              <div>
-                <span class="badge ${cls}">${who}</span>
-                <span style="opacity:0.6; font-size:0.7rem">${dateTxt}</span>
-              </div>
-              <div style="margin-top:4px;">${i.desc || ""} ${valTxt}</div>
+              <div><span class="badge ${cls}">${who}</span> <span style="opacity:0.6; font-size:0.7rem">${i.date||""}</span></div>
+              <div style="margin-top:4px;">${i.desc||""} ${valTxt}</div>
             </div>
             <div style="display:flex; align-items:center; gap:10px;">
-              <span style="color:${xpColor}; font-weight:bold;">${xpNum > 0 ? "+" : ""}${xpNum}</span>
+              <span style="color:${xpColor}; font-weight:bold;">${xpNum>0?"+":""}${xpNum}</span>
               ${firebaseReady ? `<i class="fas fa-times" style="opacity:0.3; cursor:pointer;" onclick="remover('${i.id}')"></i>` : ``}
             </div>
-          </div>
-        `;
+          </div>`;
       });
+      if (!estado.list.length) lista.innerHTML = `<div style="text-align:center; padding:20px; color:#aaa;">Sem registros.</div>`;
 
-      if (!estado.list.length) {
-        lista.innerHTML = `<div style="text-align:center; padding:20px; color:#aaa;">Sem registros ainda.</div>`;
-      }
-
-      // Presença na Igreja
-      const igrejaTotalEl = document.getElementById("igreja-total");
-      const igrejaLastEl = document.getElementById("igreja-last");
-
-      if (igrejaTotalEl) {
-        igrejaTotalEl.innerText = estado.igrejaCount || 0;
-      }
-      if (igrejaLastEl) {
-         igrejaLastEl.innerText = estado.igrejaLast ? `Último registro: ${estado.igrejaLast.date}` : "Último registro: —";
-      }
+      document.getElementById("igreja-total").innerText = estado.igrejaCount || 0;
+      document.getElementById("igreja-last").innerText = estado.igrejaLast ? `Último registro: ${estado.igrejaLast.date}` : "Último registro: —";
     }
 
-    // --- FUNÇÕES DE METAS ---
-    
+    // --- UI Actions ---
     window.renderizarMetas = () => {
       const dono = document.getElementById("meta-dono").value;
       const listaEl = document.getElementById("lista-metas");
       if (!listaEl) return;
-      
-      if (!dono) {
-         listaEl.innerHTML = `<div style="text-align:center; padding:15px; color:#aaa; font-size:0.8rem;">Selecione seu nome acima para ver as metas.</div>`;
-         return;
-      }
-
+      if (!dono) { listaEl.innerHTML = `<div style="text-align:center; padding:15px; color:#aaa; font-size:0.8rem;">Selecione seu nome.</div>`; return; }
       listaEl.innerHTML = "";
       const dados = estado.metas && estado.metas[dono] ? estado.metas[dono] : {};
       const chaves = Object.keys(dados);
-
-      if (chaves.length === 0) {
-        listaEl.innerHTML = `<div style="text-align:center; padding:15px; opacity:0.6;">Nenhuma meta definida ainda. Bora sonhar?</div>`;
-        return;
-      }
-
+      if (chaves.length === 0) { listaEl.innerHTML = `<div style="text-align:center; padding:15px; opacity:0.6;">Nenhuma meta ainda.</div>`; return; }
       chaves.forEach(key => {
         const item = dados[key];
         listaEl.innerHTML += `
           <div class="history-item">
-            <div style="flex:1; padding-right:10px;">
-              <i class="fas fa-star" style="color:#ffd700; font-size:0.7rem; margin-right:5px;"></i>
-              ${item.texto}
-            </div>
+            <div style="flex:1; padding-right:10px;"><i class="fas fa-star" style="color:#ffd700; font-size:0.7rem; margin-right:5px;"></i>${item.texto}</div>
             <div style="display:flex; gap:10px;">
                <i class="fas fa-pen" style="color:var(--accent-blue); opacity:0.6; cursor:pointer;" onclick="editarMeta('${dono}', '${key}')"></i>
                <i class="fas fa-trash" style="color:var(--danger); opacity:0.6; cursor:pointer;" onclick="apagarMeta('${dono}', '${key}')"></i>
             </div>
-          </div>
-        `;
+          </div>`;
       });
     };
 
     window.adicionarMeta = () => {
       requireFirebase();
       const dono = document.getElementById("meta-dono").value;
-      
-      if (!dono) return alert("Selecione quem é você na lista antes de adicionar!");
-
+      if (!dono) return alert("Selecione quem é você!");
       const input = document.getElementById("meta-texto");
       const texto = input.value.trim();
-
-      if (!texto) return alert("Escreva alguma coisa!");
-
-      fbPush(fbRef(db, `metas/${dono}`), {
-        texto: texto,
-        criadoEm: new Date().toLocaleDateString()
-      });
-
+      if (!texto) return alert("Escreva algo!");
+      fbPush(fbRef(db, `metas/${dono}`), { texto: texto, criadoEm: new Date().toLocaleDateString() });
       input.value = ""; 
     };
 
@@ -715,22 +602,14 @@
       requireFirebase();
       const metaAtual = estado.metas[dono][id].texto;
       const novoTexto = prompt("Editar meta:", metaAtual);
-
-      if (novoTexto && novoTexto !== metaAtual) {
-         fbUpdate(fbRef(db, `metas/${dono}/${id}`), {
-           texto: novoTexto
-         });
-      }
+      if (novoTexto && novoTexto !== metaAtual) { fbUpdate(fbRef(db, `metas/${dono}/${id}`), { texto: novoTexto }); }
     };
 
     window.apagarMeta = (dono, id) => {
       requireFirebase();
-      if(confirm("Já completou ou quer desistir dessa meta?")) {
-        fbRemove(fbRef(db, `metas/${dono}/${id}`));
-      }
+      if(confirm("Apagar meta?")) { fbRemove(fbRef(db, `metas/${dono}/${id}`)); }
     };
 
-    // Funções globais (UI)
     window.verProximoPremio = () => {
       const n = getNivel();
       document.getElementById("premio-txt").innerText = n.premio;
@@ -751,21 +630,12 @@
       document.getElementById("mission-area").classList.add("hidden");
     };
 
-    window.fotoTirada = () => {
-      alert("Foto tirada! Agora abra o Álbum (link abaixo) e adicione ela lá.");
-    };
+    window.fotoTirada = () => { alert("Foto tirada! Abra o Álbum para salvar."); };
 
     window.registrarAcao = (xp, desc) => {
       requireFirebase();
       const user = document.getElementById("user-select").value || "Nós";
-      fbPush(dbRef, {
-        date: new Date().toLocaleDateString(),
-        user,
-        desc,
-        xp: Number(xp || 0),
-        val: 0,
-        tipo: null
-      });
+      fbPush(dbRef, { date: new Date().toLocaleDateString(), user, desc, xp: Number(xp || 0), val: 0, tipo: null });
     };
 
     window.depositar = (tipo) => {
@@ -774,52 +644,28 @@
       const raw = document.getElementById("money-input").value;
       const val = parseMoneyBR(raw);
       if (!val) return alert("Digite um valor!");
-
       const dest = tipo === "pe" ? "Recife" : "Chapada";
       const desc = `Poupança ${dest}`;
-      
-      fbPush(dbRef, {
-        date: new Date().toLocaleDateString(),
-        user,
-        desc,
-        xp: 5,
-        val,
-        tipo
-      });
-
+      fbPush(dbRef, { date: new Date().toLocaleDateString(), user, desc, xp: 5, val, tipo });
       document.getElementById("money-input").value = "";
       alert(`R$ ${val} guardado para ${dest}! 💸`);
     };
 
-    window.remover = (id) => {
-      requireFirebase();
-      if (confirm("Apagar?")) fbRemove(fbRef(db, `historico/${id}`));
-    };
-
-    window.limparTudo = () => {
-      requireFirebase();
-      if (confirm("Resetar TUDO (XP + Banco + Diário)?")) {
-        fbRemove(dbRef);
-      }
-    };
+    window.remover = (id) => { requireFirebase(); if (confirm("Apagar registro?")) fbRemove(fbRef(db, `historico/${id}`)); };
+    window.limparTudo = () => { requireFirebase(); if (confirm("Resetar TUDO?")) { fbRemove(dbRef); } };
 
     window.marcarIgrejaHoje = () => {
       requireFirebase();
       const hoje = new Date();
       const date = hoje.toLocaleDateString();
       const iso = hoje.toISOString();
-
-      if (estado.igrejaLast && estado.igrejaLast.date === date) {
-        if (!confirm("Já tem presença registrada para hoje. Marcar de novo?")) return;
-      }
-
-      fbPush(igrejaRef, { date, dateISO: iso, obs: "Culto de domingo", xp: 20 });
+      if (estado.igrejaLast && estado.igrejaLast.date === date) { if (!confirm("Já marcou hoje. Marcar de novo?")) return; }
+      fbPush(igrejaRef, { date, dateISO: iso, obs: "Culto", xp: 20 });
       fbPush(dbRef, { date, user: "Nós", desc: "Fomos à igreja hoje 🙏", xp: 20, val: 0, tipo: "igreja" });
-
-      alert("Presença na igreja registrada! Deus abençoe vocês 🙏");
+      alert("Presença registrada! Deus abençoe.");
     };
 
-    // Inicialização
+    // INIT
     (async () => {
       try {
         const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");
@@ -874,6 +720,8 @@
           renderizarMetas();
         });
 
+        // Inicia o devocional
+        window.carregarDevocional();
         renderizar();
 
       } catch (err) {
