@@ -416,23 +416,78 @@
       {id:12, max:12000, nome:"Lendários", premio:"VIAGEM PARA PERNAMBUCO!"}
     ];
 
-    const missoes = [
-      "Orem juntos agradecendo por três coisas específicas de hoje.",
-      "Leiam Provérbios 31 juntos e comentem um versículo.",
-      "Façam uma oração de mãos dadas pela família.",
-      "Escolham um louvor que marque a história de vocês e ouçam.",
-      "Dêem um beijo de cinema (10 seg) antes de sair.",
-      "Façam massagem nos pés ou ombros do outro.",
-      "Elogie uma característica de caráter do seu par hoje.",
-      "Pergunte: 'Como posso orar por você hoje?' e ore.",
-      "Escreva um bilhetinho escondido pro outro achar.",
-      "Diga 'Eu Te Amo' em três momentos inesperados.",
-      "Façam uma 'noite sem telas': 30 min conversando.",
-      "Cozinhem algo juntos (nem que seja pipoca).",
-      "Faça uma tarefa doméstica que seria do outro.",
-      "Sirva o prato do outro na hora da refeição.",
+const missoes = [
+      // ESPIRITUALIDADE & FÉ
+      "Orem juntos agradecendo por três coisas específicas que aconteceram hoje.",
+      "Leiam Provérbios 31 ou Salmos 23 juntos e comentem um versículo.",
+      "Façam uma oração de mãos dadas intercedendo pela família um do outro.",
+      "Escolham um louvor que marque a história de vocês e ouçam abraçados.",
+      "Compartilhem: 'O que Deus falou comigo essa semana?'",
+      "Orem especificamente pelos planos de 2026 (Viagem e Casamento).",
+      "Cada um deve abençoar a vida do outro com palavras de afirmação profética.",
+      "Leiam um capítulo curto da Bíblia e destaquem uma palavra-chave.",
+      "Façam um jejum de algo simples (ex: doce ou rede social) por 1 dia em prol do casal.",
+      "Agradeçam a Deus por uma dificuldade que vocês já superaram juntos.",
+
+      // ROMANCE & TOQUE
+      "Dêem um beijo de cinema (pelo menos 10 segundos) antes de sair ou ao chegar.",
+      "Façam uma massagem de 5 minutos nos pés ou ombros do outro.",
+      "Andem de mãos dadas sempre que estiverem caminhando juntos hoje.",
+      "Façam um 'cafuné' até um dos dois quase dormir.",
+      "Dancem uma música lenta na sala (mesmo que sem música, só no ritmo).",
+      "Deem um abraço apertado em silêncio por 1 minuto, sentindo a respiração do outro.",
+      "Preparem um banho ou um momento de relaxamento para o outro.",
+      "Troquem olhares intensos por 30 segundos sem rir (vale tentar!).",
+      "Dê um beijo na testa do outro e diga 'Eu te admiro muito'.",
+      "Durmam (ou tirem um cochilo) de conchinha.",
+
+      // COMUNICAÇÃO & ELOGIOS
+      "Elogie uma característica física e uma de caráter do seu par hoje.",
+      "Pergunte: 'Como posso orar por você hoje?' e faça isso na hora.",
+      "Escreva um bilhetinho escondido (bolsa, carteira ou travesseiro) pro outro achar.",
+      "Conte uma coisa que você nunca contou pra ninguém (segredo ou memória).",
+      "Pergunte: 'O que eu faço que faz você se sentir mais amado(a)?'",
+      "Relembrem em detalhes o dia em que se conheceram ou o primeiro beijo.",
+      "Definam uma palavra que resuma o relacionamento de vocês hoje.",
+      "Peça perdão por algo pequeno que possa ter passado batido.",
+      "Mande uma mensagem picante ou muito romântica no meio da tarde.",
+      "Diga 'Eu Te Amo' em três momentos inesperados do dia.",
+
+      // DIVERSÃO & QUEBRA DE ROTINA
+      "Tirem uma selfie fazendo careta e guardem na pasta 'Só a gente vê'.",
+      "Joguem um jogo rápido (Stop, Baralho, ou até Pedra-Papel-Tesoura valendo massagem).",
+      "Dublem uma música famosa juntos como se estivessem num show.",
+      "Façam uma 'noite sem telas': 30 minutos conversando sem celular por perto.",
+      "Cozinhem algo juntos (nem que seja um miojo gourmet ou pipoca).",
+      "Saiam para ver o pôr do sol ou a lua, nem que seja da janela.",
+      "Façam um vídeo curto dizendo 'Eu do futuro, estamos lutando por você!'.",
+      "Comam a sobremesa antes do jantar (só hoje pode!).",
+      "Inventem um toque de mão ou cumprimento secreto do casal.",
+      "Façam uma caminhada no quarteirão apenas para conversar.",
+
+      // SERVIÇO & GENTILEZA
+      "Faça uma tarefa doméstica que seria do outro (lave a louça dele(a), arrume a bagunça).",
+      "Sirva o prato do outro na hora da refeição com carinho.",
+      "Traga um copo d'água ou café para o outro sem ele pedir.",
       "Arrume a cama caprichada para quando forem dormir.",
-      "Guardem R$ 5,00 extras no cofrinho do app hoje."
+      "Pergunte: 'Posso te ajudar em algo que está te estressando hoje?'",
+      "Deixe a toalha do outro pronta ou a escova de dentes preparada.",
+      "Resolva um pequeno problema burocrático para o outro.",
+      "Compre ou prepare o doce/lanche favorito do outro de surpresa.",
+      "Ofereça-se para carregar a bolsa ou mochila do outro.",
+      "Seja o primeiro a pedir desculpas se houver qualquer desentendimento.",
+
+      // FUTURO & SONHOS (2026)
+      "Imaginem em detalhes como será o primeiro dia da viagem para Recife.",
+      "Pesquisem juntos uma foto da Chapada ou de Pernambuco e mandem um pro outro.",
+      "Guardem R$ 5,00 (ou qualquer valor extra) hoje no cofrinho/banco do app.",
+      "Conversem sobre como imaginam a casa de vocês daqui a 5 anos.",
+      "Listem 3 coisas que não podem faltar no casamento de vocês.",
+      "Façam uma oração abençoando a vida financeira do casal.",
+      "Conversem sobre nomes de filhos (mesmo que seja só brincadeira por enquanto).",
+      "Definam uma meta de economia doméstica para esta semana.",
+      "Sonhem alto: Se dinheiro não fosse problema, para onde iriam amanhã?",
+      "Reafirmem o compromisso: Olhem nos olhos e digam 'Estou com você até o fim'."
     ];
 
     let firebaseReady = false;
