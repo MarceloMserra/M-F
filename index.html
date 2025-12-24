@@ -2,20 +2,15 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Nossa Jornada | Marcelo & Fernanda</title>
 
   <link rel="manifest" href="/manifest.webmanifest" />
   <meta name="theme-color" content="#0f172a" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="Nosso Mundo" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
   <link rel="icon" type="image/png" href="/images/icon-192.png" />
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 
@@ -25,239 +20,107 @@
       --glass-bg: rgba(255, 255, 255, 0.08);
       --glass-border: 1px solid rgba(255, 255, 255, 0.15);
       --text-color: #ffffff;
-      --accent-pink: #ff758c;
-      --accent-blue: #4facfe;
-      --success: #00b09b;
-      --danger: #ff5f6d;
-      --gold: #ffd700;
+      --accent-pink: #ff758c; --accent-blue: #4facfe;
+      --success: #00b09b; --danger: #ff5f6d; --gold: #ffd700;
     }
-
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
     body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 20px;
-      padding-bottom: 90px;
-      color: var(--text-color);
-      min-height: 100vh;
-      background: url('images/fundo.jpg') no-repeat center center fixed;
-      background-size: cover;
-      background-attachment: fixed;
+      font-family: 'Poppins', sans-serif; margin: 0; padding: 20px; padding-bottom: 90px;
+      color: var(--text-color); min-height: 100vh;
+      background: url('images/fundo.jpg') no-repeat center center fixed; background-size: cover; background-attachment: fixed;
     }
+    body::before { content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px); z-index: -1; }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(4px);
-      z-index: -1;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    }
+    .header { text-align: center; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
     .header h1 { font-size: 1.8rem; margin: 0; letter-spacing: 1px; }
     .header p { font-size: 0.85rem; opacity: 0.8; font-weight: 300; margin-top: 5px; }
 
     .btn-agent {
-      background: linear-gradient(45deg, #FF9500, #FF5E3A);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 0.9rem;
-      margin-top: 15px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 15px rgba(255, 94, 58, 0.4);
-      text-decoration: none;
+      background: linear-gradient(45deg, #FF9500, #FF5E3A); color: white; border: none; padding: 8px 16px;
+      border-radius: 20px; font-weight: bold; font-size: 0.8rem; margin-top: 10px; display: inline-flex;
+      align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(255, 94, 58, 0.4); text-decoration: none;
     }
 
-    /* BOTÃO DEVOCIONAL NO TOPO */
+    /* BOTÃO DOURADO DO DEVOCIONAL */
     .btn-devocional-topo {
-      width: 100%;
-      background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
-      color: #000;
-      font-weight: 800;
-      padding: 15px;
-      border-radius: 15px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 0 15px rgba(218, 165, 32, 0.3);
-      animation: pulseGold 2s infinite;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
+      width: 100%; background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+      color: #000; font-weight: 800; padding: 15px; border-radius: 15px; margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 0 15px rgba(218, 165, 32, 0.3); animation: pulseGold 3s infinite;
+      border: none; cursor: pointer; font-size: 1rem;
     }
-    @keyframes pulseGold {
-      0% { box-shadow: 0 0 0 0 rgba(218, 165, 32, 0.4); }
-      70% { box-shadow: 0 0 0 10px rgba(218, 165, 32, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(218, 165, 32, 0); }
-    }
+    @keyframes pulseGold { 0% { box-shadow: 0 0 0 0 rgba(218,165,32,0.4); } 70% { box-shadow: 0 0 0 10px rgba(218,165,32,0); } 100% { box-shadow: 0 0 0 0 rgba(218,165,32,0); } }
 
-    .card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 20px;
-      margin-bottom: 20px;
-      border: var(--glass-border);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      transition: transform 0.2s;
-    }
-    
-    h3 { margin-top: 0; font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
-
-    /* ESTILO DO MODAL DEVOCIONAL (SUSPENSO) */
+    /* MODAL SUSPENSO (POP-UP) */
     .modal-dev {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.95);
-      backdrop-filter: blur(8px);
-      z-index: 2000;
-      display: none; /* Oculto por padrão */
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000;
+      background: rgba(0,0,0,0.95); backdrop-filter: blur(8px);
+      display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px;
       animation: fadeIn 0.3s ease;
     }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     .dev-paper {
-      background: #1a1a1a;
-      border: 1px solid var(--gold);
-      border-radius: 15px;
-      width: 100%;
-      max-width: 500px;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 25px;
-      position: relative;
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+      background: #1a1a1a; border: 1px solid var(--gold); border-radius: 15px; width: 100%; max-width: 500px;
+      max-height: 85vh; overflow-y: auto; padding: 25px; position: relative; box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
     }
-
-    .btn-close-dev {
-      position: absolute;
-      top: 15px; right: 15px;
-      background: transparent;
-      border: none;
-      color: #aaa;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .dev-header-modal {
-      text-align: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,215,0,0.2); padding-bottom: 15px;
-    }
+    .btn-close-dev { position: absolute; top: 10px; right: 15px; background: transparent; border: none; color: #aaa; font-size: 2rem; cursor: pointer; }
+    
+    .dev-header-modal { text-align: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,215,0,0.2); padding-bottom: 15px; }
     .dev-date { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 0.9rem; }
     .dev-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: white; margin: 5px 0; line-height: 1.2; }
-
-    .verse-box {
-      background: rgba(255, 215, 0, 0.05); border-left: 3px solid var(--gold);
-      padding: 15px; margin-bottom: 20px; border-radius: 0 8px 8px 0; font-style: italic; font-family: 'Playfair Display', serif; color: #eee;
-    }
-
+    
+    .verse-box { background: rgba(255, 215, 0, 0.05); border-left: 3px solid var(--gold); padding: 15px; margin-bottom: 20px; font-style: italic; font-family: 'Playfair Display', serif; color: #eee; }
+    
     .story-box { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 0.95rem; line-height: 1.6; color: #ddd; text-align: justify; }
     .story-label { font-size: 0.7rem; color: var(--accent-blue); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px; }
-
+    
     .ref-box { padding: 5px; font-size: 1rem; line-height: 1.6; color: #fff; text-align: justify; margin-bottom: 20px; }
     .ref-label { font-size: 0.7rem; color: var(--accent-pink); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px; }
 
-    .btn-amem {
-      width: 100%; padding: 15px; border-radius: 12px;
-      background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
-      color: #000; font-weight: 800; border: none; font-size: 1rem;
-      box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
-      margin-top: 10px;
-    }
-    .btn-amem:disabled { background: #333; color: #777; box-shadow: none; cursor: default; }
+    .btn-amem { width: 100%; padding: 15px; border-radius: 12px; background: linear-gradient(135deg, #b8860b 0%, #daa520 100%); color: #000; font-weight: 800; border: none; font-size: 1rem; margin-top: 10px; }
+    .btn-amem:disabled { background: #333; color: #777; cursor: default; }
 
-    /* XP BAR */
-    .level-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; cursor: pointer; }
-    .xp-track { width: 100%; height: 14px; background: rgba(0,0,0,0.3); border-radius: 10px; overflow: hidden; position: relative; }
-    .xp-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-      width: 0%;
-      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 0 10px rgba(255, 154, 158, 0.7);
-    }
-
-    /* TRAVEL TRACKER */
-    .travel-track-container { margin-top: 15px; position: relative; padding-top: 20px; }
-    .travel-track { width: 100%; height: 10px; background: rgba(255,255,255,0.15); border-radius: 10px; position: relative; }
-    .travel-fill { height: 100%; border-radius: 10px; width: 0%; transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1); position: relative; }
-    .travel-icon { position: absolute; right: -12px; top: -24px; font-size: 1.2rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); transition: right 1.5s; }
-    .travel-stats { display: flex; justify-content: space-between; font-size: 0.75rem; color: #ccc; margin-top: 6px; }
-
+    /* RESTO DO DESIGN */
+    .card { background: var(--glass-bg); backdrop-filter: blur(10px); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: var(--glass-border); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
+    h3 { margin-top: 0; font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
+    .level-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .xp-track { width: 100%; height: 14px; background: rgba(0,0,0,0.3); border-radius: 10px; overflow: hidden; }
+    .xp-fill { height: 100%; background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 100%); width: 0%; transition: width 1s; }
+    
     button { border: none; outline: none; cursor: pointer; font-family: inherit; font-weight: 600; transition: transform 0.2s; }
     button:active { transform: scale(0.96); }
-
-    .btn-main {
-      width: 100%; padding: 14px; border-radius: 12px;
-      background: var(--primary-gradient);
-      color: white; font-size: 1rem;
-      box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
-    }
-
-    .grid-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .action-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 15px; padding: 15px;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      color: white; font-size: 0.9rem;
-    }
+    .btn-main { width: 100%; padding: 14px; border-radius: 12px; background: var(--primary-gradient); color: white; font-size: 1rem; }
+    
+    .grid-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+    .action-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 8px; color: white; font-size: 0.9rem; }
     .act-love { border-color: var(--accent-pink); color: var(--accent-pink); }
     .act-peace { border-color: var(--success); color: var(--success); }
     .act-bad { border-color: var(--danger); color: var(--danger); }
 
     .finance-group { display: flex; gap: 10px; margin-bottom: 10px; }
-    .input-glass {
-      flex: 1; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(0,0,0,0.3); color: white; font-family: inherit;
-    }
-    .input-glass option { background: #333; color: white; }
+    .input-glass { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: white; font-family: inherit; }
+    .input-glass option { background: #333; }
+    .btn-deposit { flex: 1; padding: 12px; border-radius: 10px; font-size: 0.9rem; color: #fff; }
 
-    .btn-deposit { flex: 1; padding: 12px; border-radius: 10px; font-size: 0.9rem; color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-
-    .history-list { max-height: 250px; overflow-y: auto; padding-right: 5px; }
-    .history-list::-webkit-scrollbar { width: 4px; }
-    .history-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
-
-    .history-item {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem;
-    }
+    .history-list { max-height: 250px; overflow-y: auto; }
+    .history-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }
     .badge { padding: 3px 8px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; margin-right: 6px; }
-    .bg-marcelo { background: var(--accent-blue); color: #fff; }
-    .bg-fernanda { background: var(--accent-pink); color: #fff; }
-    .bg-nos { background: #ffd700; color: #000; }
+    .bg-marcelo { background: var(--accent-blue); } .bg-fernanda { background: var(--accent-pink); } .bg-nos { background: var(--gold); color:#000; }
 
-    .modal {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);
-      display: none; justify-content: center; align-items: center; z-index: 100;
-      padding: 20px;
-    }
-    .modal-box {
-      background: #2d3436; border-radius: 20px; padding: 30px; text-align: center;
-      border: 2px solid var(--accent-pink); max-width: 350px; animation: popUp 0.4s;
-    }
+    /* TRAVEL TRACKER */
+    .travel-track-container { margin-top: 15px; position: relative; padding-top: 20px; }
+    .travel-track { width: 100%; height: 10px; background: rgba(255,255,255,0.15); border-radius: 10px; }
+    .travel-fill { height: 100%; border-radius: 10px; width: 0%; transition: width 1.5s; position: relative; }
+    .travel-icon { position: absolute; right: -12px; top: -24px; font-size: 1.2rem; transition: right 1.5s; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+    .travel-stats { display: flex; justify-content: space-between; font-size: 0.75rem; color: #ccc; margin-top: 6px; }
+
+    .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 100; padding: 20px; }
+    .modal-box { background: #2d3436; border-radius: 20px; padding: 30px; text-align: center; border: 2px solid var(--accent-pink); max-width: 350px; animation: popUp 0.4s; }
     @keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
     .hidden { display: none; }
-    .text-gold { color: #ffd700; }
+    .text-gold { color: var(--gold); }
     .text-success { color: var(--success); }
     .status-pill { background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; display: inline-flex; align-items: center; gap: 5px; }
   </style>
@@ -267,11 +130,9 @@
   <div class="header">
     <h1>Marcelo & Fernanda</h1>
     <p>Construindo nosso 2026 💍</p>
-
     <a href="https://conselheirocasal.netlify.app/" target="_blank" class="btn-agent" rel="noopener">
       <i class="fas fa-robot"></i> Conselheiro Virtual
     </a>
-
     <div id="status-conn" style="font-size: 0.7rem; color: var(--accent-blue); margin-top: 10px;">
       <i class="fas fa-circle-notch fa-spin"></i> Conectando...
     </div>
@@ -294,21 +155,17 @@
              <span id="data-hoje" class="dev-date">--/--</span>
              <h2 id="dev-titulo" class="dev-title">...</h2>
           </div>
-          
           <div class="verse-box">
               <p id="dev-verso">...</p>
           </div>
-          
           <div class="story-box">
               <span class="story-label"><i class="fas fa-book-open"></i> Ilustração</span>
               <span id="dev-historia">...</span>
           </div>
-
           <div class="ref-box">
               <span class="ref-label"><i class="fas fa-lightbulb"></i> Para o Casal</span>
               <span id="dev-reflexao">...</span>
           </div>
-
           <button id="btn-amem" class="btn-amem" onclick="lerDevocional()">
              <i class="fas fa-praying-hands"></i> AMÉM! Lemos Juntos (+15 XP)
           </button>
@@ -354,7 +211,6 @@
         <strong style="color:var(--accent-pink)">FERNANDA:</strong>
         <div id="txt-fernanda" style="font-style:italic; margin-top:3px;">...</div>
       </div>
-
       <div style="display:flex; gap:10px;">
         <button class="btn-main" style="background:var(--success)" onclick="completarMissao(true)">Feito! (+10)</button>
         <button class="btn-main" style="background:rgba(255,255,255,0.1); border:1px solid #666" onclick="completarMissao(false)">Falhamos</button>
@@ -364,20 +220,16 @@
 
   <div class="grid-actions" style="margin-bottom: 20px;">
     <button class="action-card act-peace" onclick="registrarAcao(5, '🕊️ Dia de Paz')">
-      <i class="fas fa-hand-holding-heart fa-2x"></i>
-      <span>Dia de Paz</span>
+      <i class="fas fa-hand-holding-heart fa-2x"></i> <span>Dia de Paz</span>
     </button>
     <button class="action-card act-love" onclick="registrarAcao(2, '❤️ Carinho')">
-      <i class="fas fa-kiss-wink-heart fa-2x"></i>
-      <span>Carinho</span>
+      <i class="fas fa-kiss-wink-heart fa-2x"></i> <span>Carinho</span>
     </button>
     <button class="action-card act-bad" onclick="registrarAcao(-15, '😠 Briga')">
-      <i class="fas fa-angry fa-2x"></i>
-      <span>Briga</span>
+      <i class="fas fa-angry fa-2x"></i> <span>Briga</span>
     </button>
     <button class="action-card" onclick="document.getElementById('camera-input').click()">
-      <i class="fas fa-camera fa-2x"></i>
-      <span>Foto</span>
+      <i class="fas fa-camera fa-2x"></i> <span>Foto</span>
     </button>
     <input type="file" id="camera-input" accept="image/*" capture="environment" style="display:none" onchange="fotoTirada()" />
   </div>
@@ -391,8 +243,6 @@
 
   <div class="card">
     <h3><i class="fas fa-plane-departure text-gold"></i> Banco de Viagens</h3>
-    <p style="font-size:0.8rem; opacity:0.7; margin-bottom:15px;">Foco em Novembro/2026 🚀</p>
-
     <div class="finance-group">
       <select id="user-select" class="input-glass" style="max-width: 110px;">
         <option value="Marcelo">Marcelo</option>
@@ -401,7 +251,6 @@
       </select>
       <input type="text" id="money-input" class="input-glass" placeholder="R$ 0,00" inputmode="decimal" />
     </div>
-
     <div class="finance-group">
       <button class="btn-deposit" style="background:var(--accent-pink)" onclick="depositar('pe')">Recife/PE</button>
       <button class="btn-deposit" style="background:var(--accent-blue)" onclick="depositar('ch')">Chapada</button>
@@ -413,16 +262,10 @@
         <span id="status-pe" class="status-pill">🎒 Iniciando</span>
       </div>
       <div class="travel-track-container">
-        <div class="travel-track">
-          <div class="travel-fill" id="bar-pe" style="background:var(--accent-pink);">
-             <i class="fas fa-plane travel-icon" style="color:var(--accent-pink)"></i>
-          </div>
-        </div>
+        <div class="travel-track"><div class="travel-fill" id="bar-pe" style="background:var(--accent-pink);">
+             <i class="fas fa-plane travel-icon" style="color:var(--accent-pink)"></i></div></div>
       </div>
-      <div class="travel-stats">
-        <span id="total-pe">R$ 0,00</span>
-        <span>Meta: R$ 7.200</span>
-      </div>
+      <div class="travel-stats"><span id="total-pe">R$ 0,00</span><span>Meta: R$ 7.200</span></div>
     </div>
 
     <div style="margin-top:25px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.1);">
@@ -431,22 +274,15 @@
         <span id="status-ch" class="status-pill">🎒 Iniciando</span>
       </div>
       <div class="travel-track-container">
-        <div class="travel-track">
-          <div class="travel-fill" id="bar-ch" style="background:var(--accent-blue);">
-             <i class="fas fa-car-side travel-icon" style="color:var(--accent-blue)"></i>
-          </div>
-        </div>
+        <div class="travel-track"><div class="travel-fill" id="bar-ch" style="background:var(--accent-blue);">
+             <i class="fas fa-car-side travel-icon" style="color:var(--accent-blue)"></i></div></div>
       </div>
-      <div class="travel-stats">
-        <span id="total-ch">R$ 0,00</span>
-        <span>Meta: R$ 2.500</span>
-      </div>
+      <div class="travel-stats"><span id="total-ch">R$ 0,00</span><span>Meta: R$ 2.500</span></div>
     </div>
   </div>
 
   <div class="card">
     <h3><i class="fas fa-bullseye text-gold"></i> Metas 2026</h3>
-    <p style="font-size:0.8rem; opacity:0.8; margin-bottom:15px;">O que vamos conquistar individualmente?</p>
     <div class="finance-group">
       <select id="meta-dono" class="input-glass" onchange="renderizarMetas()" style="max-width: 130px;">
         <option value="" disabled selected>Quem é você?</option>
@@ -459,26 +295,19 @@
       </button>
     </div>
     <div id="lista-metas" class="history-list" style="margin-top:10px; max-height: 200px;">
-      <div style="text-align:center; padding:15px; color:#aaa; font-size:0.8rem;">Selecione seu nome acima para ver as metas.</div>
+      <div style="text-align:center; padding:15px; color:#aaa; font-size:0.8rem;">Selecione seu nome acima.</div>
     </div>
   </div>
 
   <div class="card">
     <h3><i class="fas fa-church text-gold"></i> Presença na Igreja</h3>
     <div style="display:flex; align-items:center; justify-content:space-between; margin-top:10px;">
-      <div>
-        <div id="igreja-total" style="font-size:2rem; font-weight:bold;">0</div>
-        <div style="font-size:0.8rem; opacity:0.8;">Domingos registrados</div>
-      </div>
-      <button class="btn-main"
-              style="width:auto; padding:10px 16px; background:linear-gradient(135deg,#22c55e,#16a34a);"
-              onclick="marcarIgrejaHoje()">
+      <div><div id="igreja-total" style="font-size:2rem; font-weight:bold;">0</div><div style="font-size:0.8rem; opacity:0.8;">Domingos</div></div>
+      <button class="btn-main" style="width:auto; padding:10px 16px; background:linear-gradient(135deg,#22c55e,#16a34a);" onclick="marcarIgrejaHoje()">
         <i class="fas fa-check-circle"></i> Marcar hoje
       </button>
     </div>
-    <div id="igreja-last" style="margin-top:10px; font-size:0.8rem; opacity:0.8;">
-      Último registro: —
-    </div>
+    <div id="igreja-last" style="margin-top:10px; font-size:0.8rem; opacity:0.8;">Último registro: —</div>
   </div>
 
   <div class="card">
@@ -492,34 +321,40 @@
   </div>
 
   <script type="module">
-    // Service Worker (PWA)
+    // 1. Service Worker
     if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/sw.js").catch(() => {});
-      });
+      window.addEventListener("load", () => { navigator.serviceWorker.register("/sw.js").catch(() => {}); });
     }
 
     const statusEl = document.getElementById("status-conn");
-    function setStatus(html, cssColor) {
-      statusEl.innerHTML = html;
-      statusEl.style.color = cssColor;
-    }
+    function setStatus(html, cssColor) { statusEl.innerHTML = html; statusEl.style.color = cssColor; }
+    window.addEventListener("offline", () => setStatus('<i class="fas fa-wifi"></i> Offline', "var(--danger)"));
+    window.addEventListener("online", () => setStatus('<i class="fas fa-circle-notch fa-spin"></i> Reconectando...', "var(--accent-blue)"));
 
-    window.addEventListener("offline", () => { setStatus('<i class="fas fa-wifi"></i> Offline', "var(--danger)"); });
-    window.addEventListener("online", () => { setStatus('<i class="fas fa-circle-notch fa-spin"></i> Reconectando...', "var(--accent-blue)"); });
+    // 2. Importação Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    // 3. Config e Estado
+    const firebaseConfig = {
+      apiKey: "AIzaSyC8YA9o9KVlKW1j9Ps2gqwYYWJDnFt6Go4",
+      authDomain: "casal2026-888ce.firebaseapp.com",
+      databaseURL: "https://casal2026-888ce-default-rtdb.firebaseio.com",
+      projectId: "casal2026-888ce",
+      storageBucket: "casal2026-888ce.firebasestorage.app",
+      messagingSenderId: "314398386836",
+      appId: "1:314398386836:web:e401b22d85e7bbe5e9e281",
+      measurementId: "G-RHXB26B178"
+    };
 
     const fmtBRL = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
-
-    // Estado Global
     let estado = { xp: 0, pe: 0, ch: 0, list: [], igrejaCount: 0, igrejaLast: null, metas: {} };
-    const ALVO_PE = 7200;
-    const ALVO_CH = 2500;
+    const ALVO_PE = 7200; const ALVO_CH = 2500;
 
-    // NÍVEIS MAIS DIFÍCEIS
     const niveis = [
-      {id:1, max:150, nome:"Início", premio:"Piquenique na Ermida Dom Bosco"}, // Era 100
-      {id:2, max:400, nome:"Aprendizes", premio:"Caminhada no Pontão + Água de Coco"}, // Era 300
-      {id:3, max:800, nome:"Parceiros", premio:"Eixão do Lazer + Fotos na SQS 308"}, // Era 600
+      {id:1, max:150, nome:"Início", premio:"Piquenique na Ermida Dom Bosco"},
+      {id:2, max:400, nome:"Aprendizes", premio:"Caminhada no Pontão + Água de Coco"},
+      {id:3, max:800, nome:"Parceiros", premio:"Eixão do Lazer + Fotos na SQS 308"},
       {id:4, max:1300, nome:"Cúmplices", premio:"CCBB Cultural + Passeio no Jardim"},
       {id:5, max:1900, nome:"Namorados", premio:"Pastel na Torre de TV"},
       {id:6, max:2600, nome:"Noivos", premio:"Cine Drive-in (Noite Retrô)"},
@@ -532,362 +367,345 @@
     ];
 
     const missoes = [
+
       "Orem juntos agradecendo por três coisas específicas que aconteceram hoje.",
+
       "Leiam Provérbios 31 ou Salmos 23 juntos e comentem um versículo.",
+
       "Façam uma oração de mãos dadas intercedendo pela família um do outro.",
+
       "Escolham um louvor que marque a história de vocês e ouçam abraçados.",
+
       "Compartilhem: 'O que Deus falou comigo essa semana?'",
+
       "Orem especificamente pelos planos de 2026 (Viagem e Casamento).",
+
       "Cada um deve abençoar a vida do outro com palavras de afirmação profética.",
+
       "Leiam um capítulo curto da Bíblia e destaquem uma palavra-chave.",
+
       "Façam um jejum de algo simples (ex: doce ou rede social) por 1 dia em prol do casal.",
+
       "Agradeçam a Deus por uma dificuldade que vocês já superaram juntos.",
+
       "Dêem um beijo de cinema (pelo menos 10 segundos) antes de sair ou ao chegar.",
+
       "Façam uma massagem de 5 minutos nos pés ou ombros do outro.",
+
       "Andem de mãos dadas sempre que estiverem caminhando juntos hoje.",
+
       "Façam um 'cafuné' até um dos dois quase dormir.",
+
       "Dancem uma música lenta na sala (mesmo que sem música, só no ritmo).",
+
       "Deem um abraço apertado em silêncio por 1 minuto, sentindo a respiração do outro.",
+
       "Preparem um banho ou um momento de relaxamento para o outro.",
+
       "Troquem olhares intensos por 30 segundos sem rir (vale tentar!).",
+
       "Dê um beijo na testa do outro e diga 'Eu te admiro muito'.",
+
       "Durmam (ou tirem um cochilo) de conchinha.",
+
       "Elogie uma característica física e uma de caráter do seu par hoje.",
+
       "Pergunte: 'Como posso orar por você hoje?' e faça isso na hora.",
+
       "Escreva um bilhetinho escondido (bolsa, carteira ou travesseiro) pro outro achar.",
+
       "Conte uma coisa que você nunca contou pra ninguém (segredo ou memória).",
+
       "Pergunte: 'O que eu faço que faz você se sentir mais amado(a)?'",
+
       "Relembrem em detalhes o dia em que se conheceram ou o primeiro beijo.",
+
       "Definam uma palavra que resuma o relacionamento de vocês hoje.",
+
       "Peça perdão por algo pequeno que possa ter passado batido.",
+
       "Mande uma mensagem picante ou muito romântica no meio da tarde.",
+
       "Diga 'Eu Te Amo' em três momentos inesperados do dia.",
+
       "Tirem uma selfie fazendo careta e guardem na pasta 'Só a gente vê'.",
+
       "Joguem um jogo rápido (Stop, Baralho, ou até Pedra-Papel-Tesoura valendo massagem).",
+
       "Dublem uma música famosa juntos como se estivessem num show.",
+
       "Façam uma 'noite sem telas': 30 minutos conversando sem celular por perto.",
+
       "Cozinhem algo juntos (nem que seja um miojo gourmet ou pipoca).",
+
       "Saiam para ver o pôr do sol ou a lua, nem que seja da janela.",
+
       "Façam um vídeo curto dizendo 'Eu do futuro, estamos lutando por você!'.",
+
       "Comam a sobremesa antes do jantar (só hoje pode!).",
+
       "Inventem um toque de mão ou cumprimento secreto do casal.",
+
       "Façam uma caminhada no quarteirão apenas para conversar.",
+
       "Faça uma tarefa doméstica que seria do outro (lave a louça dele(a), arrume a bagunça).",
+
       "Sirva o prato do outro na hora da refeição com carinho.",
+
       "Traga um copo d'água ou café para o outro sem ele pedir.",
+
       "Arrume a cama caprichada para quando forem dormir.",
+
       "Pergunte: 'Posso te ajudar em algo que está te estressando hoje?'",
+
       "Deixe a toalha do outro pronta ou a escova de dentes preparada.",
+
       "Resolva um pequeno problema burocrático para o outro.",
+
       "Compre ou prepare o doce/lanche favorito do outro de surpresa.",
+
       "Ofereça-se para carregar a bolsa ou mochila do outro.",
+
       "Seja o primeiro a pedir desculpas se houver qualquer desentendimento.",
+
       "Imaginem em detalhes como será o primeiro dia da viagem para Recife.",
+
       "Pesquisem juntos uma foto da Chapada ou de Pernambuco e mandem um pro outro.",
+
       "Guardem R$ 5,00 (ou qualquer valor extra) hoje no cofrinho/banco do app.",
+
       "Conversem sobre como imaginam a casa de vocês daqui a 5 anos.",
+
       "Listem 3 coisas que não podem faltar no casamento de vocês.",
+
       "Façam uma oração abençoando a vida financeira do casal.",
+
       "Conversem sobre nomes de filhos (mesmo que seja só brincadeira por enquanto).",
+
       "Definam uma meta de economia doméstica para esta semana.",
+
       "Sonhem alto: Se dinheiro não fosse problema, para onde iriam amanhã?",
+
       "Reafirmem o compromisso: Olhem nos olhos e digam 'Estou com você até o fim'."
+
     ];
 
-    // Firebase Init
+    let db, dbRef, igrejaRef, metasRef;
     let firebaseReady = false;
-    let db = null, dbRef = null, igrejaRef = null;
-    let fbRef = null, fbPush = null, fbOnValue = null, fbRemove = null, fbUpdate = null;
 
-    function requireFirebase() {
-      if (!firebaseReady) {
-        alert("Conectando... Tente em instantes.");
-        throw new Error("Firebase not ready");
-      }
-    }
-
-    function parseMoneyBR(raw) {
-      const cleaned = String(raw || "").replace(/\s/g, "").replace("R$", "").replace(/\./g, "").replace(",", ".");
-      const val = Number.parseFloat(cleaned); return Number.isFinite(val) ? val : 0;
-    }
-
-    function getTravelStatus(val, max) {
-      const perc = (val / max) * 100;
-      if (perc <= 0) return "🎒 Iniciando";
-      if (perc < 20) return "🧳 Arrumando Malas";
-      if (perc < 50) return "🚗 A Caminho";
-      if (perc < 80) return "✈️ Quase lá!";
-      if (perc < 100) return "🏖️ Vendo o Mar";
-      return "🥂 CONQUISTADO!";
-    }
-
-    // --- FUNÇÕES DO MODAL DEVOCIONAL ---
-    window.abrirDevocional = () => {
-        const modal = document.getElementById("modal-devocional");
-        modal.style.display = "flex";
-        window.carregarDevocional();
-    };
-
-    window.fecharDevocional = () => {
-        document.getElementById("modal-devocional").style.display = "none";
-    };
-
-    window.carregarDevocional = () => {
-        if (!db) return; 
-
-        const hoje = new Date();
-        const dia = String(hoje.getDate()).padStart(2, '0');
-        const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-        const chaveData = `${mes}-${dia}`;
-        
-        // Data formatada
-        const mesesExt = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
-        document.getElementById("data-hoje").innerText = `${dia} de ${mesesExt[hoje.getMonth()]}`;
-
-        const path = `devocionais/${chaveData}`;
-        
-        fbOnValue(fbRef(db, path), (snap) => {
-            const data = snap.val();
-            document.getElementById("dev-loading").classList.add("hidden");
-            document.getElementById("dev-content").classList.remove("hidden");
-            
-            if (data) {
-               document.getElementById("dev-titulo").innerText = data.titulo;
-               document.getElementById("dev-verso").innerText = data.verso;
-               
-               if(data.historia) {
-                   document.getElementById("dev-historia").innerText = data.historia;
-                   document.getElementById("dev-historia").parentElement.classList.remove("hidden");
-               } else {
-                   document.getElementById("dev-historia").parentElement.classList.add("hidden");
-               }
-
-               if(data.reflexao) {
-                   document.getElementById("dev-reflexao").innerText = data.reflexao;
-               } else {
-                   document.getElementById("dev-reflexao").innerText = data.texto || "...";
-               }
-
-            } else {
-               document.getElementById("dev-titulo").innerText = "Aguardando...";
-               document.getElementById("dev-verso").innerText = "Salmos 1:1";
-               document.getElementById("dev-reflexao").innerText = "Hoje não há devocional cadastrado. Verifique o banco de dados.";
-               document.getElementById("dev-historia").parentElement.classList.add("hidden");
-            }
-
-            // Check leitura
-            const lidoKey = `lido-${chaveData}-${hoje.getFullYear()}`;
-            const btn = document.getElementById("btn-amem");
-            if(localStorage.getItem(lidoKey)) {
-                 btn.innerHTML = '<i class="fas fa-check"></i> AMÉM! LIDO';
-                 btn.disabled = true;
-                 btn.style.opacity = "0.5";
-                 btn.style.background = "#333";
-            } else {
-                 btn.innerHTML = '<i class="fas fa-praying-hands"></i> AMÉM! Lemos Juntos (+15 XP)';
-                 btn.disabled = false;
-                 btn.style.opacity = "1";
-                 btn.style.background = "linear-gradient(135deg, #b8860b 0%, #daa520 100%)";
-            }
-        });
-    };
+    // 4. Funções Globais (Anexadas a window)
+    window.abrirDevocional = () => { document.getElementById("modal-devocional").style.display = "flex"; carregarDevocional(); };
+    window.fecharDevocional = () => { document.getElementById("modal-devocional").style.display = "none"; };
 
     window.lerDevocional = () => {
-        requireFirebase();
-        const hoje = new Date();
-        const dia = String(hoje.getDate()).padStart(2, '0');
-        const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-        const chave = `lido-${mes}-${dia}-${hoje.getFullYear()}`;
+        if(!firebaseReady) return;
+        const h = new Date();
+        const k = `lido-${h.getMonth()+1}-${h.getDate()}-${h.getFullYear()}`;
         
         const btn = document.getElementById("btn-amem");
         if(btn.disabled) return;
 
-        // XP reduzido para 15
-        fbPush(dbRef, {
-            date: new Date().toLocaleDateString(),
-            user: "Nós",
-            desc: "Devocional lido 📖",
-            xp: 15,
-            val: 0,
-            tipo: "devocional"
-        });
-
-        localStorage.setItem(chave, "true");
+        push(dbRef, { date: new Date().toLocaleDateString(), user: "Nós", desc: "Devocional lido 📖", xp: 15, val: 0, tipo: "devocional" });
+        localStorage.setItem(k, "true");
         btn.innerHTML = '<i class="fas fa-check"></i> AMÉM! LIDO';
         btn.disabled = true;
         btn.style.background = "#333";
-        
-        setTimeout(() => { window.fecharDevocional(); }, 1500); // Fecha sozinho depois de confirmar
+        setTimeout(() => { window.fecharDevocional(); }, 1500);
     };
 
-    // --- FUNÇÕES DE INTERFACE ---
     window.renderizarMetas = () => {
-      const dono = document.getElementById("meta-dono").value;
-      const listaEl = document.getElementById("lista-metas");
-      if (!listaEl) return;
-      if (!dono) { listaEl.innerHTML = `<div style="text-align:center; padding:15px; color:#aaa; font-size:0.8rem;">Selecione seu nome acima para ver as metas.</div>`; return; }
-      listaEl.innerHTML = "";
-      const dados = estado.metas && estado.metas[dono] ? estado.metas[dono] : {};
-      const chaves = Object.keys(dados);
-      if (chaves.length === 0) { listaEl.innerHTML = `<div style="text-align:center; padding:15px; opacity:0.6;">Nenhuma meta definida ainda. Bora sonhar?</div>`; return; }
-      chaves.forEach(key => {
-        const item = dados[key];
-        listaEl.innerHTML += `
-          <div class="history-item">
-            <div style="flex:1; padding-right:10px;"><i class="fas fa-star" style="color:#ffd700; font-size:0.7rem; margin-right:5px;"></i>${item.texto}</div>
-            <div style="display:flex; gap:10px;">
-               <i class="fas fa-pen" style="color:var(--accent-blue); opacity:0.6; cursor:pointer;" onclick="editarMeta('${dono}', '${key}')"></i>
-               <i class="fas fa-trash" style="color:var(--danger); opacity:0.6; cursor:pointer;" onclick="apagarMeta('${dono}', '${key}')"></i>
-            </div>
-          </div>`;
-      });
+        const dono = document.getElementById("meta-dono").value;
+        const lista = document.getElementById("lista-metas");
+        if(!lista) return;
+        lista.innerHTML = "";
+        const m = estado.metas[dono] || {};
+        if(!dono) { lista.innerHTML = `<div style="text-align:center; padding:15px; opacity:0.6;">Selecione seu nome.</div>`; return; }
+        Object.keys(m).forEach(k => {
+            lista.innerHTML += `<div class="history-item"><div style="flex:1">${m[k].texto}</div><i class="fas fa-trash" style="color:var(--danger); cursor:pointer;" onclick="apagarMeta('${dono}','${k}')"></i></div>`;
+        });
     };
 
     window.adicionarMeta = () => {
-      requireFirebase();
-      const dono = document.getElementById("meta-dono").value;
-      if (!dono) return alert("Selecione quem é você na lista antes de adicionar!");
-      const input = document.getElementById("meta-texto");
-      const texto = input.value.trim();
-      if (!texto) return alert("Escreva alguma coisa!");
-      fbPush(fbRef(db, `metas/${dono}`), { texto: texto, criadoEm: new Date().toLocaleDateString() });
-      input.value = ""; 
+        if(!firebaseReady) return;
+        const d = document.getElementById("meta-dono").value;
+        const t = document.getElementById("meta-texto").value;
+        if(d && t) { push(ref(db, `metas/${d}`), { texto: t, criadoEm: new Date().toLocaleDateString() }); document.getElementById("meta-texto").value=""; }
     };
-
-    window.editarMeta = (dono, id) => {
-      requireFirebase();
-      const metaAtual = estado.metas[dono][id].texto;
-      const novoTexto = prompt("Editar meta:", metaAtual);
-      if (novoTexto && novoTexto !== metaAtual) { fbUpdate(fbRef(db, `metas/${dono}/${id}`), { texto: novoTexto }); }
-    };
-
-    window.apagarMeta = (dono, id) => {
-      requireFirebase();
-      if(confirm("Já completou ou quer desistir dessa meta?")) { fbRemove(fbRef(db, `metas/${dono}/${id}`)); }
-    };
+    window.apagarMeta = (d,i) => { if(confirm("Apagar?")) remove(ref(db, `metas/${d}/${i}`)); };
 
     window.verProximoPremio = () => {
-      const n = getNivel();
-      document.getElementById("premio-txt").innerText = n.premio;
-      document.getElementById("modal-premio").style.display = "flex";
+        const n = getNivel();
+        document.getElementById("premio-txt").innerText = n.premio;
+        document.getElementById("modal-premio").style.display = "flex";
     };
-
     window.sortearMissoes = () => {
-      const r1 = missoes[Math.floor(Math.random() * missoes.length)];
-      const r2 = missoes[Math.floor(Math.random() * missoes.length)];
-      document.getElementById("txt-marcelo").innerText = r1;
-      document.getElementById("txt-fernanda").innerText = r2;
-      document.getElementById("mission-area").classList.remove("hidden");
+        const r1 = missoes[Math.floor(Math.random()*missoes.length)];
+        const r2 = missoes[Math.floor(Math.random()*missoes.length)];
+        document.getElementById("txt-marcelo").innerText = r1;
+        document.getElementById("txt-fernanda").innerText = r2;
+        document.getElementById("mission-area").classList.remove("hidden");
     };
-
-    window.completarMissao = (sucesso) => {
-      // XP REDUZIDO PARA 10
-      if (sucesso) window.registrarAcao(10, "Missão Dupla Cumprida!");
-      else window.registrarAcao(-5, "Missão Falhou");
-      document.getElementById("mission-area").classList.add("hidden");
+    window.completarMissao = (ok) => {
+        if(ok) registrarAcao(10, "Missão Cumprida!"); else registrarAcao(-5, "Missão Falhou");
+        document.getElementById("mission-area").classList.add("hidden");
     };
-
-    window.fotoTirada = () => { alert("Foto tirada! Agora abra o Álbum (link abaixo) e adicione ela lá."); };
-
-    window.registrarAcao = (xp, desc) => {
-      requireFirebase();
-      const user = document.getElementById("user-select").value || "Nós";
-      fbPush(dbRef, { date: new Date().toLocaleDateString(), user, desc, xp: Number(xp || 0), val: 0, tipo: null });
-    };
-
+    window.fotoTirada = () => alert("Foto tirada! Salve no Álbum.");
+    window.registrarAcao = (xp, desc) => { if(firebaseReady) push(dbRef, { date: new Date().toLocaleDateString(), user:document.getElementById("user-select").value||"Nós", desc, xp, val:0 }); };
     window.depositar = (tipo) => {
-      requireFirebase();
-      const user = document.getElementById("user-select").value || "Nós";
-      const raw = document.getElementById("money-input").value;
-      const val = parseMoneyBR(raw);
-      if (!val) return alert("Digite um valor!");
-      const dest = tipo === "pe" ? "Recife" : "Chapada";
-      const desc = `Poupança ${dest}`;
-      fbPush(dbRef, { date: new Date().toLocaleDateString(), user, desc, xp: 5, val, tipo });
-      document.getElementById("money-input").value = "";
-      alert(`R$ ${val} guardado para ${dest}! 💸`);
+        if(!firebaseReady) return;
+        const val = parseFloat(document.getElementById("money-input").value.replace(",","."));
+        if(!val) return alert("Valor?");
+        push(dbRef, { date: new Date().toLocaleDateString(), user:document.getElementById("user-select").value||"Nós", desc:`Poupança ${tipo.toUpperCase()}`, xp:5, val, tipo });
+        document.getElementById("money-input").value="";
+        alert("Guardado!");
     };
-
-    window.remover = (id) => { requireFirebase(); if (confirm("Apagar?")) fbRemove(fbRef(db, `historico/${id}`)); };
-    window.limparTudo = () => { requireFirebase(); if (confirm("Resetar TUDO (XP + Banco + Diário)?")) { fbRemove(dbRef); } };
-
+    window.remover = (id) => { if(confirm("Apagar?")) remove(ref(db, `historico/${id}`)); };
+    window.limparTudo = () => { if(confirm("Resetar TUDO?")) remove(dbRef); };
     window.marcarIgrejaHoje = () => {
-      requireFirebase();
-      const hoje = new Date();
-      const date = hoje.toLocaleDateString();
-      const iso = hoje.toISOString();
-      if (estado.igrejaLast && estado.igrejaLast.date === date) { if (!confirm("Já tem presença registrada para hoje. Marcar de novo?")) return; }
-      fbPush(igrejaRef, { date, dateISO: iso, obs: "Culto de domingo", xp: 20 });
-      fbPush(dbRef, { date, user: "Nós", desc: "Fomos à igreja hoje 🙏", xp: 20, val: 0, tipo: "igreja" });
-      alert("Presença na igreja registrada! Deus abençoe vocês 🙏");
+        if(!firebaseReady) return;
+        const d = new Date().toLocaleDateString();
+        if(estado.igrejaLast && estado.igrejaLast.date===d) { if(!confirm("Já marcou. De novo?")) return; }
+        push(igrejaRef, { date:d, dateISO:new Date().toISOString() });
+        push(dbRef, { date:d, user:"Nós", desc:"Igreja 🙏", xp:20, val:0 });
+        alert("Amém!");
     };
+
+    function carregarDevocional() {
+        if (!db) return;
+        const h = new Date();
+        const k = `${String(h.getMonth()+1).padStart(2,'0')}-${String(h.getDate()).padStart(2,'0')}`;
+        
+        const m = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+        document.getElementById("data-hoje").innerText = `${h.getDate()} de ${m[h.getMonth()]}`;
+
+        onValue(ref(db, `devocionais/${k}`), (snap) => {
+            const d = snap.val();
+            document.getElementById("dev-loading").classList.add("hidden");
+            document.getElementById("dev-content").classList.remove("hidden");
+            
+            if (d) {
+               document.getElementById("dev-titulo").innerText = d.titulo;
+               document.getElementById("dev-verso").innerText = d.verso;
+               if(d.historia) {
+                   document.getElementById("dev-historia").innerText = d.historia;
+                   document.getElementById("dev-historia").parentElement.classList.remove("hidden");
+               } else { document.getElementById("dev-historia").parentElement.classList.add("hidden"); }
+               document.getElementById("dev-reflexao").innerText = d.reflexao || d.texto || "...";
+            } else {
+               document.getElementById("dev-titulo").innerText = "Aguardando...";
+               document.getElementById("dev-verso").innerText = "Salmos 1:1";
+               document.getElementById("dev-reflexao").innerText = "Sem devocional cadastrado hoje.";
+               document.getElementById("dev-historia").parentElement.classList.add("hidden");
+            }
+
+            const lk = `lido-${k}-${h.getFullYear()}`;
+            const btn = document.getElementById("btn-amem");
+            if(localStorage.getItem(lk)) {
+                 btn.innerHTML = '<i class="fas fa-check"></i> AMÉM! LIDO';
+                 btn.disabled = true; btn.style.opacity = "0.5"; btn.style.background = "#333";
+            } else {
+                 btn.innerHTML = '<i class="fas fa-praying-hands"></i> AMÉM! Lemos Juntos (+15 XP)';
+                 btn.disabled = false; btn.style.opacity = "1"; btn.style.background = "linear-gradient(135deg, #b8860b 0%, #daa520 100%)";
+            }
+        });
+    }
+
+    // Função auxiliar para calcular nível e renderizar
+    function getNivel() {
+      let atual = niveis[0];
+      for (let n of niveis) { if (estado.xp < n.max) { atual = n; break; } if (n.id === 12) atual = n; }
+      return atual;
+    }
+    
+    function getTravelStatus(val, max) { 
+        const p = (val/max)*100; 
+        if(p<=0)return "🎒 Iniciando"; if(p<20)return "🧳 Arrumando"; 
+        if(p<50)return "🚗 A Caminho"; if(p<80)return "✈️ Quase lá"; 
+        if(p<100)return "🏖️ Vendo o Mar"; return "🥂 CONQUISTADO!"; 
+    }
 
     // Inicialização
-    (async () => {
-      try {
-        const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");
-        const { getDatabase, ref, push, onValue, remove, update } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js");
-
-        const firebaseConfig = {
-          apiKey: "AIzaSyC8YA9o9KVlKW1j9Ps2gqwYYWJDnFt6Go4",
-          authDomain: "casal2026-888ce.firebaseapp.com",
-          databaseURL: "https://casal2026-888ce-default-rtdb.firebaseio.com",
-          projectId: "casal2026-888ce",
-          storageBucket: "casal2026-888ce.firebasestorage.app",
-          messagingSenderId: "314398386836",
-          appId: "1:314398386836:web:e401b22d85e7bbe5e9e281",
-          measurementId: "G-RHXB26B178"
-        };
-
+    try {
         const app = initializeApp(firebaseConfig);
         db = getDatabase(app);
-        
         dbRef = ref(db, "historico");
         igrejaRef = ref(db, "igreja");
-        const metasRef = ref(db, "metas");
-
-        fbRef = ref; fbPush = push; fbOnValue = onValue; fbRemove = remove; fbUpdate = update;
-
+        metasRef = ref(db, "metas");
         firebaseReady = true;
         setStatus('<i class="fas fa-wifi"></i> Online', "var(--success)");
 
-        fbOnValue(dbRef, (snap) => {
-          const data = snap.val();
-          estado.list = [];
-          if (data) { Object.keys(data).forEach(k => estado.list.push({ id: k, ...data[k] })); }
-          recalcular();
-          renderizar();
-        });
-
-        fbOnValue(igrejaRef, (snap) => {
-          const data = snap.val();
-          let count = 0; let last = null;
-          if (data) {
-            Object.keys(data).forEach((k) => {
-              const item = data[k]; count++;
-              if (!last || new Date(item.dateISO || item.date) > new Date(last?.dateISO || last?.date || 0)) last = item;
+        onValue(dbRef, (snap) => {
+            const data = snap.val();
+            estado.list = [];
+            if (data) Object.keys(data).forEach(k => estado.list.push({ id: k, ...data[k] }));
+            
+            estado.xp=0; estado.pe=0; estado.ch=0;
+            estado.list.forEach(i => {
+                estado.xp += Number(i.xp || 0);
+                if (i.tipo === "pe") estado.pe += Number(i.val || 0);
+                if (i.tipo === "ch") estado.ch += Number(i.val || 0);
             });
-          }
-          estado.igrejaCount = count; estado.igrejaLast = last;
-          renderizar();
+
+            const n = getNivel();
+            document.getElementById("level-name").innerText = n.nome;
+            document.getElementById("xp-total").innerText = `${estado.xp} XP`;
+            document.getElementById("xp-next").innerText = n.max;
+            document.getElementById("xp-bar").style.width = `${Math.min((estado.xp/n.max)*100,100)}%`;
+
+            document.getElementById("total-pe").innerText = fmtBRL.format(estado.pe);
+            document.getElementById("bar-pe").style.width = `${Math.min((estado.pe/ALVO_PE)*100,100)}%`;
+            document.getElementById("status-pe").innerText = getTravelStatus(estado.pe, ALVO_PE);
+
+            document.getElementById("total-ch").innerText = fmtBRL.format(estado.ch);
+            document.getElementById("bar-ch").style.width = `${Math.min((estado.ch/ALVO_CH)*100,100)}%`;
+            document.getElementById("status-ch").innerText = getTravelStatus(estado.ch, ALVO_CH);
+
+            const l = document.getElementById("history-list");
+            l.innerHTML = "";
+            if(!estado.list.length) l.innerHTML = `<div style="text-align:center; padding:20px; color:#aaa;">Sem registros.</div>`;
+            else [...estado.list].reverse().forEach(i => {
+                const who = i.user || "Nós";
+                const cls = who === "Marcelo"?"bg-marcelo":(who==="Fernanda"?"bg-fernanda":"bg-nos");
+                const c = i.xp>0?"var(--success)":(i.xp<0?"var(--danger)":"#aaa");
+                l.innerHTML += `
+                  <div class="history-item">
+                    <div>
+                      <div><span class="badge ${cls}">${who}</span> <span style="opacity:0.6; font-size:0.7rem">${i.date||""}</span></div>
+                      <div style="margin-top:4px;">${i.desc||""} ${i.val>0 ? `(${fmtBRL.format(i.val)})` : ""}</div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                      <span style="color:${c}; font-weight:bold;">${i.xp>0?"+":""}${i.xp}</span>
+                      <i class="fas fa-times" style="opacity:0.3; cursor:pointer;" onclick="remover('${i.id}')"></i>
+                    </div>
+                  </div>`;
+            });
         });
 
-        fbOnValue(metasRef, (snap) => {
-          estado.metas = snap.val() || {};
-          renderizarMetas();
+        onValue(igrejaRef, (snap) => {
+            const data = snap.val();
+            let count = 0, last = null;
+            if (data) {
+                Object.keys(data).forEach(k => {
+                    const i = data[k]; count++;
+                    if (!last || new Date(i.dateISO||i.date) > new Date(last?.dateISO||last?.date||0)) last = i;
+                });
+            }
+            estado.igrejaCount = count; estado.igrejaLast = last;
+            document.getElementById("igreja-total").innerText = count;
+            document.getElementById("igreja-last").innerText = last ? `Último registro: ${last.date}` : "Último registro: —";
         });
 
-        // Carrega o devocional (mas não abre modal ainda)
-        // window.carregarDevocional(); 
-        
-        renderizar();
+        onValue(metasRef, (snap) => {
+            estado.metas = snap.val() || {};
+            renderizarMetas();
+        });
 
-      } catch (err) {
+        carregarDevocional();
+
+    } catch (err) {
         console.error(err);
-        setStatus('<i class="fas fa-wifi"></i> Offline', "var(--danger)");
-        renderizar();
-      }
-    })();
+        setStatus('<i class="fas fa-exclamation-triangle"></i> Erro', "var(--danger)");
+    }
   </script>
 </body>
 </html>
