@@ -22,8 +22,8 @@
   <style>
     :root {
       --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --glass-bg: rgba(255, 255, 255, 0.1);
-      --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.15);
       --text-color: #ffffff;
       --accent-pink: #ff758c;
       --accent-blue: #4facfe;
@@ -57,7 +57,7 @@
 
     .header {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
     .header h1 { font-size: 1.8rem; margin: 0; letter-spacing: 1px; }
@@ -79,6 +79,31 @@
       text-decoration: none;
     }
 
+    /* BOTÃO DEVOCIONAL NO TOPO */
+    .btn-devocional-topo {
+      width: 100%;
+      background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+      color: #000;
+      font-weight: 800;
+      padding: 15px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 0 15px rgba(218, 165, 32, 0.3);
+      animation: pulseGold 2s infinite;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    @keyframes pulseGold {
+      0% { box-shadow: 0 0 0 0 rgba(218, 165, 32, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(218, 165, 32, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(218, 165, 32, 0); }
+    }
+
     .card {
       background: var(--glass-bg);
       backdrop-filter: blur(10px);
@@ -93,74 +118,69 @@
     
     h3 { margin-top: 0; font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
 
-    /* ESTILO NOVO: DEVOCIONAL PREMIUM */
-    .devocional-card {
-        border: 1px solid rgba(255, 215, 0, 0.3);
-        background: rgba(0,0,0,0.4);
+    /* ESTILO DO MODAL DEVOCIONAL (SUSPENSO) */
+    .modal-dev {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none; /* Oculto por padrão */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.3s ease;
     }
-    .dev-header {
-        display: flex; justify-content: space-between; align-items: center;
-        margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1);
-        padding-bottom: 10px;
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .dev-paper {
+      background: #1a1a1a;
+      border: 1px solid var(--gold);
+      border-radius: 15px;
+      width: 100%;
+      max-width: 500px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 25px;
+      position: relative;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
     }
-    .dev-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.4rem;
-        color: var(--gold);
-        margin: 0 0 10px 0;
-        line-height: 1.2;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+
+    .btn-close-dev {
+      position: absolute;
+      top: 15px; right: 15px;
+      background: transparent;
+      border: none;
+      color: #aaa;
+      font-size: 1.5rem;
+      cursor: pointer;
     }
+
+    .dev-header-modal {
+      text-align: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,215,0,0.2); padding-bottom: 15px;
+    }
+    .dev-date { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 0.9rem; }
+    .dev-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: white; margin: 5px 0; line-height: 1.2; }
+
     .verse-box {
-        background: rgba(255, 215, 0, 0.05);
-        border-left: 3px solid var(--gold);
-        padding: 12px;
-        margin-bottom: 15px;
-        border-radius: 0 8px 8px 0;
+      background: rgba(255, 215, 0, 0.05); border-left: 3px solid var(--gold);
+      padding: 15px; margin-bottom: 20px; border-radius: 0 8px 8px 0; font-style: italic; font-family: 'Playfair Display', serif; color: #eee;
     }
-    .verse-text {
-        font-family: 'Playfair Display', serif;
-        font-style: italic;
-        font-size: 1.05rem;
-        color: #f0f0f0;
-        margin: 0;
-        line-height: 1.5;
-    }
-    .story-box {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 15px;
-        border-radius: 10px;
-        margin-bottom: 15px;
-        font-size: 0.9rem;
-        line-height: 1.6;
-        color: #ddd;
-        text-align: justify;
-    }
-    .story-label {
-        font-size: 0.75rem; color: var(--accent-blue); font-weight: bold; 
-        text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;
-    }
-    .ref-box {
-        padding: 5px 5px 15px 5px;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        color: #fff;
-        text-align: justify;
-    }
-    .ref-label {
-        font-size: 0.75rem; color: var(--accent-pink); font-weight: bold; 
-        text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;
-    }
+
+    .story-box { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 0.95rem; line-height: 1.6; color: #ddd; text-align: justify; }
+    .story-label { font-size: 0.7rem; color: var(--accent-blue); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px; }
+
+    .ref-box { padding: 5px; font-size: 1rem; line-height: 1.6; color: #fff; text-align: justify; margin-bottom: 20px; }
+    .ref-label { font-size: 0.7rem; color: var(--accent-pink); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px; }
+
     .btn-amem {
-        background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
-        color: #000;
-        font-weight: 800;
-        border: none;
-        box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+      width: 100%; padding: 15px; border-radius: 12px;
+      background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+      color: #000; font-weight: 800; border: none; font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+      margin-top: 10px;
     }
-    .btn-amem:disabled {
-        background: #444; color: #aaa; box-shadow: none; cursor: not-allowed;
-    }
+    .btn-amem:disabled { background: #333; color: #777; box-shadow: none; cursor: default; }
 
     /* XP BAR */
     .level-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; cursor: pointer; }
@@ -173,7 +193,7 @@
       box-shadow: 0 0 10px rgba(255, 154, 158, 0.7);
     }
 
-    /* TRAVEL TRACKER STYLES */
+    /* TRAVEL TRACKER */
     .travel-track-container { margin-top: 15px; position: relative; padding-top: 20px; }
     .travel-track { width: 100%; height: 10px; background: rgba(255,255,255,0.15); border-radius: 10px; position: relative; }
     .travel-fill { height: 100%; border-radius: 10px; width: 0%; transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1); position: relative; }
@@ -257,45 +277,51 @@
     </div>
   </div>
 
+  <button class="btn-devocional-topo" onclick="abrirDevocional()">
+    <i class="fas fa-book-bible"></i> ALIMENTO DIÁRIO
+  </button>
+
+  <div id="modal-devocional" class="modal-dev">
+    <div class="dev-paper">
+      <button class="btn-close-dev" onclick="fecharDevocional()">&times;</button>
+      
+      <div id="dev-loading" style="text-align:center; padding:30px; color:#aaa;">
+          <i class="fas fa-circle-notch fa-spin text-gold"></i> Buscando a Palavra...
+      </div>
+
+      <div id="dev-content" class="hidden">
+          <div class="dev-header-modal">
+             <span id="data-hoje" class="dev-date">--/--</span>
+             <h2 id="dev-titulo" class="dev-title">...</h2>
+          </div>
+          
+          <div class="verse-box">
+              <p id="dev-verso">...</p>
+          </div>
+          
+          <div class="story-box">
+              <span class="story-label"><i class="fas fa-book-open"></i> Ilustração</span>
+              <span id="dev-historia">...</span>
+          </div>
+
+          <div class="ref-box">
+              <span class="ref-label"><i class="fas fa-lightbulb"></i> Para o Casal</span>
+              <span id="dev-reflexao">...</span>
+          </div>
+
+          <button id="btn-amem" class="btn-amem" onclick="lerDevocional()">
+             <i class="fas fa-praying-hands"></i> AMÉM! Lemos Juntos (+15 XP)
+          </button>
+      </div>
+    </div>
+  </div>
+
   <div id="modal-premio" class="modal">
     <div class="modal-box">
       <i class="fas fa-trophy fa-3x" style="color: #ffd700; margin-bottom: 15px;"></i>
       <h2 style="color:white; margin-bottom:10px;">NÍVEL NOVO!</h2>
       <p id="premio-txt" style="color:#ccc; margin-bottom:20px; line-height:1.5;">...</p>
       <button class="btn-main" onclick="document.getElementById('modal-premio').style.display='none'">Oba! Vamos nessa!</button>
-    </div>
-  </div>
-
-  <div class="card devocional-card">
-    <div class="dev-header">
-        <h3><i class="fas fa-bible text-gold"></i> Pão Diário</h3>
-        <span id="data-hoje" style="font-family:'Playfair Display',serif; color:var(--gold);">--/--</span>
-    </div>
-    
-    <div id="dev-loading" style="text-align:center; padding:30px; color:#aaa;">
-        <i class="fas fa-circle-notch fa-spin text-gold"></i> Buscando a Palavra...
-    </div>
-
-    <div id="dev-content" class="hidden">
-        <h2 id="dev-titulo" class="dev-title">...</h2>
-        
-        <div class="verse-box">
-            <p id="dev-verso" class="verse-text">...</p>
-        </div>
-        
-        <div class="story-box">
-            <span class="story-label"><i class="fas fa-book-open"></i> Ilustração</span>
-            <span id="dev-historia">...</span>
-        </div>
-
-        <div class="ref-box">
-            <span class="ref-label"><i class="fas fa-lightbulb"></i> Para o Casal</span>
-            <span id="dev-reflexao">...</span>
-        </div>
-
-        <button id="btn-amem" class="btn-main btn-amem" onclick="lerDevocional()">
-           <i class="fas fa-praying-hands"></i> Lemos Juntos (+20 XP)
-        </button>
     </div>
   </div>
 
@@ -330,18 +356,18 @@
       </div>
 
       <div style="display:flex; gap:10px;">
-        <button class="btn-main" style="background:var(--success)" onclick="completarMissao(true)">Feito! (+20)</button>
+        <button class="btn-main" style="background:var(--success)" onclick="completarMissao(true)">Feito! (+10)</button>
         <button class="btn-main" style="background:rgba(255,255,255,0.1); border:1px solid #666" onclick="completarMissao(false)">Falhamos</button>
       </div>
     </div>
   </div>
 
   <div class="grid-actions" style="margin-bottom: 20px;">
-    <button class="action-card act-peace" onclick="registrarAcao(10, '🕊️ Dia de Paz')">
+    <button class="action-card act-peace" onclick="registrarAcao(5, '🕊️ Dia de Paz')">
       <i class="fas fa-hand-holding-heart fa-2x"></i>
       <span>Dia de Paz</span>
     </button>
-    <button class="action-card act-love" onclick="registrarAcao(5, '❤️ Carinho')">
+    <button class="action-card act-love" onclick="registrarAcao(2, '❤️ Carinho')">
       <i class="fas fa-kiss-wink-heart fa-2x"></i>
       <span>Carinho</span>
     </button>
@@ -439,7 +465,6 @@
 
   <div class="card">
     <h3><i class="fas fa-church text-gold"></i> Presença na Igreja</h3>
-    <p style="font-size:0.85rem; opacity:0.8;">Registre cada culto de domingo que vocês forem juntos.</p>
     <div style="display:flex; align-items:center; justify-content:space-between; margin-top:10px;">
       <div>
         <div id="igreja-total" style="font-size:2rem; font-weight:bold;">0</div>
@@ -467,7 +492,7 @@
   </div>
 
   <script type="module">
-    // Service Worker
+    // Service Worker (PWA)
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker.register("/sw.js").catch(() => {});
@@ -490,20 +515,20 @@
     const ALVO_PE = 7200;
     const ALVO_CH = 2500;
 
-    // Configuração
+    // NÍVEIS MAIS DIFÍCEIS
     const niveis = [
-      {id:1, max:100, nome:"Início", premio:"Piquenique na Ermida Dom Bosco"},
-      {id:2, max:300, nome:"Aprendizes", premio:"Caminhada no Pontão + Água de Coco"},
-      {id:3, max:600, nome:"Parceiros", premio:"Eixão do Lazer + Fotos na SQS 308"},
-      {id:4, max:1000, nome:"Cúmplices", premio:"CCBB Cultural + Passeio no Jardim"},
-      {id:5, max:1500, nome:"Namorados", premio:"Pastel na Torre de TV"},
-      {id:6, max:2200, nome:"Noivos", premio:"Cine Drive-in (Noite Retrô)"},
-      {id:7, max:3000, nome:"Guardiões", premio:"Trilha na Água Mineral"},
-      {id:8, max:4000, nome:"Guerreiros", premio:"Visita ao Templo da LBV (Paz)"},
-      {id:9, max:5500, nome:"Inabaláveis", premio:"Jardim Botânico (Piquenique)"},
-      {id:10, max:7000, nome:"Alma Gêmea", premio:"Torre Digital (Vista do DF)"},
-      {id:11, max:9000, nome:"Realeza", premio:"Jantar de Gala em Casa"},
-      {id:12, max:12000, nome:"Lendários", premio:"VIAGEM PARA PERNAMBUCO!"}
+      {id:1, max:150, nome:"Início", premio:"Piquenique na Ermida Dom Bosco"}, // Era 100
+      {id:2, max:400, nome:"Aprendizes", premio:"Caminhada no Pontão + Água de Coco"}, // Era 300
+      {id:3, max:800, nome:"Parceiros", premio:"Eixão do Lazer + Fotos na SQS 308"}, // Era 600
+      {id:4, max:1300, nome:"Cúmplices", premio:"CCBB Cultural + Passeio no Jardim"},
+      {id:5, max:1900, nome:"Namorados", premio:"Pastel na Torre de TV"},
+      {id:6, max:2600, nome:"Noivos", premio:"Cine Drive-in (Noite Retrô)"},
+      {id:7, max:3500, nome:"Guardiões", premio:"Trilha na Água Mineral"},
+      {id:8, max:4500, nome:"Guerreiros", premio:"Visita ao Templo da LBV (Paz)"},
+      {id:9, max:6000, nome:"Inabaláveis", premio:"Jardim Botânico (Piquenique)"},
+      {id:10, max:7500, nome:"Alma Gêmea", premio:"Torre Digital (Vista do DF)"},
+      {id:11, max:9500, nome:"Realeza", premio:"Jantar de Gala em Casa"},
+      {id:12, max:13000, nome:"Lendários", premio:"VIAGEM PARA PERNAMBUCO!"}
     ];
 
     const missoes = [
@@ -596,9 +621,19 @@
       return "🥂 CONQUISTADO!";
     }
 
-    // --- LÓGICA DO DEVOCIONAL ROBUSTO ---
+    // --- FUNÇÕES DO MODAL DEVOCIONAL ---
+    window.abrirDevocional = () => {
+        const modal = document.getElementById("modal-devocional");
+        modal.style.display = "flex";
+        window.carregarDevocional();
+    };
+
+    window.fecharDevocional = () => {
+        document.getElementById("modal-devocional").style.display = "none";
+    };
+
     window.carregarDevocional = () => {
-        if (!db) return; // Aguarda firebase
+        if (!db) return; 
 
         const hoje = new Date();
         const dia = String(hoje.getDate()).padStart(2, '0');
@@ -609,7 +644,6 @@
         const mesesExt = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
         document.getElementById("data-hoje").innerText = `${dia} de ${mesesExt[hoje.getMonth()]}`;
 
-        // Busca direto da nuvem (devocionais/MM-DD)
         const path = `devocionais/${chaveData}`;
         
         fbOnValue(fbRef(db, path), (snap) => {
@@ -621,39 +655,39 @@
                document.getElementById("dev-titulo").innerText = data.titulo;
                document.getElementById("dev-verso").innerText = data.verso;
                
-               // Verifica se tem os novos campos (História e Reflexão)
                if(data.historia) {
                    document.getElementById("dev-historia").innerText = data.historia;
                    document.getElementById("dev-historia").parentElement.classList.remove("hidden");
                } else {
-                   // Esconde a caixa de história se não tiver
                    document.getElementById("dev-historia").parentElement.classList.add("hidden");
                }
 
                if(data.reflexao) {
                    document.getElementById("dev-reflexao").innerText = data.reflexao;
                } else {
-                   // Fallback para o campo antigo 'texto' se não tiver 'reflexao'
                    document.getElementById("dev-reflexao").innerText = data.texto || "...";
                }
 
             } else {
-               // Fallback se não tiver cadastrado ainda
-               document.getElementById("dev-titulo").innerText = "Aguardando Palavra...";
-               document.getElementById("dev-verso").innerText = "Salmos 119:105";
-               document.getElementById("dev-reflexao").innerText = "O banco de dados ainda não tem a mensagem de hoje. Importe o JSON no Firebase!";
+               document.getElementById("dev-titulo").innerText = "Aguardando...";
+               document.getElementById("dev-verso").innerText = "Salmos 1:1";
+               document.getElementById("dev-reflexao").innerText = "Hoje não há devocional cadastrado. Verifique o banco de dados.";
                document.getElementById("dev-historia").parentElement.classList.add("hidden");
             }
 
-            // Verifica se já leram hoje (localstorage simples pra UI)
+            // Check leitura
             const lidoKey = `lido-${chaveData}-${hoje.getFullYear()}`;
+            const btn = document.getElementById("btn-amem");
             if(localStorage.getItem(lidoKey)) {
-                 const btn = document.getElementById("btn-amem");
-                 btn.innerHTML = '<i class="fas fa-check"></i> Palavra Recebida';
+                 btn.innerHTML = '<i class="fas fa-check"></i> AMÉM! LIDO';
                  btn.disabled = true;
                  btn.style.opacity = "0.5";
                  btn.style.background = "#333";
-                 btn.style.boxShadow = "none";
+            } else {
+                 btn.innerHTML = '<i class="fas fa-praying-hands"></i> AMÉM! Lemos Juntos (+15 XP)';
+                 btn.disabled = false;
+                 btn.style.opacity = "1";
+                 btn.style.background = "linear-gradient(135deg, #b8860b 0%, #daa520 100%)";
             }
         });
     };
@@ -668,24 +702,22 @@
         const btn = document.getElementById("btn-amem");
         if(btn.disabled) return;
 
-        // Registra XP no Firebase
+        // XP reduzido para 15
         fbPush(dbRef, {
             date: new Date().toLocaleDateString(),
             user: "Nós",
             desc: "Devocional lido 📖",
-            xp: 20,
+            xp: 15,
             val: 0,
             tipo: "devocional"
         });
 
-        // Marca localmente
         localStorage.setItem(chave, "true");
-        btn.innerHTML = '<i class="fas fa-check"></i> Palavra Recebida';
+        btn.innerHTML = '<i class="fas fa-check"></i> AMÉM! LIDO';
         btn.disabled = true;
         btn.style.background = "#333";
-        btn.style.boxShadow = "none";
         
-        alert("Amém! A palavra de hoje foi guardada no coração.");
+        setTimeout(() => { window.fecharDevocional(); }, 1500); // Fecha sozinho depois de confirmar
     };
 
     // --- FUNÇÕES DE INTERFACE ---
@@ -749,8 +781,9 @@
     };
 
     window.completarMissao = (sucesso) => {
-      if (sucesso) window.registrarAcao(20, "Missão Dupla Cumprida!");
-      else window.registrarAcao(-10, "Missão Falhou");
+      // XP REDUZIDO PARA 10
+      if (sucesso) window.registrarAcao(10, "Missão Dupla Cumprida!");
+      else window.registrarAcao(-5, "Missão Falhou");
       document.getElementById("mission-area").classList.add("hidden");
     };
 
@@ -788,73 +821,6 @@
       fbPush(dbRef, { date, user: "Nós", desc: "Fomos à igreja hoje 🙏", xp: 20, val: 0, tipo: "igreja" });
       alert("Presença na igreja registrada! Deus abençoe vocês 🙏");
     };
-
-    // CORE LOGIC
-    function recalcular() {
-      estado.xp = 0; estado.pe = 0; estado.ch = 0;
-      estado.list.forEach(i => {
-        estado.xp += Number(i.xp || 0);
-        if (i.tipo === "pe") estado.pe += Number(i.val || 0);
-        if (i.tipo === "ch") estado.ch += Number(i.val || 0);
-      });
-    }
-
-    function getNivel() {
-      let atual = niveis[0];
-      for (let n of niveis) {
-        if (estado.xp < n.max) { atual = n; break; }
-        if (n.id === 12) atual = n;
-      }
-      return atual;
-    }
-
-    function renderizar() {
-      const n = getNivel();
-      document.getElementById("level-name").innerText = n.nome;
-      document.getElementById("xp-total").innerText = `${estado.xp} XP`;
-      document.getElementById("xp-next").innerText = n.max;
-      const percXP = Math.min((estado.xp / n.max) * 100, 100);
-      document.getElementById("xp-bar").style.width = `${percXP}%`;
-
-      document.getElementById("total-pe").innerText = fmtBRL.format(estado.pe);
-      const percPE = Math.min((estado.pe / ALVO_PE) * 100, 100);
-      document.getElementById("bar-pe").style.width = `${percPE}%`;
-      document.getElementById("status-pe").innerText = getTravelStatus(estado.pe, ALVO_PE);
-
-      document.getElementById("total-ch").innerText = fmtBRL.format(estado.ch);
-      const percCH = Math.min((estado.ch / ALVO_CH) * 100, 100);
-      document.getElementById("bar-ch").style.width = `${percCH}%`;
-      document.getElementById("status-ch").innerText = getTravelStatus(estado.ch, ALVO_CH);
-
-      const lista = document.getElementById("history-list");
-      lista.innerHTML = "";
-      [...estado.list].reverse().forEach(i => {
-        const who = i.user || "Nós";
-        const cls = who === "Marcelo" ? "bg-marcelo" : (who === "Fernanda" ? "bg-fernanda" : "bg-nos");
-        const xpNum = Number(i.xp || 0);
-        const xpColor = xpNum > 0 ? "var(--success)" : (xpNum < 0 ? "var(--danger)" : "#aaa");
-        const valNum = Number(i.val || 0);
-        const valTxt = valNum > 0 ? `(${fmtBRL.format(valNum)})` : "";
-        const dateTxt = i.date || "";
-        lista.innerHTML += `
-          <div class="history-item">
-            <div>
-              <div><span class="badge ${cls}">${who}</span> <span style="opacity:0.6; font-size:0.7rem">${dateTxt}</span></div>
-              <div style="margin-top:4px;">${i.desc || ""} ${valTxt}</div>
-            </div>
-            <div style="display:flex; align-items:center; gap:10px;">
-              <span style="color:${xpColor}; font-weight:bold;">${xpNum > 0 ? "+" : ""}${xpNum}</span>
-              ${firebaseReady ? `<i class="fas fa-times" style="opacity:0.3; cursor:pointer;" onclick="remover('${i.id}')"></i>` : ``}
-            </div>
-          </div>`;
-      });
-      if (!estado.list.length) lista.innerHTML = `<div style="text-align:center; padding:20px; color:#aaa;">Sem registros ainda.</div>`;
-
-      const igrejaTotalEl = document.getElementById("igreja-total");
-      const igrejaLastEl = document.getElementById("igreja-last");
-      if (igrejaTotalEl) igrejaTotalEl.innerText = estado.igrejaCount || 0;
-      if (igrejaLastEl) igrejaLastEl.innerText = estado.igrejaLast ? `Último registro: ${estado.igrejaLast.date}` : "Último registro: —";
-    }
 
     // Inicialização
     (async () => {
@@ -911,8 +877,8 @@
           renderizarMetas();
         });
 
-        // Carrega o devocional do dia
-        window.carregarDevocional();
+        // Carrega o devocional (mas não abre modal ainda)
+        // window.carregarDevocional(); 
         
         renderizar();
 
