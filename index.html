@@ -51,8 +51,8 @@
     }
     @keyframes pulseGold { 0% { box-shadow: 0 0 0 0 rgba(218,165,32,0.4); } 70% { box-shadow: 0 0 0 10px rgba(218,165,32,0); } 100% { box-shadow: 0 0 0 0 rgba(218,165,32,0); } }
 
-    /* MODAL SUSPENSO (POP-UP) */
-    .modal-dev {
+    /* MODAL GERAL (USADO PARA DEVOCIONAL E MISSÕES) */
+    .modal-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000;
       background: rgba(0,0,0,0.95); backdrop-filter: blur(8px);
       display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px;
@@ -60,34 +60,36 @@
     }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    .dev-paper {
+    .modal-paper {
       background: #1a1a1a; border: 1px solid var(--gold); border-radius: 15px; width: 100%; max-width: 500px;
       max-height: 85vh; overflow-y: auto; padding: 25px; position: relative; box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
     }
-    .btn-close-dev { position: absolute; top: 10px; right: 15px; background: transparent; border: none; color: #aaa; font-size: 2rem; cursor: pointer; }
+    .btn-close-modal { position: absolute; top: 10px; right: 15px; background: transparent; border: none; color: #aaa; font-size: 2rem; cursor: pointer; }
     
-    .dev-header-modal { text-align: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,215,0,0.2); padding-bottom: 15px; }
-    .dev-date { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 0.9rem; }
-    .dev-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: white; margin: 5px 0; line-height: 1.2; }
+    /* ESTILOS ESPECIFICOS DO CONTEUDO */
+    .modal-header { text-align: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,215,0,0.2); padding-bottom: 15px; }
+    .modal-subtitle { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 0.9rem; }
+    .modal-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: white; margin: 5px 0; line-height: 1.2; }
     
-    .verse-box { background: rgba(255, 215, 0, 0.05); border-left: 3px solid var(--gold); padding: 15px; margin-bottom: 20px; font-style: italic; font-family: 'Playfair Display', serif; color: #eee; }
+    .text-box { background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 1rem; line-height: 1.6; color: #ddd; text-align: center; border: 1px dashed rgba(255,255,255,0.2); }
     
-    .story-box { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 0.95rem; line-height: 1.6; color: #ddd; text-align: justify; }
-    .story-label { font-size: 0.7rem; color: var(--accent-blue); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px; }
-    
-    .ref-box { padding: 5px; font-size: 1rem; line-height: 1.6; color: #fff; text-align: justify; margin-bottom: 20px; }
-    .ref-label { font-size: 0.7rem; color: var(--accent-pink); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px; }
+    .btn-action-modal { width: 100%; padding: 15px; border-radius: 12px; background: linear-gradient(135deg, #b8860b 0%, #daa520 100%); color: #000; font-weight: 800; border: none; font-size: 1rem; margin-top: 10px; cursor: pointer; }
+    .btn-action-modal:disabled { background: #333; color: #777; cursor: default; }
 
-    .btn-amem { width: 100%; padding: 15px; border-radius: 12px; background: linear-gradient(135deg, #b8860b 0%, #daa520 100%); color: #000; font-weight: 800; border: none; font-size: 1rem; margin-top: 10px; }
-    .btn-amem:disabled { background: #333; color: #777; cursor: default; }
-
-    /* ESTILO MISSÃO SECRETA */
-    .mission-secret-btn {
-        width: 100%; padding: 15px; margin-top: 10px; border-radius: 12px; font-size: 0.9rem; font-weight: bold; cursor: pointer; border: 1px dashed rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s;
+    /* ESTILO DO CARD DE MISSÕES (LINHAS) */
+    .mission-row {
+        display: flex; align-items: center; justify-content: space-between;
+        background: rgba(0,0,0,0.2); padding: 12px; border-radius: 10px; margin-bottom: 10px;
+        border: 1px solid rgba(255,255,255,0.05);
     }
-    .btn-marcelo { background: rgba(79, 172, 254, 0.1); color: var(--accent-blue); }
-    .btn-fernanda { background: rgba(255, 117, 140, 0.1); color: var(--accent-pink); }
-    .btn-marcelo:active, .btn-fernanda:active { transform: scale(0.98); background: rgba(255,255,255,0.1); }
+    .mission-name { font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+    
+    .btn-ver-missao {
+        background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+        color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.8rem; cursor: pointer;
+    }
+    .btn-check { background: var(--success); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    .btn-fail { background: rgba(255,255,255,0.1); color: var(--danger); border: 1px solid var(--danger); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
 
     /* RESTO DO DESIGN */
     .card { background: var(--glass-bg); backdrop-filter: blur(10px); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: var(--glass-border); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
@@ -116,16 +118,15 @@
     .badge { padding: 3px 8px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; margin-right: 6px; }
     .bg-marcelo { background: var(--accent-blue); } .bg-fernanda { background: var(--accent-pink); } .bg-nos { background: var(--gold); color:#000; }
 
-    /* TRAVEL TRACKER */
     .travel-track-container { margin-top: 15px; position: relative; padding-top: 20px; }
     .travel-track { width: 100%; height: 10px; background: rgba(255,255,255,0.15); border-radius: 10px; }
     .travel-fill { height: 100%; border-radius: 10px; width: 0%; transition: width 1.5s; position: relative; }
     .travel-icon { position: absolute; right: -12px; top: -24px; font-size: 1.2rem; transition: right 1.5s; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
     .travel-stats { display: flex; justify-content: space-between; font-size: 0.75rem; color: #ccc; margin-top: 6px; }
 
-    .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 100; padding: 20px; }
-    .modal-box { background: #2d3436; border-radius: 20px; padding: 30px; text-align: center; border: 2px solid var(--accent-pink); max-width: 350px; animation: popUp 0.4s; }
-    @keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    /* Modal Premio */
+    .modal-premio { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 2100; padding: 20px; }
+    .modal-premio-box { background: #2d3436; border-radius: 20px; padding: 30px; text-align: center; border: 2px solid var(--accent-pink); max-width: 350px; animation: popUp 0.4s; }
 
     .hidden { display: none; }
     .text-gold { color: var(--gold); }
@@ -150,39 +151,66 @@
     <i class="fas fa-book-bible"></i> ALIMENTO DIÁRIO
   </button>
 
-  <div id="modal-devocional" class="modal-dev">
-    <div class="dev-paper">
-      <button class="btn-close-dev" onclick="fecharDevocional()">&times;</button>
+  <div id="modal-devocional" class="modal-overlay">
+    <div class="modal-paper">
+      <button class="btn-close-modal" onclick="fecharDevocional()">&times;</button>
       
       <div id="dev-loading" style="text-align:center; padding:30px; color:#aaa;">
           <i class="fas fa-circle-notch fa-spin text-gold"></i> Buscando a Palavra...
       </div>
 
       <div id="dev-content" class="hidden">
-          <div class="dev-header-modal">
-             <span id="data-hoje" class="dev-date">--/--</span>
-             <h2 id="dev-titulo" class="dev-title">...</h2>
+          <div class="modal-header">
+             <span id="data-hoje" class="modal-subtitle">--/--</span>
+             <h2 id="dev-titulo" class="modal-title">...</h2>
           </div>
-          <div class="verse-box">
+          
+          <div style="background: rgba(255, 215, 0, 0.05); border-left: 3px solid var(--gold); padding: 15px; margin-bottom: 20px; font-style: italic; font-family: 'Playfair Display', serif; color: #eee;">
               <p id="dev-verso">...</p>
           </div>
-          <div class="story-box">
-              <span class="story-label"><i class="fas fa-book-open"></i> Ilustração</span>
+          
+          <div id="box-historia" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 0.95rem; line-height: 1.6; color: #ddd; text-align: justify;">
+              <span style="font-size: 0.7rem; color: var(--accent-blue); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px;"><i class="fas fa-book-open"></i> Ilustração</span>
               <span id="dev-historia">...</span>
           </div>
-          <div class="ref-box">
-              <span class="ref-label"><i class="fas fa-lightbulb"></i> Para o Casal</span>
+
+          <div style="padding: 5px; font-size: 1rem; line-height: 1.6; color: #fff; text-align: justify; margin-bottom: 20px;">
+              <span style="font-size: 0.7rem; color: var(--accent-pink); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px;"><i class="fas fa-lightbulb"></i> Para o Casal</span>
               <span id="dev-reflexao">...</span>
           </div>
-          <button id="btn-amem" class="btn-amem" onclick="lerDevocional()">
+
+          <button id="btn-amem" class="btn-action-modal" onclick="lerDevocional()">
              <i class="fas fa-praying-hands"></i> AMÉM! Lemos Juntos (+15 XP)
           </button>
       </div>
     </div>
   </div>
 
-  <div id="modal-premio" class="modal">
-    <div class="modal-box">
+  <div id="modal-missao" class="modal-overlay">
+    <div class="modal-paper" style="border-color: var(--accent-blue);">
+      <button class="btn-close-modal" onclick="fecharModalMissao()">&times;</button>
+      
+      <div class="modal-header">
+         <span class="modal-subtitle">Missão Secreta de</span>
+         <h2 id="missao-dono" class="modal-title" style="color:var(--accent-blue)">...</h2>
+      </div>
+      
+      <div class="text-box">
+          <p id="missao-texto" style="font-weight:bold; font-size:1.1rem;">...</p>
+      </div>
+
+      <p style="text-align:center; font-size:0.8rem; opacity:0.7; margin-bottom:20px;">
+        <i class="fas fa-user-secret"></i> Não conte para o outro até cumprir!
+      </p>
+
+      <button class="btn-action-modal" style="background: var(--accent-blue); color:white;" onclick="confirmarLeituraMissao()">
+         <i class="fas fa-check-double"></i> Memorizei! Pode fechar.
+      </button>
+    </div>
+  </div>
+
+  <div id="modal-premio" class="modal-premio">
+    <div class="modal-premio-box">
       <i class="fas fa-trophy fa-3x" style="color: #ffd700; margin-bottom: 15px;"></i>
       <h2 style="color:white; margin-bottom:10px;">NÍVEL NOVO!</h2>
       <p id="premio-txt" style="color:#ccc; margin-bottom:20px; line-height:1.5;">...</p>
@@ -205,26 +233,45 @@
   </div>
 
   <div class="card">
-    <h3><i class="fas fa-heart text-gold"></i> Missão Secreta Diária</h3>
-    <p style="font-size:0.8rem; opacity:0.8; margin-bottom:15px;">Clique no seu nome para ver. Não deixe o outro olhar!</p>
+    <h3><i class="fas fa-heart text-gold"></i> Missão do Casal</h3>
+    <p style="font-size:0.8rem; opacity:0.8; margin-bottom:15px;">Cada um tem uma missão surpresa hoje!</p>
     
-    <button class="btn-main" onclick="sortearMissoes()">
+    <button id="btn-sortear" class="btn-main" onclick="sortearMissoes()">
       <i class="fas fa-dice"></i> Sortear Novas Missões
     </button>
 
     <div id="mission-area" class="hidden" style="margin-top: 15px;">
-        <button class="mission-secret-btn btn-marcelo" onclick="verMissao('Marcelo')">
-            <i class="fas fa-user-secret"></i> 🔒 Missão do Marcelo
-        </button>
         
-        <button class="mission-secret-btn btn-fernanda" onclick="verMissao('Fernanda')">
-            <i class="fas fa-user-secret"></i> 🔒 Missão da Fernanda
-        </button>
+        <div class="mission-row">
+            <div class="mission-name">
+                <i class="fas fa-male" style="color:var(--accent-blue)"></i> Marcelo
+            </div>
+            
+            <button id="btn-ver-marcelo" class="btn-ver-missao" onclick="abrirMissao('Marcelo')">
+                <i class="fas fa-eye"></i> Ver Missão
+            </button>
 
-        <div style="display:flex; gap:10px; margin-top:20px; border-top:1px solid rgba(255,255,255,0.1); padding-top:15px;">
-            <button class="btn-main" style="background:var(--success)" onclick="completarMissao(true)">Cumprimos! (+10)</button>
-            <button class="btn-main" style="background:rgba(255,255,255,0.1); border:1px solid #666" onclick="completarMissao(false)">Falhamos</button>
+            <div id="acoes-marcelo" class="hidden" style="display:none; gap:10px;">
+                <button class="btn-check" onclick="concluirMissaoIndividual('Marcelo', true)"><i class="fas fa-check"></i></button>
+                <button class="btn-fail" onclick="concluirMissaoIndividual('Marcelo', false)"><i class="fas fa-times"></i></button>
+            </div>
         </div>
+
+        <div class="mission-row">
+            <div class="mission-name">
+                <i class="fas fa-female" style="color:var(--accent-pink)"></i> Fernanda
+            </div>
+            
+            <button id="btn-ver-fernanda" class="btn-ver-missao" onclick="abrirMissao('Fernanda')">
+                <i class="fas fa-eye"></i> Ver Missão
+            </button>
+
+            <div id="acoes-fernanda" class="hidden" style="display:none; gap:10px;">
+                <button class="btn-check" onclick="concluirMissaoIndividual('Fernanda', true)"><i class="fas fa-check"></i></button>
+                <button class="btn-fail" onclick="concluirMissaoIndividual('Fernanda', false)"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+
     </div>
   </div>
 
@@ -401,7 +448,7 @@
 
     const missoes = [
       "Dê um abraço de urso de 1 minuto em silêncio agora.",
-      "Dê um beijo de 10 segundos (conte mentalmente!) ao se encontrarem.",
+      "Dê um beijo de 10 segundos ao se encontrarem.",
       "Sirva um copo de água ou café para o outro sem ele pedir.",
       "Elogie uma roupa ou o perfume que o outro está usando.",
       "Faça uma oração de 1 minuto de mãos dadas agradecendo pelo dia.",
@@ -409,13 +456,13 @@
       "Faça cafuné ou mexa no cabelo do outro por 3 minutos.",
       "Faça uma massagem rápida (5 min) nos ombros ou pés do outro.",
       "Arrume a cama (ou ajude a terminar de arrumar) caprichado.",
-      "Elogie uma qualidade de caráter do outro (ex: paciência, esforço).",
+      "Elogie uma qualidade de caráter do outro.",
       "Pergunte 'Qual foi a melhor parte do seu dia?' e ouça com atenção.",
       "Deixem os celulares em outro cômodo por 20 minutos juntos.",
       "Agradeça por algo simples que o outro fez essa semana.",
       "Lave a louça do jantar ou tire o lixo para aliviar o outro.",
       "Coloque uma música romântica e tirem o outro para dançar na sala.",
-      "Leia um versículo de Salmos (ex: Sl 23) em voz alta para o outro.",
+      "Leia um versículo de Salmos em voz alta para o outro.",
       "Dê três beijos na testa do outro em momentos diferentes hoje.",
       "Prepare um lanche surpresa ou leve uma fruta para o outro.",
       "Tirem uma selfie fazendo careta e guardem só para vocês.",
@@ -437,7 +484,7 @@
       "Organize os sapatos ou chinelos do outro que estiverem jogados.",
       "Dê um beijo de 'Bom Dia' ou 'Boa Noite' digno de filme.",
       "Agradeça a Deus em voz alta: 'Obrigado pela vida do(a)...'.",
-      "Elogie seu cônjuge na frente de outra pessoa (ou no grupo da família).",
+      "Elogie seu cônjuge na frente de outra pessoa.",
       "Limpe algo que o outro sujou sem reclamar.",
       "Fiquem deitados abraçados por 5 minutos sem falar de problemas.",
       "Escreva um bilhete 'Te Amo' e cole no espelho ou geladeira.",
@@ -454,6 +501,7 @@
 
     let db, dbRef, igrejaRef, metasRef;
     let firebaseReady = false;
+    let quemVendo = null; // Para saber quem está no modal
 
     // 4. Funções Globais
     window.abrirDevocional = () => { document.getElementById("modal-devocional").style.display = "flex"; carregarDevocional(); };
@@ -463,10 +511,8 @@
         if(!firebaseReady) return;
         const h = new Date();
         const k = `lido-${h.getMonth()+1}-${h.getDate()}-${h.getFullYear()}`;
-        
         const btn = document.getElementById("btn-amem");
         if(btn.disabled) return;
-
         push(dbRef, { date: new Date().toLocaleDateString(), user: "Nós", desc: "Devocional lido 📖", xp: 15, val: 0, tipo: "devocional" });
         localStorage.setItem(k, "true");
         btn.innerHTML = '<i class="fas fa-check"></i> AMÉM! LIDO';
@@ -501,23 +547,95 @@
         document.getElementById("modal-premio").style.display = "flex";
     };
 
-    // NOVA LÓGICA DE MISSÕES SECRETAS
+    // --- NOVA LÓGICA DE MISSÕES ---
     window.sortearMissoes = () => {
+        // Gera missões
         estado.missaoM = missoes[Math.floor(Math.random()*missoes.length)];
         estado.missaoF = missoes[Math.floor(Math.random()*missoes.length)];
+        
+        // Salva no LocalStorage para não perder se atualizar
+        localStorage.setItem("missao_M", estado.missaoM);
+        localStorage.setItem("missao_F", estado.missaoF);
+        
+        // Reseta status de visualização
+        localStorage.removeItem("lido_M");
+        localStorage.removeItem("lido_F");
+        
+        // UI Reset
         document.getElementById("mission-area").classList.remove("hidden");
-        alert("Missões Sorteada! Agora clique no seu nome para ver a sua em segredo.");
+        document.getElementById("btn-ver-marcelo").style.display = "block";
+        document.getElementById("acoes-marcelo").style.display = "none";
+        document.getElementById("btn-ver-fernanda").style.display = "block";
+        document.getElementById("acoes-fernanda").style.display = "none";
+        
+        alert("Missões Sorteadas! Não conte para o outro.");
     };
 
-    window.verMissao = (quem) => {
+    // Carregar do Storage ao iniciar
+    window.carregarMissoesStorage = () => {
+        const mm = localStorage.getItem("missao_M");
+        const mf = localStorage.getItem("missao_F");
+        if(mm && mf) {
+            estado.missaoM = mm;
+            estado.missaoF = mf;
+            document.getElementById("mission-area").classList.remove("hidden");
+            
+            // Verifica se já leram
+            if(localStorage.getItem("lido_M")) {
+                document.getElementById("btn-ver-marcelo").style.display = "none";
+                document.getElementById("acoes-marcelo").style.display = "flex";
+            }
+            if(localStorage.getItem("lido_F")) {
+                document.getElementById("btn-ver-fernanda").style.display = "none";
+                document.getElementById("acoes-fernanda").style.display = "flex";
+            }
+        }
+    };
+
+    window.abrirMissao = (quem) => {
         const txt = quem === 'Marcelo' ? estado.missaoM : estado.missaoF;
         if(!txt) return alert("Sorteie primeiro!");
-        alert(`🕵️ MISSÃO SECRETA DE ${quem.toUpperCase()}:\n\n"${txt}"\n\n(Não conte para o outro até cumprir!)`);
+        
+        quemVendo = quem;
+        document.getElementById("missao-dono").innerText = quem;
+        document.getElementById("missao-texto").innerText = txt;
+        document.getElementById("modal-missao").style.display = "flex";
     };
 
-    window.completarMissao = (ok) => {
-        if(ok) registrarAcao(10, "Missão Cumprida!"); else registrarAcao(-5, "Missão Falhou");
-        document.getElementById("mission-area").classList.add("hidden");
+    window.fecharModalMissao = () => {
+        document.getElementById("modal-missao").style.display = "none";
+        quemVendo = null;
+    };
+
+    window.confirmarLeituraMissao = () => {
+        if(!quemVendo) return;
+        
+        // Marca como lido e troca botão por ações
+        if(quemVendo === 'Marcelo') {
+            document.getElementById("btn-ver-marcelo").style.display = "none";
+            document.getElementById("acoes-marcelo").style.display = "flex";
+            localStorage.setItem("lido_M", "true");
+        } else {
+            document.getElementById("btn-ver-fernanda").style.display = "none";
+            document.getElementById("acoes-fernanda").style.display = "flex";
+            localStorage.setItem("lido_F", "true");
+        }
+        
+        fecharModalMissao();
+    };
+
+    window.concluirMissaoIndividual = (quem, sucesso) => {
+        if(sucesso) {
+            registrarAcao(10, `Missão do ${quem} Cumprida!`);
+            alert(`Parabéns ${quem}! +10 XP`);
+        } else {
+            registrarAcao(-5, `Missão do ${quem} Falhou`);
+            alert("Que pena. Amanhã tem mais.");
+        }
+        
+        // Remove botões após concluir
+        if(quem === 'Marcelo') document.getElementById("acoes-marcelo").innerHTML = "<span style='color:white; font-size:0.8rem'>Concluído</span>";
+        else document.getElementById("acoes-fernanda").innerHTML = "<span style='color:white; font-size:0.8rem'>Concluído</span>";
     };
 
     window.fotoTirada = () => alert("Foto tirada! Salve no Álbum.");
@@ -675,6 +793,7 @@
         });
 
         carregarDevocional();
+        carregarMissoesStorage();
 
     } catch (err) {
         console.error(err);
