@@ -81,6 +81,14 @@
     .btn-amem { width: 100%; padding: 15px; border-radius: 12px; background: linear-gradient(135deg, #b8860b 0%, #daa520 100%); color: #000; font-weight: 800; border: none; font-size: 1rem; margin-top: 10px; }
     .btn-amem:disabled { background: #333; color: #777; cursor: default; }
 
+    /* ESTILO MISSÃO SECRETA */
+    .mission-secret-btn {
+        width: 100%; padding: 15px; margin-top: 10px; border-radius: 12px; font-size: 0.9rem; font-weight: bold; cursor: pointer; border: 1px dashed rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s;
+    }
+    .btn-marcelo { background: rgba(79, 172, 254, 0.1); color: var(--accent-blue); }
+    .btn-fernanda { background: rgba(255, 117, 140, 0.1); color: var(--accent-pink); }
+    .btn-marcelo:active, .btn-fernanda:active { transform: scale(0.98); background: rgba(255,255,255,0.1); }
+
     /* RESTO DO DESIGN */
     .card { background: var(--glass-bg); backdrop-filter: blur(10px); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: var(--glass-border); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
     h3 { margin-top: 0; font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
@@ -197,24 +205,26 @@
   </div>
 
   <div class="card">
-    <h3><i class="fas fa-heart text-gold"></i> Missão do Casal</h3>
+    <h3><i class="fas fa-heart text-gold"></i> Missão Secreta Diária</h3>
+    <p style="font-size:0.8rem; opacity:0.8; margin-bottom:15px;">Clique no seu nome para ver. Não deixe o outro olhar!</p>
+    
     <button class="btn-main" onclick="sortearMissoes()">
-      <i class="fas fa-dice"></i> Sortear Desafio
+      <i class="fas fa-dice"></i> Sortear Novas Missões
     </button>
 
-    <div id="mission-area" class="hidden" style="margin-top: 15px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px;">
-      <div style="margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px dashed rgba(255,255,255,0.2)">
-        <strong style="color:var(--accent-blue)">MARCELO:</strong>
-        <div id="txt-marcelo" style="font-style:italic; margin-top:3px;">...</div>
-      </div>
-      <div style="margin-bottom: 15px;">
-        <strong style="color:var(--accent-pink)">FERNANDA:</strong>
-        <div id="txt-fernanda" style="font-style:italic; margin-top:3px;">...</div>
-      </div>
-      <div style="display:flex; gap:10px;">
-        <button class="btn-main" style="background:var(--success)" onclick="completarMissao(true)">Feito! (+10)</button>
-        <button class="btn-main" style="background:rgba(255,255,255,0.1); border:1px solid #666" onclick="completarMissao(false)">Falhamos</button>
-      </div>
+    <div id="mission-area" class="hidden" style="margin-top: 15px;">
+        <button class="mission-secret-btn btn-marcelo" onclick="verMissao('Marcelo')">
+            <i class="fas fa-user-secret"></i> 🔒 Missão do Marcelo
+        </button>
+        
+        <button class="mission-secret-btn btn-fernanda" onclick="verMissao('Fernanda')">
+            <i class="fas fa-user-secret"></i> 🔒 Missão da Fernanda
+        </button>
+
+        <div style="display:flex; gap:10px; margin-top:20px; border-top:1px solid rgba(255,255,255,0.1); padding-top:15px;">
+            <button class="btn-main" style="background:var(--success)" onclick="completarMissao(true)">Cumprimos! (+10)</button>
+            <button class="btn-main" style="background:rgba(255,255,255,0.1); border:1px solid #666" onclick="completarMissao(false)">Falhamos</button>
+        </div>
     </div>
   </div>
 
@@ -243,6 +253,8 @@
 
   <div class="card">
     <h3><i class="fas fa-plane-departure text-gold"></i> Banco de Viagens</h3>
+    <p style="font-size:0.8rem; opacity:0.7; margin-bottom:15px;">Foco em Novembro/2026 🚀</p>
+
     <div class="finance-group">
       <select id="user-select" class="input-glass" style="max-width: 110px;">
         <option value="Marcelo">Marcelo</option>
@@ -251,6 +263,7 @@
       </select>
       <input type="text" id="money-input" class="input-glass" placeholder="R$ 0,00" inputmode="decimal" />
     </div>
+
     <div class="finance-group">
       <button class="btn-deposit" style="background:var(--accent-pink)" onclick="depositar('pe')">Recife/PE</button>
       <button class="btn-deposit" style="background:var(--accent-blue)" onclick="depositar('ch')">Chapada</button>
@@ -262,10 +275,16 @@
         <span id="status-pe" class="status-pill">🎒 Iniciando</span>
       </div>
       <div class="travel-track-container">
-        <div class="travel-track"><div class="travel-fill" id="bar-pe" style="background:var(--accent-pink);">
-             <i class="fas fa-plane travel-icon" style="color:var(--accent-pink)"></i></div></div>
+        <div class="travel-track">
+          <div class="travel-fill" id="bar-pe" style="background:var(--accent-pink);">
+             <i class="fas fa-plane travel-icon" style="color:var(--accent-pink)"></i>
+          </div>
+        </div>
       </div>
-      <div class="travel-stats"><span id="total-pe">R$ 0,00</span><span>Meta: R$ 7.200</span></div>
+      <div class="travel-stats">
+        <span id="total-pe">R$ 0,00</span>
+        <span>Meta: R$ 7.200</span>
+      </div>
     </div>
 
     <div style="margin-top:25px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.1);">
@@ -274,15 +293,22 @@
         <span id="status-ch" class="status-pill">🎒 Iniciando</span>
       </div>
       <div class="travel-track-container">
-        <div class="travel-track"><div class="travel-fill" id="bar-ch" style="background:var(--accent-blue);">
-             <i class="fas fa-car-side travel-icon" style="color:var(--accent-blue)"></i></div></div>
+        <div class="travel-track">
+          <div class="travel-fill" id="bar-ch" style="background:var(--accent-blue);">
+             <i class="fas fa-car-side travel-icon" style="color:var(--accent-blue)"></i>
+          </div>
+        </div>
       </div>
-      <div class="travel-stats"><span id="total-ch">R$ 0,00</span><span>Meta: R$ 2.500</span></div>
+      <div class="travel-stats">
+        <span id="total-ch">R$ 0,00</span>
+        <span>Meta: R$ 2.500</span>
+      </div>
     </div>
   </div>
 
   <div class="card">
     <h3><i class="fas fa-bullseye text-gold"></i> Metas 2026</h3>
+    <p style="font-size:0.8rem; opacity:0.8; margin-bottom:15px;">O que vamos conquistar individualmente?</p>
     <div class="finance-group">
       <select id="meta-dono" class="input-glass" onchange="renderizarMetas()" style="max-width: 130px;">
         <option value="" disabled selected>Quem é você?</option>
@@ -295,19 +321,26 @@
       </button>
     </div>
     <div id="lista-metas" class="history-list" style="margin-top:10px; max-height: 200px;">
-      <div style="text-align:center; padding:15px; color:#aaa; font-size:0.8rem;">Selecione seu nome acima.</div>
+      <div style="text-align:center; padding:15px; color:#aaa; font-size:0.8rem;">Selecione seu nome acima para ver as metas.</div>
     </div>
   </div>
 
   <div class="card">
     <h3><i class="fas fa-church text-gold"></i> Presença na Igreja</h3>
     <div style="display:flex; align-items:center; justify-content:space-between; margin-top:10px;">
-      <div><div id="igreja-total" style="font-size:2rem; font-weight:bold;">0</div><div style="font-size:0.8rem; opacity:0.8;">Domingos</div></div>
-      <button class="btn-main" style="width:auto; padding:10px 16px; background:linear-gradient(135deg,#22c55e,#16a34a);" onclick="marcarIgrejaHoje()">
+      <div>
+        <div id="igreja-total" style="font-size:2rem; font-weight:bold;">0</div>
+        <div style="font-size:0.8rem; opacity:0.8;">Domingos registrados</div>
+      </div>
+      <button class="btn-main"
+              style="width:auto; padding:10px 16px; background:linear-gradient(135deg,#22c55e,#16a34a);"
+              onclick="marcarIgrejaHoje()">
         <i class="fas fa-check-circle"></i> Marcar hoje
       </button>
     </div>
-    <div id="igreja-last" style="margin-top:10px; font-size:0.8rem; opacity:0.8;">Último registro: —</div>
+    <div id="igreja-last" style="margin-top:10px; font-size:0.8rem; opacity:0.8;">
+      Último registro: —
+    </div>
   </div>
 
   <div class="card">
@@ -348,7 +381,7 @@
     };
 
     const fmtBRL = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
-    let estado = { xp: 0, pe: 0, ch: 0, list: [], igrejaCount: 0, igrejaLast: null, metas: {} };
+    let estado = { xp: 0, pe: 0, ch: 0, list: [], igrejaCount: 0, igrejaLast: null, metas: {}, missaoM: "", missaoF: "" };
     const ALVO_PE = 7200; const ALVO_CH = 2500;
 
     const niveis = [
@@ -367,133 +400,62 @@
     ];
 
     const missoes = [
-
-      "Orem juntos agradecendo por três coisas específicas que aconteceram hoje.",
-
-      "Leiam Provérbios 31 ou Salmos 23 juntos e comentem um versículo.",
-
-      "Façam uma oração de mãos dadas intercedendo pela família um do outro.",
-
-      "Escolham um louvor que marque a história de vocês e ouçam abraçados.",
-
-      "Compartilhem: 'O que Deus falou comigo essa semana?'",
-
-      "Orem especificamente pelos planos de 2026 (Viagem e Casamento).",
-
-      "Cada um deve abençoar a vida do outro com palavras de afirmação profética.",
-
-      "Leiam um capítulo curto da Bíblia e destaquem uma palavra-chave.",
-
-      "Façam um jejum de algo simples (ex: doce ou rede social) por 1 dia em prol do casal.",
-
-      "Agradeçam a Deus por uma dificuldade que vocês já superaram juntos.",
-
-      "Dêem um beijo de cinema (pelo menos 10 segundos) antes de sair ou ao chegar.",
-
-      "Façam uma massagem de 5 minutos nos pés ou ombros do outro.",
-
-      "Andem de mãos dadas sempre que estiverem caminhando juntos hoje.",
-
-      "Façam um 'cafuné' até um dos dois quase dormir.",
-
-      "Dancem uma música lenta na sala (mesmo que sem música, só no ritmo).",
-
-      "Deem um abraço apertado em silêncio por 1 minuto, sentindo a respiração do outro.",
-
-      "Preparem um banho ou um momento de relaxamento para o outro.",
-
-      "Troquem olhares intensos por 30 segundos sem rir (vale tentar!).",
-
-      "Dê um beijo na testa do outro e diga 'Eu te admiro muito'.",
-
-      "Durmam (ou tirem um cochilo) de conchinha.",
-
-      "Elogie uma característica física e uma de caráter do seu par hoje.",
-
-      "Pergunte: 'Como posso orar por você hoje?' e faça isso na hora.",
-
-      "Escreva um bilhetinho escondido (bolsa, carteira ou travesseiro) pro outro achar.",
-
-      "Conte uma coisa que você nunca contou pra ninguém (segredo ou memória).",
-
-      "Pergunte: 'O que eu faço que faz você se sentir mais amado(a)?'",
-
-      "Relembrem em detalhes o dia em que se conheceram ou o primeiro beijo.",
-
-      "Definam uma palavra que resuma o relacionamento de vocês hoje.",
-
-      "Peça perdão por algo pequeno que possa ter passado batido.",
-
-      "Mande uma mensagem picante ou muito romântica no meio da tarde.",
-
-      "Diga 'Eu Te Amo' em três momentos inesperados do dia.",
-
-      "Tirem uma selfie fazendo careta e guardem na pasta 'Só a gente vê'.",
-
-      "Joguem um jogo rápido (Stop, Baralho, ou até Pedra-Papel-Tesoura valendo massagem).",
-
-      "Dublem uma música famosa juntos como se estivessem num show.",
-
-      "Façam uma 'noite sem telas': 30 minutos conversando sem celular por perto.",
-
-      "Cozinhem algo juntos (nem que seja um miojo gourmet ou pipoca).",
-
-      "Saiam para ver o pôr do sol ou a lua, nem que seja da janela.",
-
-      "Façam um vídeo curto dizendo 'Eu do futuro, estamos lutando por você!'.",
-
-      "Comam a sobremesa antes do jantar (só hoje pode!).",
-
-      "Inventem um toque de mão ou cumprimento secreto do casal.",
-
-      "Façam uma caminhada no quarteirão apenas para conversar.",
-
-      "Faça uma tarefa doméstica que seria do outro (lave a louça dele(a), arrume a bagunça).",
-
-      "Sirva o prato do outro na hora da refeição com carinho.",
-
-      "Traga um copo d'água ou café para o outro sem ele pedir.",
-
-      "Arrume a cama caprichada para quando forem dormir.",
-
-      "Pergunte: 'Posso te ajudar em algo que está te estressando hoje?'",
-
-      "Deixe a toalha do outro pronta ou a escova de dentes preparada.",
-
-      "Resolva um pequeno problema burocrático para o outro.",
-
-      "Compre ou prepare o doce/lanche favorito do outro de surpresa.",
-
-      "Ofereça-se para carregar a bolsa ou mochila do outro.",
-
-      "Seja o primeiro a pedir desculpas se houver qualquer desentendimento.",
-
-      "Imaginem em detalhes como será o primeiro dia da viagem para Recife.",
-
-      "Pesquisem juntos uma foto da Chapada ou de Pernambuco e mandem um pro outro.",
-
-      "Guardem R$ 5,00 (ou qualquer valor extra) hoje no cofrinho/banco do app.",
-
-      "Conversem sobre como imaginam a casa de vocês daqui a 5 anos.",
-
-      "Listem 3 coisas que não podem faltar no casamento de vocês.",
-
-      "Façam uma oração abençoando a vida financeira do casal.",
-
-      "Conversem sobre nomes de filhos (mesmo que seja só brincadeira por enquanto).",
-
-      "Definam uma meta de economia doméstica para esta semana.",
-
-      "Sonhem alto: Se dinheiro não fosse problema, para onde iriam amanhã?",
-
-      "Reafirmem o compromisso: Olhem nos olhos e digam 'Estou com você até o fim'."
-
+      "Dê um abraço de urso de 1 minuto em silêncio agora.",
+      "Dê um beijo de 10 segundos (conte mentalmente!) ao se encontrarem.",
+      "Sirva um copo de água ou café para o outro sem ele pedir.",
+      "Elogie uma roupa ou o perfume que o outro está usando.",
+      "Faça uma oração de 1 minuto de mãos dadas agradecendo pelo dia.",
+      "Envie um WhatsApp agora dizendo: 'Sou feliz com você'.",
+      "Faça cafuné ou mexa no cabelo do outro por 3 minutos.",
+      "Faça uma massagem rápida (5 min) nos ombros ou pés do outro.",
+      "Arrume a cama (ou ajude a terminar de arrumar) caprichado.",
+      "Elogie uma qualidade de caráter do outro (ex: paciência, esforço).",
+      "Pergunte 'Qual foi a melhor parte do seu dia?' e ouça com atenção.",
+      "Deixem os celulares em outro cômodo por 20 minutos juntos.",
+      "Agradeça por algo simples que o outro fez essa semana.",
+      "Lave a louça do jantar ou tire o lixo para aliviar o outro.",
+      "Coloque uma música romântica e tirem o outro para dançar na sala.",
+      "Leia um versículo de Salmos (ex: Sl 23) em voz alta para o outro.",
+      "Dê três beijos na testa do outro em momentos diferentes hoje.",
+      "Prepare um lanche surpresa ou leve uma fruta para o outro.",
+      "Tirem uma selfie fazendo careta e guardem só para vocês.",
+      "Conte uma piada ruim ou mostre um vídeo engraçado para o outro rir.",
+      "Conversem 5 minutos sobre um sonho para a viagem de 2026.",
+      "Olhe nos olhos por 30 segundos e termine dizendo 'Eu te amo'.",
+      "Assista a um vídeo ou programa de TV de mãos dadas.",
+      "Já deixou a pasta de dente pronta na escova do outro? Faça hoje.",
+      "Faça uma oração abençoando o trabalho/estudos do outro.",
+      "Relembrem em 2 minutos como foi o primeiro encontro de vocês.",
+      "Invente um apelido fofo novo e use-o durante o dia.",
+      "Pergunte agora: 'Posso te ajudar em algo rápido?'.",
+      "Ouçam um louvor juntos antes de dormir.",
+      "Faça um voto de silêncio sobre reclamações hoje (só elogie).",
+      "Receba o outro com um sorriso enorme assim que o vir.",
+      "Mande uma foto sua agora para o outro ver onde você está.",
+      "Deixe o outro escolher o que vão assistir ou ouvir hoje.",
+      "Façam um brinde (com água ou suco) à saúde de vocês.",
+      "Organize os sapatos ou chinelos do outro que estiverem jogados.",
+      "Dê um beijo de 'Bom Dia' ou 'Boa Noite' digno de filme.",
+      "Agradeça a Deus em voz alta: 'Obrigado pela vida do(a)...'.",
+      "Elogie seu cônjuge na frente de outra pessoa (ou no grupo da família).",
+      "Limpe algo que o outro sujou sem reclamar.",
+      "Fiquem deitados abraçados por 5 minutos sem falar de problemas.",
+      "Escreva um bilhete 'Te Amo' e cole no espelho ou geladeira.",
+      "Pergunte: 'O que eu posso fazer para você ficar mais feliz hoje?'.",
+      "Sirva o prato do outro no almoço ou jantar.",
+      "Faça carinho nas costas enquanto o outro faz alguma tarefa.",
+      "Diga 'Obrigado por ser meu parceiro(a)' olhando nos olhos.",
+      "Leiam juntos o Salmo 121 antes de apagar a luz.",
+      "Afofe o travesseiro do outro antes de deitar.",
+      "Desligue a luz ou feche a porta para o outro.",
+      "Pergunte sobre uma preocupação do outro e diga 'Vai dar certo'.",
+      "Faça um convite oficial para um 'encontro no sofá' hoje à noite."
     ];
 
     let db, dbRef, igrejaRef, metasRef;
     let firebaseReady = false;
 
-    // 4. Funções Globais (Anexadas a window)
+    // 4. Funções Globais
     window.abrirDevocional = () => { document.getElementById("modal-devocional").style.display = "flex"; carregarDevocional(); };
     window.fecharDevocional = () => { document.getElementById("modal-devocional").style.display = "none"; };
 
@@ -538,19 +500,29 @@
         document.getElementById("premio-txt").innerText = n.premio;
         document.getElementById("modal-premio").style.display = "flex";
     };
+
+    // NOVA LÓGICA DE MISSÕES SECRETAS
     window.sortearMissoes = () => {
-        const r1 = missoes[Math.floor(Math.random()*missoes.length)];
-        const r2 = missoes[Math.floor(Math.random()*missoes.length)];
-        document.getElementById("txt-marcelo").innerText = r1;
-        document.getElementById("txt-fernanda").innerText = r2;
+        estado.missaoM = missoes[Math.floor(Math.random()*missoes.length)];
+        estado.missaoF = missoes[Math.floor(Math.random()*missoes.length)];
         document.getElementById("mission-area").classList.remove("hidden");
+        alert("Missões Sorteada! Agora clique no seu nome para ver a sua em segredo.");
     };
+
+    window.verMissao = (quem) => {
+        const txt = quem === 'Marcelo' ? estado.missaoM : estado.missaoF;
+        if(!txt) return alert("Sorteie primeiro!");
+        alert(`🕵️ MISSÃO SECRETA DE ${quem.toUpperCase()}:\n\n"${txt}"\n\n(Não conte para o outro até cumprir!)`);
+    };
+
     window.completarMissao = (ok) => {
         if(ok) registrarAcao(10, "Missão Cumprida!"); else registrarAcao(-5, "Missão Falhou");
         document.getElementById("mission-area").classList.add("hidden");
     };
+
     window.fotoTirada = () => alert("Foto tirada! Salve no Álbum.");
     window.registrarAcao = (xp, desc) => { if(firebaseReady) push(dbRef, { date: new Date().toLocaleDateString(), user:document.getElementById("user-select").value||"Nós", desc, xp, val:0 }); };
+    
     window.depositar = (tipo) => {
         if(!firebaseReady) return;
         const val = parseFloat(document.getElementById("money-input").value.replace(",","."));
@@ -559,8 +531,10 @@
         document.getElementById("money-input").value="";
         alert("Guardado!");
     };
+    
     window.remover = (id) => { if(confirm("Apagar?")) remove(ref(db, `historico/${id}`)); };
     window.limparTudo = () => { if(confirm("Resetar TUDO?")) remove(dbRef); };
+    
     window.marcarIgrejaHoje = () => {
         if(!firebaseReady) return;
         const d = new Date().toLocaleDateString();
