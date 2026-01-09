@@ -13,7 +13,7 @@ export default function Layout() {
     ];
 
     return (
-        <div className="pb-24 max-w-md mx-auto min-h-screen relative">
+        <div className="pb-24 pt-14 pt-[env(safe-area-inset-top)] max-w-md mx-auto min-h-screen relative">
             <main className="animate-fade-in">
                 <Outlet />
             </main>
