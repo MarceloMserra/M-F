@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ref as dbRef, push, onValue } from 'firebase/database';
+import { ref as dbRef, push, onValue, remove } from 'firebase/database';
 import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../lib/firebase';
 import { useUser } from '../context/UserContext';
@@ -118,10 +118,35 @@ export default function Gallery() {
         });
     };
 
+    const deleteImage = async (e, id) => {
+        e.stopPropagation();
+        if (confirm("Tem certeza que deseja apagar esta foto para sempre?")) {
+            await remove(dbRef(db, `fotos/${id}`));
+            if (selectedImage?.id === id) setSelectedImage(null);
+        }
+    };
+
     const cancelUpload = () => {
         setUploading(false);
         if (fileInputRef.current) fileInputRef.current.value = '';
         alert("Envio cancelado manualmente.");
+    };
+
+    // Navigation logic
+    const handleNext = (e) => {
+        e.stopPropagation();
+        const currentIndex = images.findIndex(img => img.id === selectedImage.id);
+        if (currentIndex < images.length - 1) {
+            setSelectedImage(images[currentIndex + 1]);
+        }
+    };
+
+    const handlePrev = (e) => {
+        e.stopPropagation();
+        const currentIndex = images.findIndex(img => img.id === selectedImage.id);
+        if (currentIndex > 0) {
+            setSelectedImage(images[currentIndex - 1]);
+        }
     };
 
     return (
@@ -130,30 +155,59 @@ export default function Gallery() {
             {/* Lightbox / Modal */}
             <AnimatePresence>
                 {selectedImage && (
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md" onClick={() => setSelectedImage(null)}>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.8 }}
-                            className="relative max-w-full max-h-full"
-                            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
-                        >
-                            <button
-                                onClick={() => setSelectedImage(null)}
-                                className="absolute -top-12 right-0 bg-white/10 w-10 h-10 rounded-full flex items-center justify-center text-white active:scale-95 transition-all outline-none"
-                            >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                            </button>
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 bg-black/95 backdrop-blur-xl" onClick={() => setSelectedImage(null)}>
 
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setSelectedImage(null)}
+                            className="absolute top-4 right-4 z-50 bg-black/50 w-10 h-10 rounded-full flex items-center justify-center text-white/70 hover:text-white"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                        </button>
+
+                        {/* Delete Button (Lightbox) */}
+                        <button
+                            onClick={(e) => deleteImage(e, selectedImage.id)}
+                            className="absolute top-4 right-16 z-50 bg-red-500/20 w-10 h-10 rounded-full flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white transition-colors"
+                        >
+                            <i className="fas fa-trash-alt"></i>
+                        </button>
+
+                        {/* Navigation Buttons */}
+                        <button
+                            onClick={handlePrev}
+                            disabled={images.findIndex(img => img.id === selectedImage.id) === 0}
+                            className="absolute left-2 z-50 p-4 text-white/50 hover:text-white disabled:opacity-0 transition-opacity"
+                        >
+                            <i className="fas fa-chevron-left text-3xl"></i>
+                        </button>
+
+                        <button
+                            onClick={handleNext}
+                            disabled={images.findIndex(img => img.id === selectedImage.id) === images.length - 1}
+                            className="absolute right-2 z-50 p-4 text-white/50 hover:text-white disabled:opacity-0 transition-opacity"
+                        >
+                            <i className="fas fa-chevron-right text-3xl"></i>
+                        </button>
+
+                        <motion.div
+                            key={selectedImage.id} // Re-trigger animation on change
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -50 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            className="relative w-full max-w-md p-4 flex flex-col items-center"
+                            onClick={(e) => e.stopPropagation()}
+                        >
                             <img
                                 src={selectedImage.url}
-                                className="max-w-full max-h-[85vh] rounded-lg shadow-2xl border-2 border-white/10"
+                                className="w-full rounded-lg shadow-2xl border border-white/10 max-h-[70vh] object-contain bg-black"
                                 alt="Zoom"
                             />
 
-                            <div className="text-center mt-4">
-                                <p className="text-white font-bold">{selectedImage.user}</p>
-                                <p className="text-white/50 text-xs">{selectedImage.date}</p>
+                            <div className="text-center mt-6 w-full">
+                                <p className="text-white font-bold text-lg">{selectedImage.user}</p>
+                                <p className="text-white/50 text-sm">{selectedImage.date}</p>
                             </div>
                         </motion.div>
                     </div>
@@ -192,8 +246,18 @@ export default function Gallery() {
                         onClick={() => setSelectedImage(img)}
                     >
                         <img src={img.url} className="w-full object-cover" loading="lazy" />
-                        <div className="absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black/80 to-transparent">
-                            <span className="text-[10px] text-white/80">{img.date} • {img.user}</span>
+
+                        {/* Overlay with details */}
+                        <div className="absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black/80 to-transparent flex justify-between items-end">
+                            <span className="text-[10px] text-white/80">{img.date}</span>
+
+                            {/* Delete Button (Grid) */}
+                            <button
+                                onClick={(e) => deleteImage(e, img.id)}
+                                className="bg-red-500/80 text-white w-6 h-6 rounded-full flex items-center justify-center shadow-lg active:scale-90"
+                            >
+                                <i className="fas fa-times text-[10px]"></i>
+                            </button>
                         </div>
                     </motion.div>
                 ))}
