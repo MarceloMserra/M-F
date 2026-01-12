@@ -132,9 +132,14 @@ export default function Gallery() {
         alert("Envio cancelado manualmente.");
     };
 
-    // Navigation logic
+    // Navigation logic with Swipe
+    const swipeConfidenceThreshold = 10000;
+    const swipePower = (offset, velocity) => {
+        return Math.abs(offset) * velocity;
+    };
+
     const handleNext = (e) => {
-        e.stopPropagation();
+        if (e) e.stopPropagation();
         const currentIndex = images.findIndex(img => img.id === selectedImage.id);
         if (currentIndex < images.length - 1) {
             setSelectedImage(images[currentIndex + 1]);
@@ -142,7 +147,7 @@ export default function Gallery() {
     };
 
     const handlePrev = (e) => {
-        e.stopPropagation();
+        if (e) e.stopPropagation();
         const currentIndex = images.findIndex(img => img.id === selectedImage.id);
         if (currentIndex > 0) {
             setSelectedImage(images[currentIndex - 1]);
@@ -155,59 +160,66 @@ export default function Gallery() {
             {/* Lightbox / Modal */}
             <AnimatePresence>
                 {selectedImage && (
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 bg-black/95 backdrop-blur-xl" onClick={() => setSelectedImage(null)}>
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 bg-black/98 backdrop-blur-xl" onClick={() => setSelectedImage(null)}>
 
-                        {/* Close Button */}
+                        {/* Close Button - Moved Down for Safety */}
                         <button
                             onClick={() => setSelectedImage(null)}
-                            className="absolute top-4 right-4 z-50 bg-black/50 w-10 h-10 rounded-full flex items-center justify-center text-white/70 hover:text-white"
+                            className="absolute top-20 right-4 z-[110] bg-white/10 w-12 h-12 rounded-full flex items-center justify-center text-white/70 hover:text-white backdrop-blur-md pt-[env(safe-area-inset-top)]"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
                         </button>
 
-                        {/* Delete Button (Lightbox) */}
+                        {/* Delete Button (Lightbox) - Moved Down for Safety */}
                         <button
                             onClick={(e) => deleteImage(e, selectedImage.id)}
-                            className="absolute top-4 right-16 z-50 bg-red-500/20 w-10 h-10 rounded-full flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white transition-colors"
+                            className="absolute top-20 right-20 z-[110] bg-red-500/10 w-12 h-12 rounded-full flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white transition-colors backdrop-blur-md pt-[env(safe-area-inset-top)]"
                         >
                             <i className="fas fa-trash-alt"></i>
                         </button>
 
-                        {/* Navigation Buttons */}
-                        <button
-                            onClick={handlePrev}
-                            disabled={images.findIndex(img => img.id === selectedImage.id) === 0}
-                            className="absolute left-2 z-50 p-4 text-white/50 hover:text-white disabled:opacity-0 transition-opacity"
-                        >
-                            <i className="fas fa-chevron-left text-3xl"></i>
-                        </button>
-
-                        <button
-                            onClick={handleNext}
-                            disabled={images.findIndex(img => img.id === selectedImage.id) === images.length - 1}
-                            className="absolute right-2 z-50 p-4 text-white/50 hover:text-white disabled:opacity-0 transition-opacity"
-                        >
-                            <i className="fas fa-chevron-right text-3xl"></i>
-                        </button>
+                        {/* Navigation Arrows (Visual Hint) */}
+                        {images.findIndex(img => img.id === selectedImage.id) > 0 && (
+                            <button onClick={handlePrev} className="absolute left-2 z-50 p-4 text-white/30 hover:text-white transition-opacity"><i className="fas fa-chevron-left text-4xl"></i></button>
+                        )}
+                        {images.findIndex(img => img.id === selectedImage.id) < images.length - 1 && (
+                            <button onClick={handleNext} className="absolute right-2 z-50 p-4 text-white/30 hover:text-white transition-opacity"><i className="fas fa-chevron-right text-4xl"></i></button>
+                        )}
 
                         <motion.div
-                            key={selectedImage.id} // Re-trigger animation on change
-                            initial={{ opacity: 0, x: 50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -50 }}
+                            key={selectedImage.id}
+                            initial={{ opacity: 0, x: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            exit={{ opacity: 0, x: 0, scale: 0.9 }}
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                            className="relative w-full max-w-md p-4 flex flex-col items-center"
+
+                            // Gestures
+                            drag="x"
+                            dragConstraints={{ left: 0, right: 0 }}
+                            dragElastic={1}
+                            onDragEnd={(e, { offset, velocity }) => {
+                                const swipe = swipePower(offset.x, velocity.x);
+
+                                if (swipe < -swipeConfidenceThreshold) {
+                                    handleNext();
+                                } else if (swipe > swipeConfidenceThreshold) {
+                                    handlePrev();
+                                }
+                            }}
+
+                            className="relative w-full h-full flex flex-col items-center justify-center"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <img
                                 src={selectedImage.url}
-                                className="w-full rounded-lg shadow-2xl border border-white/10 max-h-[70vh] object-contain bg-black"
+                                className="w-full max-h-[80vh] object-contain shadow-2xl pointer-events-none" // pointer-events-none prevents dragging container instead of motion
                                 alt="Zoom"
                             />
 
-                            <div className="text-center mt-6 w-full">
-                                <p className="text-white font-bold text-lg">{selectedImage.user}</p>
-                                <p className="text-white/50 text-sm">{selectedImage.date}</p>
+                            <div className="absolute bottom-10 text-center w-full z-10 pb-[env(safe-area-inset-bottom)]">
+                                <p className="text-white font-bold text-lg drop-shadow-md">{selectedImage.user}</p>
+                                <p className="text-white/60 text-sm drop-shadow-md">{selectedImage.date}</p>
+                                <p className="text-white/30 text-[10px] mt-2 animate-pulse">Deslize para navegar ↔</p>
                             </div>
                         </motion.div>
                     </div>
