@@ -12,61 +12,57 @@ export default function Home() {
     const { xp, level, money, loading, history = [] } = useAppData();
     const [showDevotional, setShowDevotional] = useState(false);
     const [showGoals, setShowGoals] = useState(false);
-    const [showProfileMenu, setShowProfileMenu] = useState(false);
-    const [churchCount, setChurchCount] = useState(0);
+    const [showRewards, setShowRewards] = useState(false);
 
-    useEffect(() => {
-        if (history && Array.isArray(history)) {
-            const count = history.filter(h => h.desc && h.desc.includes('Igreja')).length;
-            setChurchCount(count);
-        }
-    }, [history]);
-
-    if (loading) return <div className="p-8 text-center text-white/50 animate-pulse">Sincronizando com o Universo...</div>;
-
-    const nextLevelXp = level?.max || 10000;
-    const xpProgress = Math.min((xp / nextLevelXp) * 100, 100);
-
-    const handleAction = async (xp, label) => {
-        try {
-            await push(ref(db, 'historico'), {
-                date: new Date().toLocaleDateString(),
-                user: user.name,
-                desc: label,
-                xp: xp,
-                tipo: 'acao'
-            });
-            alert(`${label} registrado!`);
-        } catch (e) {
-            alert("Erro ao salvar ação.");
-        }
-    };
-
-    const markChurch = async () => {
-        if (confirm("Confirmar presença na Igreja hoje?")) {
-            await push(ref(db, 'historico'), {
-                date: new Date().toLocaleDateString(),
-                user: 'Nós',
-                desc: 'Igreja 🙏',
-                xp: 20,
-                tipo: 'igreja'
-            });
-            alert("Amém! Presença confirmada. +20 XP");
-        }
-    };
-
-    const deleteHistoryItem = async (id) => {
-        if (confirm("Tem certeza que deseja apagar este item do histórico?")) {
-            await remove(ref(db, `historico/${id}`));
-        }
-    };
+    // ... (existing code)
 
     return (
         <div className="p-5 space-y-6 pb-28">
             <Devotional isOpen={showDevotional} onClose={() => setShowDevotional(false)} />
 
+            {/* Rewards Modal */}
+            <AnimatePresence>
+                {showRewards && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md" onClick={() => setShowRewards(false)}>
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="bg-[#1a1a1a] w-full max-w-sm rounded-2xl p-6 border border-brand-gold/20 max-h-[80vh] overflow-y-auto"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="text-center mb-6">
+                                <h2 className="text-2xl font-serif text-brand-gold">Galeria de Conquistas</h2>
+                                <p className="text-white/50 text-xs">Desbloqueie prêmios atingindo os níveis!</p>
+                            </div>
+
+                            <div className="space-y-4">
+                                {LEVELS.map((lvl) => {
+                                    const isUnlocked = xp >= lvl.max;
+                                    const isNext = !isUnlocked && xp < lvl.max && (lvl.id === 1 || xp >= LEVELS[lvl.id - 2]?.max);
+
+                                    return (
+                                        <div key={lvl.id} className={`p-4 rounded-xl border ${isUnlocked ? 'bg-brand-gold/10 border-brand-gold/50' : 'bg-white/5 border-white/5 grayscale opacity-60'}`}>
+                                            <div className="flex justify-between items-start mb-2">
+                                                <h3 className={`font-bold ${isUnlocked ? 'text-brand-gold' : 'text-white/50'}`}>Nível {lvl.nome}</h3>
+                                                {isUnlocked ? <i className="fas fa-check-circle text-green-400"></i> : <i className="fas fa-lock text-white/30"></i>}
+                                            </div>
+                                            <p className="text-white text-sm font-medium mb-1">🎁 {lvl.premio}</p>
+                                            <p className="text-[10px] text-white/40">{lvl.max} XP Necessários</p>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+
+                            <button onClick={() => setShowRewards(false)} className="mt-6 w-full py-3 bg-white/10 rounded-xl text-white font-bold">Fechar</button>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
+
             {/* Header with Profile Menu */}
             <div className="flex justify-between items-center relative z-20">
+                {/* ... existing header code ... */}
                 <div className="flex items-center gap-3 cursor-pointer" onClick={() => setShowProfileMenu(!showProfileMenu)}>
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl border-2 border-white/20 shadow-lg overflow-hidden ${user.name === 'Marcelo' ? 'bg-blue-600' : 'bg-pink-600'}`}>
                         {user.photoURL ? <img src={user.photoURL} alt="Me" className="w-full h-full object-cover" /> : (user.name === 'Marcelo' ? '🧔🏻' : '👩🏻')}
@@ -75,7 +71,6 @@ export default function Home() {
                         <h2 className="text-xs text-white/50 uppercase tracking-widest leading-none mb-1">Olá,</h2>
                         <div className="flex items-center gap-2">
                             <h1 className="text-xl font-bold text-white leading-none">{user.name}</h1>
-                            {/* Chevron Down SVG */}
                             <svg className="w-4 h-4 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                         </div>
                     </div>
@@ -130,10 +125,12 @@ export default function Home() {
                     <div>
                         <span className="text-xs font-bold tracking-wider text-brand-gold uppercase mb-1 block">Nível Atual</span>
                         <h1 className="text-3xl font-serif text-white leading-none mb-1">{level?.nome}</h1>
-                        <div className="flex items-center gap-2 mt-1 bg-white/10 px-2 py-1 rounded-lg w-fit">
-                            <i className="fas fa-lock text-[10px] text-brand-gold"></i>
-                            <p className="text-[10px] text-white/60 font-medium">Recompensa Surpresa</p>
-                        </div>
+
+                        {/* REWARD BUTTON */}
+                        <button onClick={() => setShowRewards(true)} className="flex items-center gap-2 mt-1 bg-white/10 px-2 py-1 rounded-lg w-fit hover:bg-brand-gold/20 transition-colors">
+                            <i className="fas fa-gift text-[10px] text-brand-gold animate-bounce"></i>
+                            <p className="text-[10px] text-white/90 font-bold">Ver Recompensas</p>
+                        </button>
                     </div>
                     <div className="text-right">
                         <span className="text-4xl font-bold text-white drop-shadow-lg">{xp}</span>

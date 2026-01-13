@@ -15,7 +15,17 @@ const MISSOES_LISTA = [
     "Faça uma oração de mãos dadas.",
     "Escreva um bilhete de amor escondido.",
     "Desliguem os celulares por 30 min para conversar.",
-    "Planejem um detalhe da viagem de 2026."
+    "Planejem um detalhe da viagem de 2026.",
+    "Façam uma selfie engraçada juntos agora.",
+    "Envie uma música que te lembra o outro.",
+    "Faça um carinho no cabelo por 2 minutos.",
+    "Beijo de cinema por 10 segundos.",
+    "Pergunte: 'Como posso orar por você hoje?'",
+    "Revejam fotos antigas da galeria juntos.",
+    "Faça um elogio sobre a aparência do outro.",
+    "Conte uma piada (mesmo que ruim) para o outro.",
+    "Leiam um versículo bíblico juntos.",
+    "Agradeça por algo específico que o outro fez ontem."
 ];
 
 export default function Missions() {
@@ -39,9 +49,24 @@ export default function Missions() {
     const drawMission = () => {
         const today = new Date().toLocaleDateString();
         const storedKey = `mission-${user.name}-${today}`;
-        const random = MISSOES_LISTA[Math.floor(Math.random() * MISSOES_LISTA.length)];
-        localStorage.setItem(storedKey, random);
-        setMission(random);
+
+        // Deterministic 'Random' based on date to avoid repeats on same day if cleared, 
+        // and consistent rotation across days.
+        const dateStr = new Date().toISOString().split('T')[0].replace(/-/g, ''); // 20231025
+        const dateNum = parseInt(dateStr);
+        const userOffset = user.name === 'Marcelo' ? 0 : 5; // Different seeds if needed, but keeping same for couple is better? 
+        // Let's keep it same for couple so they are in sync? 
+        // User asked "nossas missoes", implied shared or individual? 
+        // "as nossas missões diarias estao sempre se repedindo..."
+        // Better to rotate using Day of Year.
+
+        const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+        const index = (dayOfYear + userOffset) % MISSOES_LISTA.length;
+
+        const selected = MISSOES_LISTA[index];
+
+        localStorage.setItem(storedKey, selected);
+        setMission(selected);
     };
 
     const revealMission = () => {
