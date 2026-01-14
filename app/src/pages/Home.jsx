@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAppData } from '../hooks/useAppData';
 import { useUser } from '../context/UserContext';
-import { formatter, getTravelStatus, GOALS } from '../utils/gameLogic';
+import { formatter, getTravelStatus, GOALS, LEVELS } from '../utils/gameLogic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { db } from '../lib/firebase';
 import { ref, push, onValue, remove } from 'firebase/database';
