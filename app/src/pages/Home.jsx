@@ -13,6 +13,15 @@ export default function Home() {
     const [showDevotional, setShowDevotional] = useState(false);
     const [showGoals, setShowGoals] = useState(false);
     const [showRewards, setShowRewards] = useState(false);
+    const [showProfileMenu, setShowProfileMenu] = useState(false);
+    const [churchCount, setChurchCount] = useState(0);
+
+    useEffect(() => {
+        if (history && Array.isArray(history)) {
+            const count = history.filter(h => h.desc && h.desc.includes('Igreja')).length;
+            setChurchCount(count);
+        }
+    }, [history]);
 
     // ... (existing code)
 
