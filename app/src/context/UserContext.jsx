@@ -8,9 +8,14 @@ export function UserProvider({ children }) {
 
     useEffect(() => {
         // Check local storage on load
-        const savedUser = localStorage.getItem('nosso-mundo-user');
-        if (savedUser) {
-            setUser(JSON.parse(savedUser));
+        try {
+            const savedUser = localStorage.getItem('nosso-mundo-user');
+            if (savedUser) {
+                setUser(JSON.parse(savedUser));
+            }
+        } catch (e) {
+            console.error("Erro ao carregar usuário", e);
+            localStorage.removeItem('nosso-mundo-user'); // Clear corrupted data
         }
         setLoading(false);
     }, []);
