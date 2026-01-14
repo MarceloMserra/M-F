@@ -212,7 +212,7 @@ export default function Home() {
             </div>
             {/* Version Indicator */}
             <div className="text-center pb-4">
-                <p className="text-[10px] text-white/20">v2.1 - Atualizado</p>
+                <p className="text-[10px] text-white/20">v2.2 - Correção Confirmada</p>
             </div>
         </div>
     );
