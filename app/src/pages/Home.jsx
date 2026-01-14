@@ -25,6 +25,43 @@ export default function Home() {
 
     // ... (existing code)
 
+    const nextLevelXp = level?.max || 10000;
+    const xpProgress = Math.min((xp / nextLevelXp) * 100, 100);
+
+    const handleAction = async (xp, label) => {
+        try {
+            await push(ref(db, 'historico'), {
+                date: new Date().toLocaleDateString(),
+                user: user.name,
+                desc: label,
+                xp: xp,
+                tipo: 'acao'
+            });
+            alert(`${label} registrado!`);
+        } catch (e) {
+            alert("Erro ao salvar ação.");
+        }
+    };
+
+    const markChurch = async () => {
+        if (confirm("Confirmar presença na Igreja hoje?")) {
+            await push(ref(db, 'historico'), {
+                date: new Date().toLocaleDateString(),
+                user: 'Nós',
+                desc: 'Igreja 🙏',
+                xp: 20,
+                tipo: 'igreja'
+            });
+            alert("Amém! Presença confirmada. +20 XP");
+        }
+    };
+
+    const deleteHistoryItem = async (id) => {
+        if (confirm("Tem certeza que deseja apagar este item do histórico?")) {
+            await remove(ref(db, `historico/${id}`));
+        }
+    };
+
     return (
         <div className="p-5 space-y-6 pb-28">
             <Devotional isOpen={showDevotional} onClose={() => setShowDevotional(false)} />
@@ -212,7 +249,7 @@ export default function Home() {
             </div>
             {/* Version Indicator */}
             <div className="text-center pb-4">
-                <p className="text-[10px] text-white/20">v2.2 - Correção Confirmada</p>
+                <p className="text-[10px] text-white/20">v2.3 - Estável</p>
             </div>
         </div>
     );
