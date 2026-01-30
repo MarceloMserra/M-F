@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Nossa Jornada | Marcelo & Fernanda</title>
 
   <link rel="manifest" href="/manifest.webmanifest" />
@@ -12,7 +14,9 @@
   <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
   <link rel="icon" type="image/png" href="/images/icon-192.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
 
   <style>
     :root {
@@ -20,118 +24,522 @@
       --glass-bg: rgba(255, 255, 255, 0.08);
       --glass-border: 1px solid rgba(255, 255, 255, 0.15);
       --text-color: #ffffff;
-      --accent-pink: #ff758c; --accent-blue: #4facfe;
-      --success: #00b09b; --danger: #ff5f6d; --gold: #ffd700;
+      --accent-pink: #ff758c;
+      --accent-blue: #4facfe;
+      --success: #00b09b;
+      --danger: #ff5f6d;
+      --gold: #ffd700;
     }
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    body {
-      font-family: 'Poppins', sans-serif; margin: 0; padding: 20px; padding-bottom: 90px;
-      color: var(--text-color); min-height: 100vh;
-      background: url('images/fundo.jpg') no-repeat center center fixed; background-size: cover; background-attachment: fixed;
-    }
-    body::before { content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px); z-index: -1; }
 
-    .header { text-align: center; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-    .header h1 { font-size: 1.8rem; margin: 0; letter-spacing: 1px; }
-    .header p { font-size: 0.85rem; opacity: 0.8; font-weight: 300; margin-top: 5px; }
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 20px;
+      padding-bottom: 90px;
+      color: var(--text-color);
+      min-height: 100vh;
+      background: url('images/fundo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(4px);
+      z-index: -1;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    .header p {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      font-weight: 300;
+      margin-top: 5px;
+    }
 
     .btn-agent {
-      background: linear-gradient(45deg, #FF9500, #FF5E3A); color: white; border: none; padding: 8px 16px;
-      border-radius: 20px; font-weight: bold; font-size: 0.8rem; margin-top: 10px; display: inline-flex;
-      align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(255, 94, 58, 0.4); text-decoration: none;
+      background: linear-gradient(45deg, #FF9500, #FF5E3A);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.8rem;
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(255, 94, 58, 0.4);
+      text-decoration: none;
     }
 
     /* BOTÃO DOURADO DO DEVOCIONAL */
     .btn-devocional-topo {
-      width: 100%; background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
-      color: #000; font-weight: 800; padding: 15px; border-radius: 15px; margin-bottom: 20px;
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      box-shadow: 0 0 15px rgba(218, 165, 32, 0.3); animation: pulseGold 3s infinite;
-      border: none; cursor: pointer; font-size: 1rem;
+      width: 100%;
+      background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+      color: #000;
+      font-weight: 800;
+      padding: 15px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 0 15px rgba(218, 165, 32, 0.3);
+      animation: pulseGold 3s infinite;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
     }
-    @keyframes pulseGold { 0% { box-shadow: 0 0 0 0 rgba(218,165,32,0.4); } 70% { box-shadow: 0 0 0 10px rgba(218,165,32,0); } 100% { box-shadow: 0 0 0 0 rgba(218,165,32,0); } }
+
+    @keyframes pulseGold {
+      0% {
+        box-shadow: 0 0 0 0 rgba(218, 165, 32, 0.4);
+      }
+
+      70% {
+        box-shadow: 0 0 0 10px rgba(218, 165, 32, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(218, 165, 32, 0);
+      }
+    }
 
     /* MODAL GERAL (USADO PARA DEVOCIONAL E MISSÕES) */
     .modal-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000;
-      background: rgba(0,0,0,0.95); backdrop-filter: blur(8px);
-      display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2000;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(8px);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
       animation: fadeIn 0.3s ease;
     }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
 
     .modal-paper {
-      background: #1a1a1a; border: 1px solid var(--gold); border-radius: 15px; width: 100%; max-width: 500px;
-      max-height: 85vh; overflow-y: auto; padding: 25px; position: relative; box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+      background: #1a1a1a;
+      border: 1px solid var(--gold);
+      border-radius: 15px;
+      width: 100%;
+      max-width: 500px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 25px;
+      position: relative;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
     }
-    .btn-close-modal { position: absolute; top: 10px; right: 15px; background: transparent; border: none; color: #aaa; font-size: 2rem; cursor: pointer; }
-    
+
+    .btn-close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      color: #aaa;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
     /* ESTILOS ESPECIFICOS DO CONTEUDO */
-    .modal-header { text-align: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,215,0,0.2); padding-bottom: 15px; }
-    .modal-subtitle { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 0.9rem; }
-    .modal-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: white; margin: 5px 0; line-height: 1.2; }
-    
-    .text-box { background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 1rem; line-height: 1.6; color: #ddd; text-align: center; border: 1px dashed rgba(255,255,255,0.2); }
-    
-    .btn-action-modal { width: 100%; padding: 15px; border-radius: 12px; background: linear-gradient(135deg, #b8860b 0%, #daa520 100%); color: #000; font-weight: 800; border: none; font-size: 1rem; margin-top: 10px; cursor: pointer; }
-    .btn-action-modal:disabled { background: #333; color: #777; cursor: default; }
+    .modal-header {
+      text-align: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+      padding-bottom: 15px;
+    }
+
+    .modal-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 0.9rem;
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: white;
+      margin: 5px 0;
+      line-height: 1.2;
+    }
+
+    .text-box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #ddd;
+      text-align: center;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-action-modal {
+      width: 100%;
+      padding: 15px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+      color: #000;
+      font-weight: 800;
+      border: none;
+      font-size: 1rem;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .btn-action-modal:disabled {
+      background: #333;
+      color: #777;
+      cursor: default;
+    }
 
     /* ESTILO DO CARD DE MISSÕES (LINHAS) */
     .mission-row {
-        display: flex; align-items: center; justify-content: space-between;
-        background: rgba(0,0,0,0.2); padding: 12px; border-radius: 10px; margin-bottom: 10px;
-        border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
-    .mission-name { font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
-    
+
+    .mission-name {
+      font-weight: bold;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .btn-ver-missao {
-        background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-        color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.8rem; cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
     }
-    .btn-check { background: var(--success); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-    .btn-fail { background: rgba(255,255,255,0.1); color: var(--danger); border: 1px solid var(--danger); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+
+    .btn-check {
+      background: var(--success);
+      color: white;
+      border: none;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-fail {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--danger);
+      border: 1px solid var(--danger);
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
 
     /* RESTO DO DESIGN */
-    .card { background: var(--glass-bg); backdrop-filter: blur(10px); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: var(--glass-border); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
-    h3 { margin-top: 0; font-weight: 600; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
-    .level-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .xp-track { width: 100%; height: 14px; background: rgba(0,0,0,0.3); border-radius: 10px; overflow: hidden; }
-    .xp-fill { height: 100%; background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 100%); width: 0%; transition: width 1s; }
-    
-    button { border: none; outline: none; cursor: pointer; font-family: inherit; font-weight: 600; transition: transform 0.2s; }
-    button:active { transform: scale(0.96); }
-    .btn-main { width: 100%; padding: 14px; border-radius: 12px; background: var(--primary-gradient); color: white; font-size: 1rem; }
-    
-    .grid-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-    .action-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 8px; color: white; font-size: 0.9rem; }
-    .act-love { border-color: var(--accent-pink); color: var(--accent-pink); }
-    .act-peace { border-color: var(--success); color: var(--success); }
-    .act-bad { border-color: var(--danger); color: var(--danger); }
+    .card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: var(--glass-border);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
 
-    .finance-group { display: flex; gap: 10px; margin-bottom: 10px; }
-    .input-glass { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: white; font-family: inherit; }
-    .input-glass option { background: #333; }
-    .btn-deposit { flex: 1; padding: 12px; border-radius: 10px; font-size: 0.9rem; color: #fff; }
+    h3 {
+      margin-top: 0;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.1rem;
+    }
 
-    .history-list { max-height: 250px; overflow-y: auto; }
-    .history-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }
-    .badge { padding: 3px 8px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; margin-right: 6px; }
-    .bg-marcelo { background: var(--accent-blue); } .bg-fernanda { background: var(--accent-pink); } .bg-nos { background: var(--gold); color:#000; }
+    .level-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
 
-    .travel-track-container { margin-top: 15px; position: relative; padding-top: 20px; }
-    .travel-track { width: 100%; height: 10px; background: rgba(255,255,255,0.15); border-radius: 10px; }
-    .travel-fill { height: 100%; border-radius: 10px; width: 0%; transition: width 1.5s; position: relative; }
-    .travel-icon { position: absolute; right: -12px; top: -24px; font-size: 1.2rem; transition: right 1.5s; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
-    .travel-stats { display: flex; justify-content: space-between; font-size: 0.75rem; color: #ccc; margin-top: 6px; }
+    .xp-track {
+      width: 100%;
+      height: 14px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .xp-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 100%);
+      width: 0%;
+      transition: width 1s;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+
+    .btn-main {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      background: var(--primary-gradient);
+      color: white;
+      font-size: 1rem;
+    }
+
+    .grid-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .action-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    .act-love {
+      border-color: var(--accent-pink);
+      color: var(--accent-pink);
+    }
+
+    .act-peace {
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .act-bad {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .finance-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .input-glass {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      font-family: inherit;
+    }
+
+    .input-glass option {
+      background: #333;
+    }
+
+    .btn-deposit {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+
+    .history-list {
+      max-height: 250px;
+      overflow-y: auto;
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.85rem;
+    }
+
+    .badge {
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-right: 6px;
+    }
+
+    .bg-marcelo {
+      background: var(--accent-blue);
+    }
+
+    .bg-fernanda {
+      background: var(--accent-pink);
+    }
+
+    .bg-nos {
+      background: var(--gold);
+      color: #000;
+    }
+
+    .travel-track-container {
+      margin-top: 15px;
+      position: relative;
+      padding-top: 20px;
+    }
+
+    .travel-track {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+    }
+
+    .travel-fill {
+      height: 100%;
+      border-radius: 10px;
+      width: 0%;
+      transition: width 1.5s;
+      position: relative;
+    }
+
+    .travel-icon {
+      position: absolute;
+      right: -12px;
+      top: -24px;
+      font-size: 1.2rem;
+      transition: right 1.5s;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    }
+
+    .travel-stats {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #ccc;
+      margin-top: 6px;
+    }
 
     /* Modal Premio */
-    .modal-premio { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 2100; padding: 20px; }
-    .modal-premio-box { background: #2d3436; border-radius: 20px; padding: 30px; text-align: center; border: 2px solid var(--accent-pink); max-width: 350px; animation: popUp 0.4s; }
+    .modal-premio {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(5px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2100;
+      padding: 20px;
+    }
 
-    .hidden { display: none; }
-    .text-gold { color: var(--gold); }
-    .text-success { color: var(--success); }
-    .status-pill { background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; display: inline-flex; align-items: center; gap: 5px; }
+    .modal-premio-box {
+      background: #2d3436;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      border: 2px solid var(--accent-pink);
+      max-width: 350px;
+      animation: popUp 0.4s;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .text-gold {
+      color: var(--gold);
+    }
+
+    .text-success {
+      color: var(--success);
+    }
+
+    .status-pill {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
   </style>
 </head>
 
@@ -154,34 +562,41 @@
   <div id="modal-devocional" class="modal-overlay">
     <div class="modal-paper">
       <button class="btn-close-modal" onclick="fecharDevocional()">&times;</button>
-      
+
       <div id="dev-loading" style="text-align:center; padding:30px; color:#aaa;">
-          <i class="fas fa-circle-notch fa-spin text-gold"></i> Buscando a Palavra...
+        <i class="fas fa-circle-notch fa-spin text-gold"></i> Buscando a Palavra...
       </div>
 
       <div id="dev-content" class="hidden">
-          <div class="modal-header">
-             <span id="data-hoje" class="modal-subtitle">--/--</span>
-             <h2 id="dev-titulo" class="modal-title">...</h2>
-          </div>
-          
-          <div style="background: rgba(255, 215, 0, 0.05); border-left: 3px solid var(--gold); padding: 15px; margin-bottom: 20px; font-style: italic; font-family: 'Playfair Display', serif; color: #eee;">
-              <p id="dev-verso">...</p>
-          </div>
-          
-          <div id="box-historia" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 0.95rem; line-height: 1.6; color: #ddd; text-align: justify;">
-              <span style="font-size: 0.7rem; color: var(--accent-blue); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px;"><i class="fas fa-book-open"></i> Ilustração</span>
-              <span id="dev-historia">...</span>
-          </div>
+        <div class="modal-header">
+          <span id="data-hoje" class="modal-subtitle">--/--</span>
+          <h2 id="dev-titulo" class="modal-title">...</h2>
+        </div>
 
-          <div style="padding: 5px; font-size: 1rem; line-height: 1.6; color: #fff; text-align: justify; margin-bottom: 20px;">
-              <span style="font-size: 0.7rem; color: var(--accent-pink); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px;"><i class="fas fa-lightbulb"></i> Para o Casal</span>
-              <span id="dev-reflexao">...</span>
-          </div>
+        <div
+          style="background: rgba(255, 215, 0, 0.05); border-left: 3px solid var(--gold); padding: 15px; margin-bottom: 20px; font-style: italic; font-family: 'Playfair Display', serif; color: #eee;">
+          <p id="dev-verso">...</p>
+        </div>
 
-          <button id="btn-amem" class="btn-action-modal" onclick="lerDevocional()">
-             <i class="fas fa-praying-hands"></i> AMÉM! Lemos Juntos (+15 XP)
-          </button>
+        <div id="box-historia"
+          style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 15px; font-size: 0.95rem; line-height: 1.6; color: #ddd; text-align: justify;">
+          <span
+            style="font-size: 0.7rem; color: var(--accent-blue); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px;"><i
+              class="fas fa-book-open"></i> Ilustração</span>
+          <span id="dev-historia">...</span>
+        </div>
+
+        <div
+          style="padding: 5px; font-size: 1rem; line-height: 1.6; color: #fff; text-align: justify; margin-bottom: 20px;">
+          <span
+            style="font-size: 0.7rem; color: var(--accent-pink); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 5px;"><i
+              class="fas fa-lightbulb"></i> Para o Casal</span>
+          <span id="dev-reflexao">...</span>
+        </div>
+
+        <button id="btn-amem" class="btn-action-modal" onclick="lerDevocional()">
+          <i class="fas fa-praying-hands"></i> AMÉM! Lemos Juntos (+15 XP)
+        </button>
       </div>
     </div>
   </div>
@@ -189,22 +604,23 @@
   <div id="modal-missao" class="modal-overlay">
     <div class="modal-paper" style="border-color: var(--accent-blue);">
       <button class="btn-close-modal" onclick="fecharModalMissao()">&times;</button>
-      
+
       <div class="modal-header">
-         <span class="modal-subtitle">Missão Secreta de</span>
-         <h2 id="missao-dono" class="modal-title" style="color:var(--accent-blue)">...</h2>
+        <span class="modal-subtitle">Missão Secreta de</span>
+        <h2 id="missao-dono" class="modal-title" style="color:var(--accent-blue)">...</h2>
       </div>
-      
+
       <div class="text-box">
-          <p id="missao-texto" style="font-weight:bold; font-size:1.1rem;">...</p>
+        <p id="missao-texto" style="font-weight:bold; font-size:1.1rem;">...</p>
       </div>
 
       <p style="text-align:center; font-size:0.8rem; opacity:0.7; margin-bottom:20px;">
         <i class="fas fa-user-secret"></i> Não conte para o outro até cumprir!
       </p>
 
-      <button class="btn-action-modal" style="background: var(--accent-blue); color:white;" onclick="confirmarLeituraMissao()">
-         <i class="fas fa-check-double"></i> Memorizei! Pode fechar.
+      <button class="btn-action-modal" style="background: var(--accent-blue); color:white;"
+        onclick="confirmarLeituraMissao()">
+        <i class="fas fa-check-double"></i> Memorizei! Pode fechar.
       </button>
     </div>
   </div>
@@ -214,7 +630,8 @@
       <i class="fas fa-trophy fa-3x" style="color: #ffd700; margin-bottom: 15px;"></i>
       <h2 style="color:white; margin-bottom:10px;">NÍVEL NOVO!</h2>
       <p id="premio-txt" style="color:#ccc; margin-bottom:20px; line-height:1.5;">...</p>
-      <button class="btn-main" onclick="document.getElementById('modal-premio').style.display='none'">Oba! Vamos nessa!</button>
+      <button class="btn-main" onclick="document.getElementById('modal-premio').style.display='none'">Oba! Vamos
+        nessa!</button>
     </div>
   </div>
 
@@ -235,42 +652,46 @@
   <div class="card">
     <h3><i class="fas fa-heart text-gold"></i> Missão do Casal</h3>
     <p style="font-size:0.8rem; opacity:0.8; margin-bottom:15px;">Cada um tem uma missão surpresa hoje!</p>
-    
+
     <button id="btn-sortear" class="btn-main" onclick="sortearMissoes()">
       <i class="fas fa-dice"></i> Sortear Novas Missões
     </button>
 
     <div id="mission-area" class="hidden" style="margin-top: 15px;">
-        
-        <div class="mission-row">
-            <div class="mission-name">
-                <i class="fas fa-male" style="color:var(--accent-blue)"></i> Marcelo
-            </div>
-            
-            <button id="btn-ver-marcelo" class="btn-ver-missao" onclick="abrirMissao('Marcelo')">
-                <i class="fas fa-eye"></i> Ver Missão
-            </button>
 
-            <div id="acoes-marcelo" class="hidden" style="display:none; gap:10px;">
-                <button class="btn-check" onclick="concluirMissaoIndividual('Marcelo', true)"><i class="fas fa-check"></i></button>
-                <button class="btn-fail" onclick="concluirMissaoIndividual('Marcelo', false)"><i class="fas fa-times"></i></button>
-            </div>
+      <div class="mission-row">
+        <div class="mission-name">
+          <i class="fas fa-male" style="color:var(--accent-blue)"></i> Marcelo
         </div>
 
-        <div class="mission-row">
-            <div class="mission-name">
-                <i class="fas fa-female" style="color:var(--accent-pink)"></i> Fernanda
-            </div>
-            
-            <button id="btn-ver-fernanda" class="btn-ver-missao" onclick="abrirMissao('Fernanda')">
-                <i class="fas fa-eye"></i> Ver Missão
-            </button>
+        <button id="btn-ver-marcelo" class="btn-ver-missao" onclick="abrirMissao('Marcelo')">
+          <i class="fas fa-eye"></i> Ver Missão
+        </button>
 
-            <div id="acoes-fernanda" class="hidden" style="display:none; gap:10px;">
-                <button class="btn-check" onclick="concluirMissaoIndividual('Fernanda', true)"><i class="fas fa-check"></i></button>
-                <button class="btn-fail" onclick="concluirMissaoIndividual('Fernanda', false)"><i class="fas fa-times"></i></button>
-            </div>
+        <div id="acoes-marcelo" class="hidden" style="display:none; gap:10px;">
+          <button class="btn-check" onclick="concluirMissaoIndividual('Marcelo', true)"><i
+              class="fas fa-check"></i></button>
+          <button class="btn-fail" onclick="concluirMissaoIndividual('Marcelo', false)"><i
+              class="fas fa-times"></i></button>
         </div>
+      </div>
+
+      <div class="mission-row">
+        <div class="mission-name">
+          <i class="fas fa-female" style="color:var(--accent-pink)"></i> Fernanda
+        </div>
+
+        <button id="btn-ver-fernanda" class="btn-ver-missao" onclick="abrirMissao('Fernanda')">
+          <i class="fas fa-eye"></i> Ver Missão
+        </button>
+
+        <div id="acoes-fernanda" class="hidden" style="display:none; gap:10px;">
+          <button class="btn-check" onclick="concluirMissaoIndividual('Fernanda', true)"><i
+              class="fas fa-check"></i></button>
+          <button class="btn-fail" onclick="concluirMissaoIndividual('Fernanda', false)"><i
+              class="fas fa-times"></i></button>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -288,7 +709,8 @@
     <button class="action-card" onclick="document.getElementById('camera-input').click()">
       <i class="fas fa-camera fa-2x"></i> <span>Foto</span>
     </button>
-    <input type="file" id="camera-input" accept="image/*" capture="environment" style="display:none" onchange="fotoTirada()" />
+    <input type="file" id="camera-input" accept="image/*" capture="environment" style="display:none"
+      onchange="fotoTirada()" />
   </div>
 
   <div style="text-align:center; margin-bottom:20px;">
@@ -324,7 +746,7 @@
       <div class="travel-track-container">
         <div class="travel-track">
           <div class="travel-fill" id="bar-pe" style="background:var(--accent-pink);">
-             <i class="fas fa-plane travel-icon" style="color:var(--accent-pink)"></i>
+            <i class="fas fa-plane travel-icon" style="color:var(--accent-pink)"></i>
           </div>
         </div>
       </div>
@@ -342,7 +764,7 @@
       <div class="travel-track-container">
         <div class="travel-track">
           <div class="travel-fill" id="bar-ch" style="background:var(--accent-blue);">
-             <i class="fas fa-car-side travel-icon" style="color:var(--accent-blue)"></i>
+            <i class="fas fa-car-side travel-icon" style="color:var(--accent-blue)"></i>
           </div>
         </div>
       </div>
@@ -368,7 +790,8 @@
       </button>
     </div>
     <div id="lista-metas" class="history-list" style="margin-top:10px; max-height: 200px;">
-      <div style="text-align:center; padding:15px; color:#aaa; font-size:0.8rem;">Selecione seu nome acima para ver as metas.</div>
+      <div style="text-align:center; padding:15px; color:#aaa; font-size:0.8rem;">Selecione seu nome acima para ver as
+        metas.</div>
     </div>
   </div>
 
@@ -380,8 +803,8 @@
         <div style="font-size:0.8rem; opacity:0.8;">Domingos registrados</div>
       </div>
       <button class="btn-main"
-              style="width:auto; padding:10px 16px; background:linear-gradient(135deg,#22c55e,#16a34a);"
-              onclick="marcarIgrejaHoje()">
+        style="width:auto; padding:10px 16px; background:linear-gradient(135deg,#22c55e,#16a34a);"
+        onclick="marcarIgrejaHoje()">
         <i class="fas fa-check-circle"></i> Marcar hoje
       </button>
     </div>
@@ -403,7 +826,7 @@
   <script type="module">
     // 1. Service Worker
     if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => { navigator.serviceWorker.register("/sw.js").catch(() => {}); });
+      window.addEventListener("load", () => { navigator.serviceWorker.register("/sw.js").catch(() => { }); });
     }
 
     const statusEl = document.getElementById("status-conn");
@@ -432,18 +855,18 @@
     const ALVO_PE = 7200; const ALVO_CH = 2500;
 
     const niveis = [
-      {id:1, max:150, nome:"Início", premio:"Piquenique na Ermida Dom Bosco"},
-      {id:2, max:400, nome:"Aprendizes", premio:"Caminhada no Pontão + Água de Coco"},
-      {id:3, max:800, nome:"Parceiros", premio:"Eixão do Lazer + Fotos na SQS 308"},
-      {id:4, max:1300, nome:"Cúmplices", premio:"CCBB Cultural + Passeio no Jardim"},
-      {id:5, max:1900, nome:"Namorados", premio:"Pastel na Torre de TV"},
-      {id:6, max:2600, nome:"Noivos", premio:"Cine Drive-in (Noite Retrô)"},
-      {id:7, max:3500, nome:"Guardiões", premio:"Trilha na Água Mineral"},
-      {id:8, max:4500, nome:"Guerreiros", premio:"Visita ao Templo da LBV (Paz)"},
-      {id:9, max:6000, nome:"Inabaláveis", premio:"Jardim Botânico (Piquenique)"},
-      {id:10, max:7500, nome:"Alma Gêmea", premio:"Torre Digital (Vista do DF)"},
-      {id:11, max:9500, nome:"Realeza", premio:"Jantar de Gala em Casa"},
-      {id:12, max:13000, nome:"Lendários", premio:"VIAGEM PARA PERNAMBUCO!"}
+      { id: 1, max: 150, nome: "Início", premio: "Piquenique na Ermida Dom Bosco" },
+      { id: 2, max: 400, nome: "Aprendizes", premio: "Caminhada no Pontão + Água de Coco" },
+      { id: 3, max: 800, nome: "Parceiros", premio: "Eixão do Lazer + Fotos na SQS 308" },
+      { id: 4, max: 1300, nome: "Cúmplices", premio: "CCBB Cultural + Passeio no Jardim" },
+      { id: 5, max: 1900, nome: "Namorados", premio: "Pastel na Torre de TV" },
+      { id: 6, max: 2600, nome: "Noivos", premio: "Cine Drive-in (Noite Retrô)" },
+      { id: 7, max: 3500, nome: "Guardiões", premio: "Trilha na Água Mineral" },
+      { id: 8, max: 4500, nome: "Guerreiros", premio: "Visita ao Templo da LBV (Paz)" },
+      { id: 9, max: 6000, nome: "Inabaláveis", premio: "Jardim Botânico (Piquenique)" },
+      { id: 10, max: 7500, nome: "Alma Gêmea", premio: "Torre Digital (Vista do DF)" },
+      { id: 11, max: 9500, nome: "Realeza", premio: "Jantar de Gala em Casa" },
+      { id: 12, max: 13000, nome: "Lendários", premio: "VIAGEM PARA PERNAMBUCO!" }
     ];
 
     const missoes = [
@@ -496,7 +919,37 @@
       "Afofe o travesseiro do outro antes de deitar.",
       "Desligue a luz ou feche a porta para o outro.",
       "Pergunte sobre uma preocupação do outro e diga 'Vai dar certo'.",
-      "Faça um convite oficial para um 'encontro no sofá' hoje à noite."
+      "Faça um convite oficial para um 'encontro no sofá' hoje à noite.",
+      "Planejem um 'dia de folga' para o próximo feriado.",
+      "Façam uma lista de 3 lugares novos para conhecer na cidade.",
+      "Comprem um sorvete ou doce e dividam no mesmo pote.",
+      "Deem um passeio no quarteirão de mãos dadas sem celular.",
+      "Separem uma roupa que não usam mais para doação juntos.",
+      "Façam uma massagem nas mãos um do outro com creme.",
+      "Dancem uma música agitada na sala como se estivessem em uma festa.",
+      "Escrevam em um papel uma meta financeira para o mês que vem.",
+      "Façam um elogio sobre a inteligência ou habilidade do outro.",
+      "Pergunte: 'Se pudéssemos viajar amanhã para qualquer lugar, pra onde íamos?'",
+      "Façam um café da manhã na cama para o outro (ou preparem juntos).",
+      "Assistam ao pôr do sol (ou nascer) juntos da janela ou varanda.",
+      "Durmam hoje sem roupa (ou com uma lingerie especial).",
+      "Façam um 'high-five' sempre que passarem por uma porta juntos hoje.",
+      "Contem um segredo de infância que nunca contaram antes.",
+      "Façam um carinho no rosto um do outro e digam 'Eu te vejo'.",
+      "Orem especificamente pela saúde dos pais de vocês.",
+      "Leiam um capítulo de Provérbios que corresponda ao dia de hoje.",
+      "Façam uma competição de quem faz a careta mais feia (tirem foto!).",
+      "Montem uma playlist com 5 músicas que marcaram o namoro.",
+      "Escrevam 3 motivos pelos quais vocês casariam de novo um com o outro.",
+      "Deem um beijo de 'esquimó' (nariz com nariz).",
+      "Façam um brinde com água celebrando 'Nós'.",
+      "Pergunte: 'Qual foi o momento mais feliz do nosso casamento até hoje?'",
+      "Façam uma oração de agradecimento por 3 amigos em comum.",
+      "Decidam juntos uma melhoria pequena para a casa (ex: arrumar uma gaveta).",
+      "Façam um cafuné até o outro quase dormir.",
+      "Dê um beijo surpresa no pescoço do outro enquanto ele(a) estiver distraído(a).",
+      "Digam 'Eu te amo' em outra língua (I love you, Te quiero, Je t'aime).",
+      "Agradeça a Deus por uma característica física específica do seu cônjuge."
     ];
 
     let db, dbRef, igrejaRef, metasRef;
@@ -508,198 +961,223 @@
     window.fecharDevocional = () => { document.getElementById("modal-devocional").style.display = "none"; };
 
     window.lerDevocional = () => {
-        if(!firebaseReady) return;
-        const h = new Date();
-        const k = `lido-${h.getMonth()+1}-${h.getDate()}-${h.getFullYear()}`;
-        const btn = document.getElementById("btn-amem");
-        if(btn.disabled) return;
-        push(dbRef, { date: new Date().toLocaleDateString(), user: "Nós", desc: "Devocional lido 📖", xp: 15, val: 0, tipo: "devocional" });
-        localStorage.setItem(k, "true");
-        btn.innerHTML = '<i class="fas fa-check"></i> AMÉM! LIDO';
-        btn.disabled = true;
-        btn.style.background = "#333";
-        setTimeout(() => { window.fecharDevocional(); }, 1500);
+      if (!firebaseReady) return;
+      const h = new Date();
+      const k = `lido-${h.getMonth() + 1}-${h.getDate()}-${h.getFullYear()}`;
+      const btn = document.getElementById("btn-amem");
+      if (btn.disabled) return;
+      push(dbRef, { date: new Date().toLocaleDateString(), user: "Nós", desc: "Devocional lido 📖", xp: 15, val: 0, tipo: "devocional" });
+      localStorage.setItem(k, "true");
+      btn.innerHTML = '<i class="fas fa-check"></i> AMÉM! LIDO';
+      btn.disabled = true;
+      btn.style.background = "#333";
+      setTimeout(() => { window.fecharDevocional(); }, 1500);
     };
 
     window.renderizarMetas = () => {
-        const dono = document.getElementById("meta-dono").value;
-        const lista = document.getElementById("lista-metas");
-        if(!lista) return;
-        lista.innerHTML = "";
-        const m = estado.metas[dono] || {};
-        if(!dono) { lista.innerHTML = `<div style="text-align:center; padding:15px; opacity:0.6;">Selecione seu nome.</div>`; return; }
-        Object.keys(m).forEach(k => {
-            lista.innerHTML += `<div class="history-item"><div style="flex:1">${m[k].texto}</div><i class="fas fa-trash" style="color:var(--danger); cursor:pointer;" onclick="apagarMeta('${dono}','${k}')"></i></div>`;
-        });
+      const dono = document.getElementById("meta-dono").value;
+      const lista = document.getElementById("lista-metas");
+      if (!lista) return;
+      lista.innerHTML = "";
+      const m = estado.metas[dono] || {};
+      if (!dono) { lista.innerHTML = `<div style="text-align:center; padding:15px; opacity:0.6;">Selecione seu nome.</div>`; return; }
+      Object.keys(m).forEach(k => {
+        lista.innerHTML += `<div class="history-item"><div style="flex:1">${m[k].texto}</div><i class="fas fa-trash" style="color:var(--danger); cursor:pointer;" onclick="apagarMeta('${dono}','${k}')"></i></div>`;
+      });
     };
 
     window.adicionarMeta = () => {
-        if(!firebaseReady) return;
-        const d = document.getElementById("meta-dono").value;
-        const t = document.getElementById("meta-texto").value;
-        if(d && t) { push(ref(db, `metas/${d}`), { texto: t, criadoEm: new Date().toLocaleDateString() }); document.getElementById("meta-texto").value=""; }
+      if (!firebaseReady) return;
+      const d = document.getElementById("meta-dono").value;
+      const t = document.getElementById("meta-texto").value;
+      if (d && t) { push(ref(db, `metas/${d}`), { texto: t, criadoEm: new Date().toLocaleDateString() }); document.getElementById("meta-texto").value = ""; }
     };
-    window.apagarMeta = (d,i) => { if(confirm("Apagar?")) remove(ref(db, `metas/${d}/${i}`)); };
+    window.apagarMeta = (d, i) => { if (confirm("Apagar?")) remove(ref(db, `metas/${d}/${i}`)); };
 
     window.verProximoPremio = () => {
-        const n = getNivel();
-        document.getElementById("premio-txt").innerText = n.premio;
-        document.getElementById("modal-premio").style.display = "flex";
+      const n = getNivel();
+      document.getElementById("premio-txt").innerText = n.premio;
+      document.getElementById("modal-premio").style.display = "flex";
     };
 
     // --- NOVA LÓGICA DE MISSÕES ---
     window.sortearMissoes = () => {
-        // Gera missões
-        estado.missaoM = missoes[Math.floor(Math.random()*missoes.length)];
-        estado.missaoF = missoes[Math.floor(Math.random()*missoes.length)];
-        
-        // Salva no LocalStorage para não perder se atualizar
-        localStorage.setItem("missao_M", estado.missaoM);
-        localStorage.setItem("missao_F", estado.missaoF);
-        
-        // Reseta status de visualização
-        localStorage.removeItem("lido_M");
-        localStorage.removeItem("lido_F");
-        
-        // UI Reset
-        document.getElementById("mission-area").classList.remove("hidden");
-        document.getElementById("btn-ver-marcelo").style.display = "block";
-        document.getElementById("acoes-marcelo").style.display = "none";
-        document.getElementById("btn-ver-fernanda").style.display = "block";
-        document.getElementById("acoes-fernanda").style.display = "none";
-        
-        alert("Missões Sorteadas! Não conte para o outro.");
+      // Recupera histórico de índices usados
+      let usados = JSON.parse(localStorage.getItem("missoes_usadas") || "[]");
+
+      // Mapeia índices disponíveis
+      let disponiveis = missoes.map((_, i) => i).filter(i => !usados.includes(i));
+
+      // Se não tiver missões suficientes para o casal (precisa de 2), reseta
+      if (disponiveis.length < 2) {
+        alert("Uau! Vocês completaram todas as missões do baralho! Embaralhando tudo de novo...");
+        usados = [];
+        disponiveis = missoes.map((_, i) => i);
+      }
+
+      // Sorteia índice para Marcelo
+      const idxM = disponiveis[Math.floor(Math.random() * disponiveis.length)];
+      // Remove o escolhido da lista temporária para não repetir pra Fernanda
+      disponiveis = disponiveis.filter(i => i !== idxM);
+
+      // Sorteia índice para Fernanda
+      const idxF = disponiveis[Math.floor(Math.random() * disponiveis.length)];
+
+      // Atualiza estado
+      estado.missaoM = missoes[idxM];
+      estado.missaoF = missoes[idxF];
+
+      // Salva os novos índices usados no histórico
+      usados.push(idxM, idxF);
+      localStorage.setItem("missoes_usadas", JSON.stringify(usados));
+
+      // Salva as missões atuais no LocalStorage para não perder se atualizar
+      localStorage.setItem("missao_M", estado.missaoM);
+      localStorage.setItem("missao_F", estado.missaoF);
+
+      // Reseta status de visualização
+      localStorage.removeItem("lido_M");
+      localStorage.removeItem("lido_F");
+
+      // UI Reset
+      document.getElementById("mission-area").classList.remove("hidden");
+      document.getElementById("btn-ver-marcelo").style.display = "block";
+      document.getElementById("acoes-marcelo").style.display = "none";
+      document.getElementById("btn-ver-fernanda").style.display = "block";
+      document.getElementById("acoes-fernanda").style.display = "none";
+
+      alert("Novas Missões Sorteadas (Inéditas)!");
     };
 
     // Carregar do Storage ao iniciar
     window.carregarMissoesStorage = () => {
-        const mm = localStorage.getItem("missao_M");
-        const mf = localStorage.getItem("missao_F");
-        if(mm && mf) {
-            estado.missaoM = mm;
-            estado.missaoF = mf;
-            document.getElementById("mission-area").classList.remove("hidden");
-            
-            // Verifica se já leram
-            if(localStorage.getItem("lido_M")) {
-                document.getElementById("btn-ver-marcelo").style.display = "none";
-                document.getElementById("acoes-marcelo").style.display = "flex";
-            }
-            if(localStorage.getItem("lido_F")) {
-                document.getElementById("btn-ver-fernanda").style.display = "none";
-                document.getElementById("acoes-fernanda").style.display = "flex";
-            }
+      const mm = localStorage.getItem("missao_M");
+      const mf = localStorage.getItem("missao_F");
+      if (mm && mf) {
+        estado.missaoM = mm;
+        estado.missaoF = mf;
+        document.getElementById("mission-area").classList.remove("hidden");
+
+        // Verifica se já leram
+        if (localStorage.getItem("lido_M")) {
+          document.getElementById("btn-ver-marcelo").style.display = "none";
+          document.getElementById("acoes-marcelo").style.display = "flex";
         }
+        if (localStorage.getItem("lido_F")) {
+          document.getElementById("btn-ver-fernanda").style.display = "none";
+          document.getElementById("acoes-fernanda").style.display = "flex";
+        }
+      }
     };
 
     window.abrirMissao = (quem) => {
-        const txt = quem === 'Marcelo' ? estado.missaoM : estado.missaoF;
-        if(!txt) return alert("Sorteie primeiro!");
-        
-        quemVendo = quem;
-        document.getElementById("missao-dono").innerText = quem;
-        document.getElementById("missao-texto").innerText = txt;
-        document.getElementById("modal-missao").style.display = "flex";
+      const txt = quem === 'Marcelo' ? estado.missaoM : estado.missaoF;
+      if (!txt) return alert("Sorteie primeiro!");
+
+      quemVendo = quem;
+      document.getElementById("missao-dono").innerText = quem;
+      document.getElementById("missao-texto").innerText = txt;
+      document.getElementById("modal-missao").style.display = "flex";
     };
 
     window.fecharModalMissao = () => {
-        document.getElementById("modal-missao").style.display = "none";
-        quemVendo = null;
+      document.getElementById("modal-missao").style.display = "none";
+      quemVendo = null;
     };
 
     window.confirmarLeituraMissao = () => {
-        if(!quemVendo) return;
-        
-        // Marca como lido e troca botão por ações
-        if(quemVendo === 'Marcelo') {
-            document.getElementById("btn-ver-marcelo").style.display = "none";
-            document.getElementById("acoes-marcelo").style.display = "flex";
-            localStorage.setItem("lido_M", "true");
-        } else {
-            document.getElementById("btn-ver-fernanda").style.display = "none";
-            document.getElementById("acoes-fernanda").style.display = "flex";
-            localStorage.setItem("lido_F", "true");
-        }
-        
-        fecharModalMissao();
+      if (!quemVendo) return;
+
+      // Marca como lido e troca botão por ações
+      if (quemVendo === 'Marcelo') {
+        document.getElementById("btn-ver-marcelo").style.display = "none";
+        document.getElementById("acoes-marcelo").style.display = "flex";
+        localStorage.setItem("lido_M", "true");
+      } else {
+        document.getElementById("btn-ver-fernanda").style.display = "none";
+        document.getElementById("acoes-fernanda").style.display = "flex";
+        localStorage.setItem("lido_F", "true");
+      }
+
+      fecharModalMissao();
     };
 
     window.concluirMissaoIndividual = (quem, sucesso) => {
-        if(sucesso) {
-            registrarAcao(10, `Missão do ${quem} Cumprida!`);
-            alert(`Parabéns ${quem}! +10 XP`);
-        } else {
-            registrarAcao(-5, `Missão do ${quem} Falhou`);
-            alert("Que pena. Amanhã tem mais.");
-        }
-        
-        // Remove botões após concluir
-        if(quem === 'Marcelo') document.getElementById("acoes-marcelo").innerHTML = "<span style='color:white; font-size:0.8rem'>Concluído</span>";
-        else document.getElementById("acoes-fernanda").innerHTML = "<span style='color:white; font-size:0.8rem'>Concluído</span>";
+      if (sucesso) {
+        registrarAcao(10, `Missão do ${quem} Cumprida!`);
+        alert(`Parabéns ${quem}! +10 XP`);
+      } else {
+        registrarAcao(-5, `Missão do ${quem} Falhou`);
+        alert("Que pena. Amanhã tem mais.");
+      }
+
+      // Remove botões após concluir
+      if (quem === 'Marcelo') document.getElementById("acoes-marcelo").innerHTML = "<span style='color:white; font-size:0.8rem'>Concluído</span>";
+      else document.getElementById("acoes-fernanda").innerHTML = "<span style='color:white; font-size:0.8rem'>Concluído</span>";
     };
 
     window.fotoTirada = () => alert("Foto tirada! Salve no Álbum.");
-    window.registrarAcao = (xp, desc) => { if(firebaseReady) push(dbRef, { date: new Date().toLocaleDateString(), user:document.getElementById("user-select").value||"Nós", desc, xp, val:0 }); };
-    
+    window.registrarAcao = (xp, desc) => { if (firebaseReady) push(dbRef, { date: new Date().toLocaleDateString(), user: document.getElementById("user-select").value || "Nós", desc, xp, val: 0 }); };
+
     window.depositar = (tipo) => {
-        if(!firebaseReady) return;
-        const val = parseFloat(document.getElementById("money-input").value.replace(",","."));
-        if(!val) return alert("Valor?");
-        push(dbRef, { date: new Date().toLocaleDateString(), user:document.getElementById("user-select").value||"Nós", desc:`Poupança ${tipo.toUpperCase()}`, xp:5, val, tipo });
-        document.getElementById("money-input").value="";
-        alert("Guardado!");
+      if (!firebaseReady) return;
+      const val = parseFloat(document.getElementById("money-input").value.replace(",", "."));
+      if (!val) return alert("Valor?");
+      push(dbRef, { date: new Date().toLocaleDateString(), user: document.getElementById("user-select").value || "Nós", desc: `Poupança ${tipo.toUpperCase()}`, xp: 5, val, tipo });
+      document.getElementById("money-input").value = "";
+      alert("Guardado!");
     };
-    
-    window.remover = (id) => { if(confirm("Apagar?")) remove(ref(db, `historico/${id}`)); };
-    window.limparTudo = () => { if(confirm("Resetar TUDO?")) remove(dbRef); };
-    
+
+    window.remover = (id) => { if (confirm("Apagar?")) remove(ref(db, `historico/${id}`)); };
+    window.limparTudo = () => { if (confirm("Resetar TUDO?")) remove(dbRef); };
+
     window.marcarIgrejaHoje = () => {
-        if(!firebaseReady) return;
-        const d = new Date().toLocaleDateString();
-        if(estado.igrejaLast && estado.igrejaLast.date===d) { if(!confirm("Já marcou. De novo?")) return; }
-        push(igrejaRef, { date:d, dateISO:new Date().toISOString() });
-        push(dbRef, { date:d, user:"Nós", desc:"Igreja 🙏", xp:20, val:0 });
-        alert("Amém!");
+      if (!firebaseReady) return;
+      const d = new Date().toLocaleDateString();
+      if (estado.igrejaLast && estado.igrejaLast.date === d) { if (!confirm("Já marcou. De novo?")) return; }
+      push(igrejaRef, { date: d, dateISO: new Date().toISOString() });
+      push(dbRef, { date: d, user: "Nós", desc: "Igreja 🙏", xp: 20, val: 0 });
+      alert("Amém!");
     };
 
     function carregarDevocional() {
-        if (!db) return;
-        const h = new Date();
-        const k = `${String(h.getMonth()+1).padStart(2,'0')}-${String(h.getDate()).padStart(2,'0')}`;
-        
-        const m = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
-        document.getElementById("data-hoje").innerText = `${h.getDate()} de ${m[h.getMonth()]}`;
+      if (!db) return;
+      const h = new Date();
+      const k = `${String(h.getMonth() + 1).padStart(2, '0')}-${String(h.getDate()).padStart(2, '0')}`;
 
-        onValue(ref(db, `devocionais/${k}`), (snap) => {
-            const d = snap.val();
-            document.getElementById("dev-loading").classList.add("hidden");
-            document.getElementById("dev-content").classList.remove("hidden");
-            
-            if (d) {
-               document.getElementById("dev-titulo").innerText = d.titulo;
-               document.getElementById("dev-verso").innerText = d.verso;
-               if(d.historia) {
-                   document.getElementById("dev-historia").innerText = d.historia;
-                   document.getElementById("dev-historia").parentElement.classList.remove("hidden");
-               } else { document.getElementById("dev-historia").parentElement.classList.add("hidden"); }
-               document.getElementById("dev-reflexao").innerText = d.reflexao || d.texto || "...";
-            } else {
-               document.getElementById("dev-titulo").innerText = "Aguardando...";
-               document.getElementById("dev-verso").innerText = "Salmos 1:1";
-               document.getElementById("dev-reflexao").innerText = "Sem devocional cadastrado hoje.";
-               document.getElementById("dev-historia").parentElement.classList.add("hidden");
-            }
+      const m = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+      document.getElementById("data-hoje").innerText = `${h.getDate()} de ${m[h.getMonth()]}`;
 
-            const lk = `lido-${k}-${h.getFullYear()}`;
-            const btn = document.getElementById("btn-amem");
-            if(localStorage.getItem(lk)) {
-                 btn.innerHTML = '<i class="fas fa-check"></i> AMÉM! LIDO';
-                 btn.disabled = true; btn.style.opacity = "0.5"; btn.style.background = "#333";
-            } else {
-                 btn.innerHTML = '<i class="fas fa-praying-hands"></i> AMÉM! Lemos Juntos (+15 XP)';
-                 btn.disabled = false; btn.style.opacity = "1"; btn.style.background = "linear-gradient(135deg, #b8860b 0%, #daa520 100%)";
-            }
-        });
+      onValue(ref(db, `devocionais/${k}`), (snap) => {
+        const d = snap.val();
+        document.getElementById("dev-loading").classList.add("hidden");
+        document.getElementById("dev-content").classList.remove("hidden");
+
+        if (d) {
+          document.getElementById("dev-titulo").innerText = d.titulo;
+          document.getElementById("dev-verso").innerText = d.verso;
+          if (d.historia) {
+            document.getElementById("dev-historia").innerText = d.historia;
+            document.getElementById("dev-historia").parentElement.classList.remove("hidden");
+          } else { document.getElementById("dev-historia").parentElement.classList.add("hidden"); }
+          document.getElementById("dev-reflexao").innerText = d.reflexao || d.texto || "...";
+        } else {
+          document.getElementById("dev-titulo").innerText = "Aguardando...";
+          document.getElementById("dev-verso").innerText = "Salmos 1:1";
+          document.getElementById("dev-reflexao").innerText = "Sem devocional cadastrado hoje.";
+          document.getElementById("dev-historia").parentElement.classList.add("hidden");
+        }
+
+        const lk = `lido-${k}-${h.getFullYear()}`;
+        const btn = document.getElementById("btn-amem");
+        if (localStorage.getItem(lk)) {
+          btn.innerHTML = '<i class="fas fa-check"></i> AMÉM! LIDO';
+          btn.disabled = true; btn.style.opacity = "0.5"; btn.style.background = "#333";
+        } else {
+          btn.innerHTML = '<i class="fas fa-praying-hands"></i> AMÉM! Lemos Juntos (+15 XP)';
+          btn.disabled = false; btn.style.opacity = "1"; btn.style.background = "linear-gradient(135deg, #b8860b 0%, #daa520 100%)";
+        }
+      });
     }
 
     // Função auxiliar para calcular nível e renderizar
@@ -708,97 +1186,98 @@
       for (let n of niveis) { if (estado.xp < n.max) { atual = n; break; } if (n.id === 12) atual = n; }
       return atual;
     }
-    
-    function getTravelStatus(val, max) { 
-        const p = (val/max)*100; 
-        if(p<=0)return "🎒 Iniciando"; if(p<20)return "🧳 Arrumando"; 
-        if(p<50)return "🚗 A Caminho"; if(p<80)return "✈️ Quase lá"; 
-        if(p<100)return "🏖️ Vendo o Mar"; return "🥂 CONQUISTADO!"; 
+
+    function getTravelStatus(val, max) {
+      const p = (val / max) * 100;
+      if (p <= 0) return "🎒 Iniciando"; if (p < 20) return "🧳 Arrumando";
+      if (p < 50) return "🚗 A Caminho"; if (p < 80) return "✈️ Quase lá";
+      if (p < 100) return "🏖️ Vendo o Mar"; return "🥂 CONQUISTADO!";
     }
 
     // Inicialização
     try {
-        const app = initializeApp(firebaseConfig);
-        db = getDatabase(app);
-        dbRef = ref(db, "historico");
-        igrejaRef = ref(db, "igreja");
-        metasRef = ref(db, "metas");
-        firebaseReady = true;
-        setStatus('<i class="fas fa-wifi"></i> Online', "var(--success)");
+      const app = initializeApp(firebaseConfig);
+      db = getDatabase(app);
+      dbRef = ref(db, "historico");
+      igrejaRef = ref(db, "igreja");
+      metasRef = ref(db, "metas");
+      firebaseReady = true;
+      setStatus('<i class="fas fa-wifi"></i> Online', "var(--success)");
 
-        onValue(dbRef, (snap) => {
-            const data = snap.val();
-            estado.list = [];
-            if (data) Object.keys(data).forEach(k => estado.list.push({ id: k, ...data[k] }));
-            
-            estado.xp=0; estado.pe=0; estado.ch=0;
-            estado.list.forEach(i => {
-                estado.xp += Number(i.xp || 0);
-                if (i.tipo === "pe") estado.pe += Number(i.val || 0);
-                if (i.tipo === "ch") estado.ch += Number(i.val || 0);
-            });
+      onValue(dbRef, (snap) => {
+        const data = snap.val();
+        estado.list = [];
+        if (data) Object.keys(data).forEach(k => estado.list.push({ id: k, ...data[k] }));
 
-            const n = getNivel();
-            document.getElementById("level-name").innerText = n.nome;
-            document.getElementById("xp-total").innerText = `${estado.xp} XP`;
-            document.getElementById("xp-next").innerText = n.max;
-            document.getElementById("xp-bar").style.width = `${Math.min((estado.xp/n.max)*100,100)}%`;
+        estado.xp = 0; estado.pe = 0; estado.ch = 0;
+        estado.list.forEach(i => {
+          estado.xp += Number(i.xp || 0);
+          if (i.tipo === "pe") estado.pe += Number(i.val || 0);
+          if (i.tipo === "ch") estado.ch += Number(i.val || 0);
+        });
 
-            document.getElementById("total-pe").innerText = fmtBRL.format(estado.pe);
-            document.getElementById("bar-pe").style.width = `${Math.min((estado.pe/ALVO_PE)*100,100)}%`;
-            document.getElementById("status-pe").innerText = getTravelStatus(estado.pe, ALVO_PE);
+        const n = getNivel();
+        document.getElementById("level-name").innerText = n.nome;
+        document.getElementById("xp-total").innerText = `${estado.xp} XP`;
+        document.getElementById("xp-next").innerText = n.max;
+        document.getElementById("xp-bar").style.width = `${Math.min((estado.xp / n.max) * 100, 100)}%`;
 
-            document.getElementById("total-ch").innerText = fmtBRL.format(estado.ch);
-            document.getElementById("bar-ch").style.width = `${Math.min((estado.ch/ALVO_CH)*100,100)}%`;
-            document.getElementById("status-ch").innerText = getTravelStatus(estado.ch, ALVO_CH);
+        document.getElementById("total-pe").innerText = fmtBRL.format(estado.pe);
+        document.getElementById("bar-pe").style.width = `${Math.min((estado.pe / ALVO_PE) * 100, 100)}%`;
+        document.getElementById("status-pe").innerText = getTravelStatus(estado.pe, ALVO_PE);
 
-            const l = document.getElementById("history-list");
-            l.innerHTML = "";
-            if(!estado.list.length) l.innerHTML = `<div style="text-align:center; padding:20px; color:#aaa;">Sem registros.</div>`;
-            else [...estado.list].reverse().forEach(i => {
-                const who = i.user || "Nós";
-                const cls = who === "Marcelo"?"bg-marcelo":(who==="Fernanda"?"bg-fernanda":"bg-nos");
-                const c = i.xp>0?"var(--success)":(i.xp<0?"var(--danger)":"#aaa");
-                l.innerHTML += `
+        document.getElementById("total-ch").innerText = fmtBRL.format(estado.ch);
+        document.getElementById("bar-ch").style.width = `${Math.min((estado.ch / ALVO_CH) * 100, 100)}%`;
+        document.getElementById("status-ch").innerText = getTravelStatus(estado.ch, ALVO_CH);
+
+        const l = document.getElementById("history-list");
+        l.innerHTML = "";
+        if (!estado.list.length) l.innerHTML = `<div style="text-align:center; padding:20px; color:#aaa;">Sem registros.</div>`;
+        else[...estado.list].reverse().forEach(i => {
+          const who = i.user || "Nós";
+          const cls = who === "Marcelo" ? "bg-marcelo" : (who === "Fernanda" ? "bg-fernanda" : "bg-nos");
+          const c = i.xp > 0 ? "var(--success)" : (i.xp < 0 ? "var(--danger)" : "#aaa");
+          l.innerHTML += `
                   <div class="history-item">
                     <div>
-                      <div><span class="badge ${cls}">${who}</span> <span style="opacity:0.6; font-size:0.7rem">${i.date||""}</span></div>
-                      <div style="margin-top:4px;">${i.desc||""} ${i.val>0 ? `(${fmtBRL.format(i.val)})` : ""}</div>
+                      <div><span class="badge ${cls}">${who}</span> <span style="opacity:0.6; font-size:0.7rem">${i.date || ""}</span></div>
+                      <div style="margin-top:4px;">${i.desc || ""} ${i.val > 0 ? `(${fmtBRL.format(i.val)})` : ""}</div>
                     </div>
                     <div style="display:flex; align-items:center; gap:10px;">
-                      <span style="color:${c}; font-weight:bold;">${i.xp>0?"+":""}${i.xp}</span>
+                      <span style="color:${c}; font-weight:bold;">${i.xp > 0 ? "+" : ""}${i.xp}</span>
                       <i class="fas fa-times" style="opacity:0.3; cursor:pointer;" onclick="remover('${i.id}')"></i>
                     </div>
                   </div>`;
-            });
         });
+      });
 
-        onValue(igrejaRef, (snap) => {
-            const data = snap.val();
-            let count = 0, last = null;
-            if (data) {
-                Object.keys(data).forEach(k => {
-                    const i = data[k]; count++;
-                    if (!last || new Date(i.dateISO||i.date) > new Date(last?.dateISO||last?.date||0)) last = i;
-                });
-            }
-            estado.igrejaCount = count; estado.igrejaLast = last;
-            document.getElementById("igreja-total").innerText = count;
-            document.getElementById("igreja-last").innerText = last ? `Último registro: ${last.date}` : "Último registro: —";
-        });
+      onValue(igrejaRef, (snap) => {
+        const data = snap.val();
+        let count = 0, last = null;
+        if (data) {
+          Object.keys(data).forEach(k => {
+            const i = data[k]; count++;
+            if (!last || new Date(i.dateISO || i.date) > new Date(last?.dateISO || last?.date || 0)) last = i;
+          });
+        }
+        estado.igrejaCount = count; estado.igrejaLast = last;
+        document.getElementById("igreja-total").innerText = count;
+        document.getElementById("igreja-last").innerText = last ? `Último registro: ${last.date}` : "Último registro: —";
+      });
 
-        onValue(metasRef, (snap) => {
-            estado.metas = snap.val() || {};
-            renderizarMetas();
-        });
+      onValue(metasRef, (snap) => {
+        estado.metas = snap.val() || {};
+        renderizarMetas();
+      });
 
-        carregarDevocional();
-        carregarMissoesStorage();
+      carregarDevocional();
+      carregarMissoesStorage();
 
     } catch (err) {
-        console.error(err);
-        setStatus('<i class="fas fa-exclamation-triangle"></i> Erro', "var(--danger)");
+      console.error(err);
+      setStatus('<i class="fas fa-exclamation-triangle"></i> Erro', "var(--danger)");
     }
   </script>
 </body>
+
 </html>
