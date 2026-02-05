@@ -191,6 +191,17 @@ export default function Missions() {
                 </div>
                 <h2 className="text-2xl font-serif text-brand-gold">Missão de Hoje</h2>
                 <p className="text-white/60 text-sm">Psiu! É segredo...</p>
+                <button
+                    onClick={() => {
+                        const today = new Date().toLocaleDateString();
+                        localStorage.removeItem(`mission-${user.name}-${today}`);
+                        localStorage.removeItem(`mission-${user.name}-${today}-revealed`);
+                        window.location.reload();
+                    }}
+                    className="text-xs text-white/30 hover:text-white/80 underline mt-2"
+                >
+                    (Resetar Hoje - Teste)
+                </button>
             </div>
 
             {!mission ? (
