@@ -190,17 +190,30 @@ export default function Missions() {
                     {user.name === 'Marcelo' ? '🧔🏻' : '👩🏻'}
                 </div>
                 <h2 className="text-2xl font-serif text-brand-gold">Missão de Hoje</h2>
-                <p className="text-white/60 text-sm">Psiu! É segredo...</p>
+                <div className="flex flex-col items-center">
+                    <p className="text-white/60 text-sm">Psiu! É segredo...</p>
+                    <span className="text-[10px] text-white/20 mt-1">v2.1 (Sistema Deck)</span>
+                </div>
                 <button
                     onClick={() => {
                         const today = new Date().toLocaleDateString();
                         localStorage.removeItem(`mission-${user.name}-${today}`);
                         localStorage.removeItem(`mission-${user.name}-${today}-revealed`);
+
+                        // Force SW update if available
+                        if ('serviceWorker' in navigator) {
+                            navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                                for (let registration of registrations) {
+                                    registration.unregister();
+                                }
+                            });
+                        }
+
                         window.location.reload();
                     }}
                     className="text-xs text-white/30 hover:text-white/80 underline mt-2"
                 >
-                    (Resetar Hoje - Teste)
+                    (Resetar Hoje & Limpar Cache SW)
                 </button>
             </div>
 
