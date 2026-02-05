@@ -25,7 +25,67 @@ const MISSOES_LISTA = [
     "Faça um elogio sobre a aparência do outro.",
     "Conte uma piada (mesmo que ruim) para o outro.",
     "Leiam um versículo bíblico juntos.",
-    "Agradeça por algo específico que o outro fez ontem."
+    "Agradeça por algo específico que o outro fez ontem.",
+    "Faça um convite oficial para um 'encontro no sofá' hoje à noite.",
+    "Planejem um 'dia de folga' para o próximo feriado.",
+    "Façam uma lista de 3 lugares novos para conhecer na cidade.",
+    "Comprem um sorvete ou doce e dividam no mesmo pote.",
+    "Deem um passeio no quarteirão de mãos dadas sem celular.",
+    "Separem uma roupa que não usam mais para doação juntos.",
+    "Façam uma massagem nas mãos um do outro com creme.",
+    "Dancem uma música agitada na sala como se estivessem em uma festa.",
+    "Escrevam em um papel uma meta financeira para o mês que vem.",
+    "Façam um elogio sobre a inteligência ou habilidade do outro.",
+    "Pergunte: 'Se pudéssemos viajar amanhã para qualquer lugar, pra onde íamos?'",
+    "Façam um café da manhã na cama para o outro (ou preparem juntos).",
+    "Assistam ao pôr do sol (ou nascer) juntos da janela ou varanda.",
+    "Durmam hoje sem roupa (ou com uma lingerie especial).",
+    "Façam um 'high-five' sempre que passarem por uma porta juntos hoje.",
+    "Contem um segredo de infância que nunca contaram antes.",
+    "Façam um carinho no rosto um do outro e digam 'Eu te vejo'.",
+    "Orem especificamente pela saúde dos pais de vocês.",
+    "Leiam um capítulo de Provérbios que corresponda ao dia de hoje.",
+    "Façam uma competição de quem faz a careta mais feia (tirem foto!).",
+    "Montem uma playlist com 5 músicas que marcaram o namoro.",
+    "Escrevam 3 motivos pelos quais vocês casariam de novo um com o outro.",
+    "Deem um beijo de 'esquimó' (nariz com nariz).",
+    "Façam um brinde com água celebrando 'Nós'.",
+    "Pergunte: 'Qual foi o momento mais feliz do nosso casamento até hoje?'",
+    "Façam uma oração de agradecimento por 3 amigos em comum.",
+    "Decidam juntos uma melhoria pequena para a casa (ex: arrumar uma gaveta).",
+    "Façam um cafuné até o outro quase dormir.",
+    "Dê um beijo surpresa no pescoço do outro enquanto ele(a) estiver distraído(a).",
+    "Digam 'Eu te amo' em outra língua (I love you, Te quiero, Je t'aime).",
+    "Agradeça a Deus por uma característica física específica do seu cônjuge.",
+    "Sirva um copo de água ou café para o outro sem ele pedir.",
+    "Elogie uma roupa ou o perfume que o outro está usando.",
+    "Faça uma oração de 1 minuto de mãos dadas agradecendo pelo dia.",
+    "Envie um WhatsApp agora dizendo: 'Sou feliz com você'.",
+    "Faça cafuné ou mexa no cabelo do outro por 3 minutos.",
+    "Faça uma massagem rápida (5 min) nos ombros ou pés do outro.",
+    "Arrume a cama (ou ajude a terminar de arrumar) caprichado.",
+    "Elogie uma qualidade de caráter do outro.",
+    "Pergunte 'Qual foi a melhor parte do seu dia?' e ouça com atenção.",
+    "Deixem os celulares em outro cômodo por 20 minutos juntos.",
+    "Agradeça por algo simples que o outro fez essa semana.",
+    "Lave a louça do jantar ou tire o lixo para aliviar o outro.",
+    "Coloque uma música romântica e tirem o outro para dançar na sala.",
+    "Leia um versículo de Salmos em voz alta para o outro.",
+    "Dê três beijos na testa do outro em momentos diferentes hoje.",
+    "Prepare um lanche surpresa ou leve uma fruta para o outro.",
+    "Tirem uma selfie fazendo careta e guardem só para vocês.",
+    "Conte uma piada ruim ou mostre um vídeo engraçado para o outro rir.",
+    "Conversem 5 minutos sobre um sonho para a viagem de 2026.",
+    "Olhe nos olhos por 30 segundos e termine dizendo 'Eu te amo'.",
+    "Assista a um vídeo ou programa de TV de mãos dadas.",
+    "Já deixou a pasta de dente pronta na escova do outro? Faça hoje.",
+    "Faça uma oração abençoando o trabalho/estudos do outro.",
+    "Relembrem em 2 minutos como foi o primeiro encontro de vocês.",
+    "Invente um apelido fofo novo e use-o durante o dia.",
+    "Pergunte agora: 'Posso te ajudar em algo rápido?'.",
+    "Ouçam um louvor juntos antes de dormir.",
+    "Faça um voto de silêncio sobre reclamações hoje (só elogie).",
+    "Receba o outro com um sorriso enorme assim que o vir."
 ];
 
 export default function Missions() {
@@ -50,23 +110,47 @@ export default function Missions() {
         const today = new Date().toLocaleDateString();
         const storedKey = `mission-${user.name}-${today}`;
 
-        // Deterministic 'Random' based on date to avoid repeats on same day if cleared, 
-        // and consistent rotation across days.
-        const dateStr = new Date().toISOString().split('T')[0].replace(/-/g, ''); // 20231025
-        const dateNum = parseInt(dateStr);
-        const userOffset = user.name === 'Marcelo' ? 0 : 5; // Different seeds if needed, but keeping same for couple is better? 
-        // Let's keep it same for couple so they are in sync? 
-        // User asked "nossas missoes", implied shared or individual? 
-        // "as nossas missões diarias estao sempre se repedindo..."
-        // Better to rotate using Day of Year.
+        try {
+            // Recupera histórico de índices usados (shared key for history to ensure uniqueness across uses if needed, 
+            // but for simple user flow, let's keep it specific or global? 
+            // Let's use a global history key so missions don't repeat for ANYONE using this device or logical flow)
+            let usados = [];
+            try {
+                usados = JSON.parse(localStorage.getItem(`missoes_usadas_${user.name}`) || "[]");
+            } catch (err) {
+                console.warn("Resetando histórico corrompido");
+                usados = [];
+            }
 
-        const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
-        const index = (dayOfYear + userOffset) % MISSOES_LISTA.length;
+            // Filtra disponíveis
+            let disponiveis = MISSOES_LISTA.map((_, i) => i).filter(i => !usados.includes(i));
 
-        const selected = MISSOES_LISTA[index];
+            // Se acabar, reseta
+            if (disponiveis.length === 0) {
+                alert("Uau! Você completou TODAS as missões! O baralho será reembaralhado.");
+                usados = [];
+                disponiveis = MISSOES_LISTA.map((_, i) => i);
+            }
 
-        localStorage.setItem(storedKey, selected);
-        setMission(selected);
+            // Sorteia UM índice
+            const randomIndex = disponiveis[Math.floor(Math.random() * disponiveis.length)];
+            const selectedMission = MISSOES_LISTA[randomIndex];
+
+            // Salva
+            localStorage.setItem(storedKey, selectedMission);
+            setMission(selectedMission);
+
+            // Atualiza histórico
+            usados.push(randomIndex);
+            localStorage.setItem(`missoes_usadas_${user.name}`, JSON.stringify(usados));
+
+        } catch (e) {
+            console.error("Erro no sorteio", e);
+            // Fallback to simple random
+            const random = MISSOES_LISTA[Math.floor(Math.random() * MISSOES_LISTA.length)];
+            localStorage.setItem(storedKey, random);
+            setMission(random);
+        }
     };
 
     const revealMission = () => {
