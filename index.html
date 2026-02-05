@@ -1002,51 +1002,64 @@
 
     // --- NOVA LÓGICA DE MISSÕES ---
     window.sortearMissoes = () => {
-      // Recupera histórico de índices usados
-      let usados = JSON.parse(localStorage.getItem("missoes_usadas") || "[]");
+      try {
+        console.log("Iniciando sorteio...");
 
-      // Mapeia índices disponíveis
-      let disponiveis = missoes.map((_, i) => i).filter(i => !usados.includes(i));
+        let usados = [];
+        try {
+          const stored = localStorage.getItem("missoes_usadas");
+          usados = stored ? JSON.parse(stored) : [];
+        } catch (e) {
+          console.warn("Erro ao ler histórico de missões, resetando.", e);
+          usados = [];
+        }
 
-      // Se não tiver missões suficientes para o casal (precisa de 2), reseta
-      if (disponiveis.length < 2) {
-        alert("Uau! Vocês completaram todas as missões do baralho! Embaralhando tudo de novo...");
-        usados = [];
-        disponiveis = missoes.map((_, i) => i);
+        // Mapeia índices disponíveis
+        let disponiveis = missoes.map((_, i) => i).filter(i => !usados.includes(i));
+
+        // Se não tiver missões suficientes para o casal (precisa de 2), reseta
+        if (disponiveis.length < 2) {
+          alert("Uau! Vocês completaram todas as missões do baralho! Embaralhando tudo de novo...");
+          usados = [];
+          disponiveis = missoes.map((_, i) => i);
+        }
+
+        // Sorteia índice para Marcelo
+        const idxM = disponiveis[Math.floor(Math.random() * disponiveis.length)];
+        // Remove o escolhido da lista temporária para não repetir pra Fernanda
+        disponiveis = disponiveis.filter(i => i !== idxM);
+
+        // Sorteia índice para Fernanda
+        const idxF = disponiveis[Math.floor(Math.random() * disponiveis.length)];
+
+        // Atualiza estado
+        estado.missaoM = missoes[idxM];
+        estado.missaoF = missoes[idxF];
+
+        // Salva os novos índices usados no histórico
+        usados.push(idxM, idxF);
+        localStorage.setItem("missoes_usadas", JSON.stringify(usados));
+
+        // Salva as missões atuais no LocalStorage para não perder se atualizar
+        localStorage.setItem("missao_M", estado.missaoM);
+        localStorage.setItem("missao_F", estado.missaoF);
+
+        // Reseta status de visualização
+        localStorage.removeItem("lido_M");
+        localStorage.removeItem("lido_F");
+
+        // UI Reset
+        document.getElementById("mission-area").classList.remove("hidden");
+        document.getElementById("btn-ver-marcelo").style.display = "block";
+        document.getElementById("acoes-marcelo").style.display = "none";
+        document.getElementById("btn-ver-fernanda").style.display = "block";
+        document.getElementById("acoes-fernanda").style.display = "none";
+
+        alert("Novas Missões Sorteadas (Inéditas)!");
+      } catch (err) {
+        console.error("Erro no sorteio:", err);
+        alert("Ops! Ocorreu um erro ao sortear. Tente novamente.");
       }
-
-      // Sorteia índice para Marcelo
-      const idxM = disponiveis[Math.floor(Math.random() * disponiveis.length)];
-      // Remove o escolhido da lista temporária para não repetir pra Fernanda
-      disponiveis = disponiveis.filter(i => i !== idxM);
-
-      // Sorteia índice para Fernanda
-      const idxF = disponiveis[Math.floor(Math.random() * disponiveis.length)];
-
-      // Atualiza estado
-      estado.missaoM = missoes[idxM];
-      estado.missaoF = missoes[idxF];
-
-      // Salva os novos índices usados no histórico
-      usados.push(idxM, idxF);
-      localStorage.setItem("missoes_usadas", JSON.stringify(usados));
-
-      // Salva as missões atuais no LocalStorage para não perder se atualizar
-      localStorage.setItem("missao_M", estado.missaoM);
-      localStorage.setItem("missao_F", estado.missaoF);
-
-      // Reseta status de visualização
-      localStorage.removeItem("lido_M");
-      localStorage.removeItem("lido_F");
-
-      // UI Reset
-      document.getElementById("mission-area").classList.remove("hidden");
-      document.getElementById("btn-ver-marcelo").style.display = "block";
-      document.getElementById("acoes-marcelo").style.display = "none";
-      document.getElementById("btn-ver-fernanda").style.display = "block";
-      document.getElementById("acoes-fernanda").style.display = "none";
-
-      alert("Novas Missões Sorteadas (Inéditas)!");
     };
 
     // Carregar do Storage ao iniciar
